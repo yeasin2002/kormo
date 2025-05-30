@@ -1,11 +1,11 @@
 import starIcon from "@/assets/star.svg";
 import { Badge, Button } from "@/components/retroui";
-import { Blocks, Figma, FileText, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import Image from "next/image";
 
 export const Hero2 = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden container mx-auto">
+    <div className=" bg-background text-foreground relative overflow-hidden container mx-auto">
       {/* Decorative Stars */}
       <div className="absolute top-20 left-20 text-foreground opacity-60">
         <Image src={starIcon} alt="Star" className="w-8 h-8" />
@@ -21,7 +21,7 @@ export const Hero2 = () => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 py-16 lg:py-24">
+      <div className="container mx-auto px-6 pt-16 lg:pt-24">
         <div className="text-center max-w-4xl mx-auto">
           {/* Promotional Badge */}
           <div className="mb-12">
@@ -64,8 +64,7 @@ export const Hero2 = () => {
           </div>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Premium Blocks Card */}
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div className="bg-card border-2 border-border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="p-2 bg-foreground text-background rounded-lg">
@@ -78,7 +77,6 @@ export const Hero2 = () => {
               </p>
             </div>
 
-            {/* Templates Card */}
             <div className="bg-card border-2 border-border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="p-2 bg-foreground text-background rounded-lg">
@@ -91,7 +89,6 @@ export const Hero2 = () => {
               </p>
             </div>
 
-            {/* Figma UI Kit Card */}
             <div className="bg-card border-2 border-border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="p-2 bg-foreground text-background rounded-lg">
@@ -103,7 +100,7 @@ export const Hero2 = () => {
                 Creating a Neobrutalist design? Our Figma kit makes it easier.
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

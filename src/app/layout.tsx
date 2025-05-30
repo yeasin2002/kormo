@@ -2,8 +2,7 @@ import { fontVariables } from "@/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
-import { NavBar } from "@/components/shared/nav-bar";
-import { ThemeProvider } from "@/components/shared/theme-provider";
+import { Footer, NavBar, ThemeProvider } from "@/components/shared";
 import "./globals.css";
 
 export default function RootLayout({
@@ -22,6 +21,7 @@ export default function RootLayout({
         <body className={cn(`antialiased  `, fontVariables)}>
           <NavBar />
           {children}
+          <Footer />
         </body>
       </ThemeProvider>
     </html>
