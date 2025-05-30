@@ -18,9 +18,10 @@ export function Hero() {
 
             {/* Main Heading */}
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-head ">
                 Finding Jobs
-                <span className="text-yellow-400">is easy now!</span>
+                <br />
+                <span className="text-yellow-400"> is easy now!</span>
               </h1>
 
               <p className="text-lg text-gray-400 max-w-lg">
@@ -40,7 +41,7 @@ export function Hero() {
                 alt="Retro UI illustration with colorful geometric shapes, TV, and boombox"
                 width={500}
                 height={400}
-                className="w-full h-auto"
+                className="w-full h-auto rounded-2xl"
               />
             </div>
           </div>
