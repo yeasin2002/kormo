@@ -1,7 +1,7 @@
 import { Github } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "../retroui/Button";
-import { ModeToggle } from "./theme-toggle";
+import { ThemeToggle } from "./theme-toggle";
 
 const menuList = [
   {
@@ -9,11 +9,15 @@ const menuList = [
     href: "#",
   },
   {
-    name: "Companies",
+    name: "BD Companies",
     href: "#",
   },
   {
-    name: "Remote Job Resources",
+    name: "Remote Job",
+    href: "#",
+  },
+  {
+    name: "Freelancing",
     href: "#",
   },
 ];
@@ -53,7 +57,7 @@ export const NavBar = () => {
           <Github className="w-4 h-4" />
           <span>Star on GitHub</span>
         </Link>
-        <ModeToggle />
+        <ThemeToggle />
       </div>
     </nav>
   );

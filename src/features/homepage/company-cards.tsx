@@ -15,14 +15,14 @@ interface CompanyCardProps {
 
 export function CompanyCard({ company }: CompanyCardProps) {
   return (
-    <div className="dark:bg-gray-900 bg-[#59CE8F] border border-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group font-sans">
+    <div className="dark:bg-gray-900 bg-[#FED1AC] text-[#1E1E1E] border border-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group font-sans ">
       {/* Company Header */}
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-50 mb-2  transition-colors font-head">
+        <h3 className="text-xl font-bold  mb-2  transition-colors font-head">
           {company["CompanyName"]}
         </h3>
 
-        <div className="flex items-start space-x-2 text-gray-100 text-sm">
+        <div className="flex items-start space-x-2  text-sm">
           <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
           <span className="line-clamp-2">{company["OfficeLocation"]}</span>
         </div>
@@ -32,16 +32,14 @@ export function CompanyCard({ company }: CompanyCardProps) {
       <div className="mb-6">
         <div className="flex items-center space-x-2 mb-3">
           <Code className="w-4 h-4 text-yellow-400" />
-          <span className="text-sm font-medium text-gray-100">
-            Technologies
-          </span>
+          <span className="text-sm font-medium ">Technologies</span>
         </div>
 
         <div className="flex flex-wrap gap-2">
           {company.Technologies.map((tech, index) => (
             <Badge
               key={index}
-              className="bg-gray-800 text-gray-100 border-gray-600 hover:bg-gray-700 text-xs"
+              className="bg-gray-800  border-gray-600 hover:bg-gray-700 text-xs text-gray-100"
             >
               {tech}
             </Badge>
@@ -51,9 +49,9 @@ export function CompanyCard({ company }: CompanyCardProps) {
 
       {/* Team Size */}
       <div className="mb-6">
-        <div className="flex items-center space-x-2 text-gray-100 text-sm">
+        <div className="flex items-center space-x-2  text-sm">
           <Users className="w-4 h-4 text-yellow-400" />
-          <span className="font-medium text-gray-100">Engineers:</span>
+          <span className="font-medium ">Engineers:</span>
           <span>{company["teamMembers"]}</span>
         </div>
       </div>
@@ -65,7 +63,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
             key={index}
             variant="outline"
             size="sm"
-            className="w-full bg-transparent border-gray-600 text-gray-100 hover:bg-gray-800 hover:text-white hover:border-yellow-400 transition-all duration-200 group/btn"
+            className="w-full bg-transparent border-gray-600  hover:bg-gray-800 hover:text-white hover:border-yellow-400 transition-all duration-200 group/btn"
           >
             <a
               href={url}

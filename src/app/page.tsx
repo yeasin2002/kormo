@@ -1,9 +1,9 @@
-import { Hero, ShowCompanies, ShowContributors } from "@/features/homepage";
+import { Hero2, ShowCompanies, ShowContributors } from "@/features/homepage";
 
 const RootPage = () => {
   return (
     <div className="h-screen  ">
-      <Hero />
+      <Hero2 />
       <ShowCompanies />
       <ShowContributors />
 
