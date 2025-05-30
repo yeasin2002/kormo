@@ -1,54 +1,58 @@
-import { Github, Sun } from "lucide-react";
-import React from "react";
-import { Button } from "../retroui/Button";
+import { Github } from "lucide-react";
+import Link from "next/link";
+import { buttonVariants } from "../retroui/Button";
+import { ModeToggle } from "./theme-toggle";
+
+const menuList = [
+  {
+    name: "Home",
+    href: "#",
+  },
+  {
+    name: "Companies",
+    href: "#",
+  },
+  {
+    name: "Remote Job Resources",
+    href: "#",
+  },
+];
 
 export const NavBar = () => {
   return (
-    <nav className="relative z-10 flex items-center justify-between px-6 py-4 lg:px-8">
+    <nav className="relative z-10 flex items-center justify-between px-6 py-4 lg:px-8 container mx-auto">
       <div className="flex items-center space-x-2">
         <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
           <div className="w-4 h-4 bg-black rounded-full" />
         </div>
-        <span className="text-xl font-bold">RetroUI</span>
+        <span className="text-xl font-bold">Tech Jobs</span>
       </div>
 
       <div className="hidden md:flex items-center space-x-8">
-        <a
-          href="#"
-          className="text-gray-300 hover:text-white transition-colors"
-        >
-          Documentation
-        </a>
-        <a
-          href="#"
-          className="text-gray-300 hover:text-white transition-colors"
-        >
-          Components
-        </a>
-        <a
-          href="#"
-          className="text-gray-300 hover:text-white transition-colors"
-        >
-          Blogs
-        </a>
+        {menuList.map((item, index) => (
+          <a
+            key={index}
+            href={item.href}
+            className=" transition-colors font-sans"
+          >
+            {item.name}
+          </a>
+        ))}
       </div>
 
       <div className="flex items-center space-x-3">
-        <Button
-          variant="outline"
-          size="sm"
-          className="hidden sm:flex items-center space-x-2 bg-transparent border-gray-600 text-white hover:bg-gray-800"
+        <Link
+          href="https://github.com/yeasin2002/tech-job-bd"
+          className={buttonVariants({
+            variant: "default",
+            size: "sm",
+            className: "flex items-center space-x-2 py-2",
+          })}
         >
           <Github className="w-4 h-4" />
           <span>Star on GitHub</span>
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          className="bg-transparent border-gray-600 text-white hover:bg-gray-800"
-        >
-          <Sun className="w-4 h-4" />
-        </Button>
+        </Link>
+        <ModeToggle />
       </div>
     </nav>
   );

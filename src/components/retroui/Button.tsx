@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { ButtonHTMLAttributes } from "react";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   "font-head transition-all outline-hidden cursor-pointer duration-200 font-medium flex items-center",
   {
     variants: {
@@ -26,7 +26,7 @@ const buttonVariants = cva(
       size: "md",
       variant: "default",
     },
-  },
+  }
 );
 
 export interface IButtonProps
@@ -42,7 +42,7 @@ export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
       variant = "default",
       ...props
     }: IButtonProps,
-    forwardedRef,
+    forwardedRef
   ) => (
     <button
       ref={forwardedRef}
@@ -51,7 +51,7 @@ export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
     >
       {children}
     </button>
-  ),
+  )
 );
 
 Button.displayName = "Button";

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
 import { NavBar } from "@/components/shared/nav-bar";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import "./globals.css";
 
 export default function RootLayout({
@@ -12,10 +13,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(`antialiased bg-black text-white`, fontVariables)}>
-        <NavBar />
-        {children}
-      </body>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <body className={cn(`antialiased `, fontVariables)}>
+          <NavBar />
+          {children}
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

@@ -6,7 +6,7 @@
 @theme {
   --font-head: var(--font-head);
   --font-sans: var(--font-sans);
- 
+
   --shadow-xs: 1px 1px 0 0 var(--border);
   --shadow-sm: 2px 2px 0 0 var(--border);
   --shadow: 3px 3px 0 0 var(--border);
@@ -14,7 +14,7 @@
   --shadow-lg: 6px 6px 0 0 var(--border);
   --shadow-xl: 10px 10px 0 1px var(--border);
   --shadow-2xl: 16px 16px 0 1px var(--border);
- 
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -32,9 +32,10 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
 }
- 
+
 :root {
-  --background: #fff;
+  /* --background: #dff7e1; */
+  --background: #f9fad8;
   --foreground: #000;
   --card: #fff;
   --card-foreground: #000;
@@ -51,7 +52,7 @@
   --destructive-foreground: #fff;
   --border: #000;
 }
- 
+
 .dark {
   --background: #000000;
   --foreground: #eaeaea;
@@ -70,11 +71,9 @@
   --destructive-foreground: #fff;
   --border: #eee;
 }
-/* @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+
+@layer base {
   body {
     @apply bg-background text-foreground;
   }
-} */
+}

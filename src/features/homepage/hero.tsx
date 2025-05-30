@@ -12,7 +12,7 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             {/* Announcement Badge */}
-            <Badge className="bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700">
+            <Badge className="bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700 font-sans">
               under maintenance
             </Badge>
 
@@ -24,7 +24,7 @@ export function Hero() {
                 <span className="text-yellow-400"> is easy now!</span>
               </h1>
 
-              <p className="text-lg text-gray-400 max-w-lg">
+              <p className="text-lg text-gray-400 max-w-lg font-sans">
                 Discover countless opportunities with leading tech companies and
                 unlock your potential in the evolving job market. Explore roles
                 that resonate with your skills and passions in the tech
