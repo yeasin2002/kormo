@@ -19,7 +19,7 @@ export default function RootLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <body className={cn(`antialiased `, fontVariables)}>
+        <body className={cn(`antialiased  `, fontVariables)}>
           <NavBar />
           {children}
         </body>

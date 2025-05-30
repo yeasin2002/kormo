@@ -15,7 +15,7 @@ interface CompanyCardProps {
 
 export function CompanyCard({ company }: CompanyCardProps) {
   return (
-    <div className="dark:bg-gray-900 bg-[#A1D6B2] border border-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group font-sans">
+    <div className="dark:bg-gray-900 bg-[#59CE8F] border border-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group font-sans">
       {/* Company Header */}
       <div className="mb-6">
         <h3 className="text-xl font-bold text-gray-50 mb-2  transition-colors font-head">

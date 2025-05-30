@@ -42,6 +42,7 @@ export const NavBar = () => {
 
       <div className="flex items-center space-x-3">
         <Link
+          target="_blank"
           href="https://github.com/yeasin2002/tech-job-bd"
           className={buttonVariants({
             variant: "default",
