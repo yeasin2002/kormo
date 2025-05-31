@@ -1,39 +1,15 @@
 import { Button } from "@/components/retroui";
 import { Avatar } from "@/components/retroui/Avatar";
 import { Text } from "@/components/retroui/Text";
+import { getContributors } from "@/helpers";
 import { GithubIcon, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-async function getContributors(): Promise<
-  { avatar: string; username: string; url: string }[]
-> {
-  const request = await fetch(
-    `https://api.github.com/repos/yeasin2002/Stack-Unboxed/contributors`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-
-  const contributorsList = await request.json();
-  return [
-    ...contributorsList.map(
-      (c: { avatar_url: string; login: string; html_url: string }) => ({
-        avatar: c.avatar_url,
-        username: c.login,
-        url: c.html_url,
-      })
-    ),
-  ];
-}
-
 export const ShowContributors = async () => {
   const contributors = await getContributors();
   return (
-    <section className="container max-w-6xl mx-auto border-2 bg-primary border-black py-16 px-4 lg:p-16 my-36">
+    <section className="container max-w-6xl mx-auto border-2 bg-primary border-black py-16 px-4 lg:p-16 ">
       <Text as="h2" className="text-center text-black mb-2">
         Community Contributors
       </Text>

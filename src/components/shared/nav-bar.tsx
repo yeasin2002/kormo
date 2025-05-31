@@ -5,15 +5,11 @@ import { ThemeToggle } from "./theme-toggle";
 
 const menuList = [
   {
-    name: "Home",
+    name: "Onsite Jobs 🇧🇩",
     href: "#",
   },
   {
-    name: "BD Companies",
-    href: "#",
-  },
-  {
-    name: "Remote Job",
+    name: "Remote Jobs",
     href: "#",
   },
   {
@@ -29,7 +25,7 @@ export const NavBar = () => {
         <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
           <div className="w-4 h-4 bg-black rounded-full" />
         </div>
-        <span className="text-xl font-bold">Tech Jobs</span>
+        <span className="text-xl font-bold font-head">Tech Jobs</span>
       </div>
 
       <div className="hidden md:flex items-center space-x-8">

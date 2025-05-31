@@ -1,6 +1,14 @@
+const service = [
+  ` Smart Recommendations`,
+  `Advanced Automations`,
+  `Custom Tags`,
+  `Audience Segments`,
+  `Newsletter Templates`,
+];
+
 export const SiteStatistics = () => {
   return (
-    <div className="max-w-7xl mx-auto container pb-10">
+    <div className=" mx-auto container pb-28">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 h-auto lg:h-[500px]">
         {/* What's Included Card - Large */}
         <div className="lg:col-span-2 lg:row-span-2 bg-card border-2 border-border rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -8,92 +16,24 @@ export const SiteStatistics = () => {
             {`What's`} in our toolkit?
           </h3>
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+            {service.map((item, index) => (
+              <div className="flex items-center space-x-3" key={index}>
+                <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <span className="text-lg text-foreground">{item}</span>
               </div>
-              <span className="text-lg text-foreground">
-                Smart Recommendations
-              </span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <span className="text-lg text-foreground">
-                Advanced Automations
-              </span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <span className="text-lg text-foreground">Custom Tags</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <span className="text-lg text-foreground">Audience Segments</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <span className="text-lg text-foreground">
-                Newsletter Templates
-              </span>
-            </div>
+            ))}
           </div>
         </div>
 

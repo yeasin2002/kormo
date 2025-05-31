@@ -2,7 +2,7 @@ import { techCompanies } from "@/data";
 import { CompanyCard } from "./company-cards";
 
 export const ShowCompanies = () => {
-  const companiesData = techCompanies.slice(0, 10);
+  const companiesData = techCompanies.slice(0, 4);
   return (
     <section className="container mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">

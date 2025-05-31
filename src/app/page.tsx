@@ -1,3 +1,4 @@
+import { Footer } from "@/components/shared";
 import {
   FinanceCto,
   Hero2,
@@ -15,7 +16,7 @@ const RootPage = () => {
       <FinanceCto />
 
       <ShowContributors />
-      <div className="h-5"></div>
+      <Footer />
     </div>
   );
 };

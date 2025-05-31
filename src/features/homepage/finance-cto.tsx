@@ -1,4 +1,6 @@
+import bkashLogo from "@/assets/BKash-logo.svg";
 import { Button } from "@/components/retroui";
+import Image from "next/image";
 
 export const FinanceCto = () => {
   return (
@@ -6,52 +8,31 @@ export const FinanceCto = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="bg-primary rounded-3xl p-8 lg:p-12 border-4 border-border shadow-xl relative overflow-hidden">
-            <div className="grid lg:grid-cols-2 gap-8 items-center relative z-10">
-              {/* Content */}
-              <div className="space-y-6">
-                <h2 className="text-4xl lg:text-5xl font-bold text-black leading-tight">
-                  Ready. Set. Send.
+            <div className="flex  gap-8 items-center relative z-10">
+              <div className="space-y-6 w-2/3">
+                <h2 className="text-4xl lg:text-5xl font-bold text-black leading-tight font-head">
+                  Financial Contribution
                 </h2>
                 <p className="text-lg text-black/80 leading-relaxed">
-                  Kit flexes with you as you grow.{" "}
-                  <span className="font-semibold text-black">
-                    Manage up to 10,000 subscribers for free
-                  </span>
-                  , or upgrade to grow an unlimited list and access all
-                  functionality.
+                  This job finding platform is open source. If you find our
+                  services valuable, please consider making a donation to
+                  support our ongoing efforts. Your contributions help us
+                  maintain and improve the platform for everyone.
                 </p>
                 <Button
                   size="lg"
                   className="bg-black text-white hover:bg-gray-800 font-semibold px-8 py-4 text-lg rounded-lg shadow-md border-2 border-black"
                 >
-                  See all plans
+                  Know More
                 </Button>
               </div>
 
-              {/* 3D Illustration */}
-              <div className="flex justify-center lg:justify-end">
-                <div className="relative">
-                  {/* Paper Airplane */}
-                  <div className="relative z-20">
-                    <svg
-                      width="120"
-                      height="120"
-                      viewBox="0 0 120 120"
-                      className="text-white drop-shadow-lg"
-                      fill="currentColor"
-                    >
-                      <path d="M20 60L100 20L80 60L100 100L20 60Z" />
-                      <path d="M20 60L80 60L100 100L20 60Z" opacity="0.7" />
-                    </svg>
-                  </div>
-
-                  {/* Target Rings */}
-                  <div className="absolute -top-8 -right-8 z-10">
-                    <div className="w-32 h-32 rounded-full bg-orange-500 opacity-90"></div>
-                    <div className="absolute top-2 left-2 w-28 h-28 rounded-full bg-orange-400 opacity-80"></div>
-                    <div className="absolute top-4 left-4 w-24 h-24 rounded-full bg-orange-300 opacity-70"></div>
-                  </div>
-                </div>
+              <div className="flex justify-center items-center">
+                <Image
+                  src={bkashLogo}
+                  alt="Paper Airplane"
+                  className="w-32 h-32 lg:w-40 lg:h-72 relative z-20"
+                />
               </div>
             </div>
 
