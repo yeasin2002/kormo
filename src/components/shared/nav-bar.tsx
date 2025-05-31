@@ -6,7 +6,7 @@ import { ThemeToggle } from "./theme-toggle";
 const menuList = [
   {
     name: "Onsite Jobs 🇧🇩",
-    href: "#",
+    href: "/onsite-jobs",
   },
   {
     name: "Remote Jobs",
@@ -30,13 +30,15 @@ export const NavBar = () => {
 
       <div className="hidden md:flex items-center space-x-8">
         {menuList.map((item, index) => (
-          <a
+          <Link
             key={index}
-            href={item.href}
+            href={{
+              pathname: item.href,
+            }}
             className=" transition-colors font-sans"
           >
             {item.name}
-          </a>
+          </Link>
         ))}
       </div>
 
