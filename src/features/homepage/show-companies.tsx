@@ -1,8 +1,8 @@
-import { techCompanies } from "@/data";
+import { companies } from "@/data";
 import { CompanyCard } from "./company-cards";
 
 export const ShowCompanies = () => {
-  const companiesData = techCompanies.slice(0, 4);
+  const companiesData = companies.slice(0, 4);
   return (
     <section className="container mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -10,11 +10,11 @@ export const ShowCompanies = () => {
           <CompanyCard
             key={index}
             company={{
-              CompanyName: company.CompanyName,
-              OfficeLocation: company.OfficeLocation,
-              teamMembers: company.TeamMembers,
-              Technologies: company.Technologies,
-              WebPresence: company.WebPresence,
+              CompanyName: company.company_name,
+              OfficeLocation: company.office_location,
+              teamMembers: company.no_of_software_engineers,
+              Technologies: company.technologies,
+              WebPresence: company.web_presence,
             }}
           />
         ))}
