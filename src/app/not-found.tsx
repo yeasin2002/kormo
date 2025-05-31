@@ -3,8 +3,7 @@
 import { Button, buttonVariants } from "@/components/retroui";
 import { cn } from "@/lib/utils";
 
-import { Home } from "iconoir-react";
-import { AlertTriangle, ArrowLeft, Sparkles } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Home, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -35,10 +34,10 @@ export default function NotFoundPage() {
       </div>
 
       {/* Main 404 Content */}
-      <div className="container mx-auto px-6 py-16 lg:py-24 ">
+      <div className="container mx-auto px-6  ">
         <div className="text-center max-w-4xl mx-auto items-center justify-center flex  flex-col">
           <div className="mb-12 relative">
-            <div className="text-[12rem] md:text-[16rem] lg:text-[20rem] font-black leading-none text-foreground opacity-20 select-none">
+            <div className="text-[12rem] md:text-[16rem] lg:text-[20rem] font-black leading-none text-foreground opacity-20 select-none ">
               404
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
@@ -59,7 +58,30 @@ export default function NotFoundPage() {
             </p>
           </div>
 
-          <div className="flex items-center justify-center space-x-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+            <Button
+              onClick={() => router.back()}
+              className={
+                "bg-yellow-400 text-black hover:bg-yellow-500 font-semibold px-8 py-4 text-lg rounded-lg shadow-md border-2 border-black flex items-center gap-x-2"
+              }
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Go Back </span>
+            </Button>
+
+            <Link
+              href={"/"}
+              className={cn(
+                buttonVariants(),
+                "bg-background text-foreground border-2 border-foreground hover:bg-muted font-semibold px-8 py-4 text-lg rounded-lg shadow-md flex items-center gap-x-2"
+              )}
+            >
+              <Home className="w-4 h-4" />
+              <span>Back to Home</span>
+            </Link>
+          </div>
+
+          {/* <div className="flex items-center justify-center space-x-4">
             <Button
               onClick={() => router.back()}
               className={cn(
@@ -82,7 +104,7 @@ export default function NotFoundPage() {
               <Home className="w-4 h-4" />
               <span>Back to Home</span>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
 
