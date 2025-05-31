@@ -2,8 +2,9 @@ import { fontVariables } from "@/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
-import { NavBar, ThemeProvider } from "@/components/shared";
+import { NavBar } from "@/components/shared";
 import "./globals.css";
+import { RootWrapper } from "./root-wrapper";
 
 export default function RootLayout({
   children,
@@ -12,18 +13,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <body className={cn(`antialiased  `, fontVariables)}>
+      <body className={cn(`antialiased  `, fontVariables)}>
+        <RootWrapper>
           <NavBar />
           {children}
           {/* <Footer /> */}
-        </body>
-      </ThemeProvider>
+        </RootWrapper>
+      </body>
     </html>
   );
 }
