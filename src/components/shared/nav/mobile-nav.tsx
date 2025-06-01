@@ -11,15 +11,10 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { ThemeSwitcher } from "../theme-switcher";
 import { menuListForResource, menuListForTools } from "./menu.data";
+
 const menu = [
-  {
-    name: "Resource",
-    items: menuListForResource,
-  },
-  {
-    name: "Tools",
-    items: menuListForTools,
-  },
+  { name: "Resource", items: menuListForResource },
+  { name: "Tools", items: menuListForTools },
 ];
 
 export const MobileNav = () => {

@@ -16,9 +16,11 @@ export const menuListForTools = [
   {
     name: "AI cover letter generator",
     href: "/",
+    isPro: true,
   },
   {
     name: "Resume analyzer",
     href: "#",
+    isPro: true,
   },
 ];
