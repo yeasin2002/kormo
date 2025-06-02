@@ -2,14 +2,19 @@ import { Github } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "../../retroui/Button";
 import { ThemeToggle } from "../theme-toggle";
-import { menuListForResource, menuListForTools } from "./menu.data";
+import { menuListForTools } from "./menu.data";
 import { NavItems } from "./nav-items";
 
 export const NavLarge = () => {
   return (
     <>
-      <div className="space-x-3 hidden lg:block">
-        <NavItems name="Resource" items={menuListForResource} />
+      <div className="space-x-5 hidden lg:block">
+        <Link
+          href="/bd-tech-companies"
+          className="font-bold font-sans outline-none focus:outline-none cursor-pointer group"
+        >
+          Tech Companies 🇧🇩
+        </Link>
         <NavItems name="Tools" items={menuListForTools} />
       </div>
 

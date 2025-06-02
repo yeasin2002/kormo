@@ -1,4 +1,5 @@
 export * from "./code-blocks";
+export * from "./company-card-mini";
 export * from "./footer";
 export * from "./nav";
 export * from "./theme-switcher";
