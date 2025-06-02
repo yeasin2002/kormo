@@ -2,7 +2,7 @@ import {
   OnsiteJobHero,
   SearchFilterCompanies,
   ShowCompaniesWithFiltered,
-} from "@/features/onsite-jobs";
+} from "@/features/bd-tech-companies";
 
 const OnsiteJobs = () => {
   return (
