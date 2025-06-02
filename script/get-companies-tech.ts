@@ -8,7 +8,7 @@ const extractUniqueTechnologies = (companies: Company[]): string[] => {
 
   companies.forEach((company) => {
     company.technologies.forEach((tech) => {
-      technologiesSet.add(tech);
+      technologiesSet.add(tech.toLocaleLowerCase());
     });
   });
 
@@ -17,15 +17,15 @@ const extractUniqueTechnologies = (companies: Company[]): string[] => {
 
 // Get unique technologies
 const uniqueTechnologies = extractUniqueTechnologies(companies);
-console.table(uniqueTechnologies.map((tech, index) => ({ index, tech })));
+// console.table(uniqueTechnologies.map((tech, index) => ({ index, tech })));
 
-// // Create the file content
-// const fileContent = uniqueTechnologies.join("\n"); // Convert array to string
+// Create the file content
+const fileContent = uniqueTechnologies.join("\n");
 
-// // Write to file
-// const outputPath = path.join(__dirname, "unique-technologies.ts");
-// fs.writeFileSync(outputPath, fileContent);
+// Write to file
+const outputPath = path.join(__dirname, "unique-technologies.ts");
+fs.writeFileSync(outputPath, fileContent);
 
-// console.log(
-//   `Successfully created unique-technologies.ts with ${uniqueTechnologies.length} unique technologies`
-// );
+console.log(
+  `Successfully created unique-technologies.ts with ${uniqueTechnologies.length} unique technologies`
+);
