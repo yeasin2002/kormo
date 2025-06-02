@@ -49,7 +49,7 @@ export default function NotFoundPage() {
 
           <div className="mb-12 space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-head">
-              Page ot <span className="text-yellow-500">Found!</span>
+              Page Not <span className="text-yellow-500">Found!</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-sans">
               Looks like this page decided to take a vacation! {`Don't`} worry,

@@ -1,14 +1,9 @@
 import { Badge, Button } from "@/components/retroui";
+import { type Company } from "@/data";
 import { Code, ExternalLink, MapPin, Users } from "lucide-react";
 
 interface CompanyCardProps {
-  company: {
-    company_name: string;
-    office_location: string;
-    technologies: string[];
-    web_presence: string[];
-    no_of_software_engineers: string;
-  };
+  company: Company;
 }
 
 export function CompanyCardMini({ company }: CompanyCardProps) {
@@ -19,6 +14,8 @@ export function CompanyCardMini({ company }: CompanyCardProps) {
 
   // Extract location from the mixed data
   const location = company.company_name || "Location not provided";
+  const totalTeamMember =
+    company.no_of_software_engineers || "Team size not specified";
 
   // Extract website URL
   const websiteUrl =
@@ -67,9 +64,9 @@ export function CompanyCardMini({ company }: CompanyCardProps) {
       </div>
 
       <div className="flex items-center justify-between mt-auto pt-2 border-t border-border">
-        <div className="flex items-center space-x-1.5 text-xs text-muted-foreground">
+        <div className="flex items-center space-x-1.5 text-xs text-muted-foreground ">
           <Users className="w-3.5 h-3.5" />
-          <span>Team size not specified</span>
+          <span>{totalTeamMember}</span>
         </div>
 
         <Button
