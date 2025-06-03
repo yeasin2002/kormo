@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 
+import { auth } from "@/lib/auth";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -25,6 +26,7 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setError,
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -36,10 +38,29 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      console.log(data);
-      // TODO: Implement login functionality
+      const { user } = await auth.api.signInEmail({
+        body: {
+          email: data.email,
+          password: data.password,
+        },
+      });
+
+      if (!user) {
+        setError("root", {
+          type: "manual",
+          message: "Invalid email or password",
+        });
+        return;
+      }
+
+      // Successful login
+      window.location.href = "/dashboard";
     } catch (error) {
       console.error(error);
+      setError("root", {
+        type: "manual",
+        message: "An error occurred while signing in",
+      });
     }
   };
 
@@ -97,6 +118,12 @@ export default function LoginPage() {
                   Forgot password?
                 </Link>
               </div>
+
+              {errors.root && (
+                <p className="text-red-500 text-sm text-center">
+                  {errors.root.message}
+                </p>
+              )}
 
               <Button
                 type="submit"

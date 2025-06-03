@@ -11,6 +11,7 @@ import {
 import { PasswordInput } from "@/features/auth/password-input";
 import { ProfileImageUpload } from "@/features/auth/profile-image-upload";
 import { SocialLoginLink } from "@/features/auth/social-login-link";
+import { auth } from "@/lib/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Mail, User } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +25,7 @@ export default function RegisterPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setError,
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -33,7 +35,6 @@ export default function RegisterPage() {
 
   const onSubmit = async (data: RegisterFormValues) => {
     try {
-      console.log("Form data:", data);
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("email", data.email);
@@ -41,10 +42,29 @@ export default function RegisterPage() {
       if (data.image?.[0]) {
         formData.append("image", data.image[0]);
       }
-      // TODO: Implement registration logic
-      // await registerUser(formData);
+
+      const result = await auth.api.signUpEmail({
+        body: {
+          email: data.email,
+          password: data.password,
+          name: data.name,
+          // image: data.image?.[0],
+        },
+      });
+
+      if (!result?.user) {
+        setError("root", {
+          type: "manual",
+          message: "Registration failed. Please try again.",
+        });
+        return;
+      }
     } catch (error) {
       console.error(error);
+      setError("root", {
+        type: "manual",
+        message: "An error occurred during registration",
+      });
     }
   };
 
@@ -153,6 +173,12 @@ export default function RegisterPage() {
               {errors.acceptTerms && (
                 <p className="text-red-500 text-sm mt-1">
                   {errors.acceptTerms.message}
+                </p>
+              )}
+
+              {errors.root && (
+                <p className="text-red-500 text-sm text-center">
+                  {errors.root.message}
                 </p>
               )}
 
