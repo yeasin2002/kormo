@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "../retroui";
+import { Logo } from "./logo";
 
 export const Footer = () => {
   return (
@@ -13,14 +14,7 @@ export const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center">
-                  <div className="w-6 h-6 bg-background rounded-full" />
-                </div>
-                <span className="text-2xl font-bold text-foreground">
-                  Tech-Jobs
-                </span>
-              </div>
+              <Logo />
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Building unique and playful websites with React, Tailwind CSS,
                 and modern design principles.
@@ -205,13 +199,9 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Bottom Section */}
-          <div className="border-t-2 border-border pt-8">
+          {/* <div className="border-t-2 border-border pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-muted-foreground text-center md:text-left">
-                © 2024 Tech-Jobs. All rights reserved. Made with ❤️ for
-                creators.
-              </p>
+              <Logo />
               <div className="flex items-center space-x-6">
                 <a
                   href="#"
@@ -233,7 +223,7 @@ export const Footer = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

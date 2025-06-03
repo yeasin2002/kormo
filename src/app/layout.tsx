@@ -25,6 +25,6 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Tech Jobs BD",
-  description: "Tech Jobs BD",
+  title: "Kormo Setu",
+  description: "Find all tech companies in Bangladesh",
 };
