@@ -8,7 +8,7 @@ import { ArrowRight, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,17 +24,18 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Header */}
             <div className="text-center mb-8 mt-4">
               <h1 className="text-3xl lg:text-4xl font-black mb-2">
-                Sign <span className="text-yellow-500">Up</span>
+                Sign <span className="text-yellow-500">In</span>
               </h1>
               <p className="text-muted-foreground text-sm">
-                Login to explore our amazing opportunities.
+                Access your account to continue building amazing things.
               </p>
             </div>
 
+            {/* Login Form */}
             <form className="space-y-6">
+              {/* Email Field */}
               <div>
                 <label
                   htmlFor="email"
@@ -56,6 +57,7 @@ export default function LoginPage() {
                 </div>
               </div>
 
+              {/* Password Field */}
               <div>
                 <label
                   htmlFor="password"
@@ -88,15 +90,16 @@ export default function LoginPage() {
                 </div>
               </div>
 
+              {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center space-x-2 cursor-pointer">
                   <Checkbox />
-
                   <span className="text-foreground font-medium">
                     Remember me
                   </span>
                 </label>
                 <Link
+                  // href="/forgot-password"
                   href="/"
                   className="text-yellow-600 hover:text-yellow-500 font-medium transition-colors"
                 >
@@ -104,18 +107,20 @@ export default function LoginPage() {
                 </Link>
               </div>
 
+              {/* Sign In Button */}
               <Button
                 type="submit"
                 size="lg"
                 className="w-full bg-yellow-400 text-black hover:bg-yellow-500 font-bold py-3 text-lg rounded-lg shadow-lg border-2 border-black flex items-center justify-center space-x-2 group"
               >
-                <span>Submit</span>
+                <span>Sign In</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </form>
-            <SocialLoginLink isLoginPage />
+            <SocialLoginLink />
           </div>
 
+          {/* Security Notice */}
           <div className="mt-6 text-center">
             <p className="text-xs text-muted-foreground">
               🔒 Your data is protected with industry-standard encryption
