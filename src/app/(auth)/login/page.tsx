@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="flex items-center justify-center px-6 py-12">
+      <div className="flex items-center justify-center  px-6 py-4 md:py-12">
         <div className="w-full max-w-md">
           <div className="bg-card border-4 border-border rounded-3xl p-8 shadow-2xl relative">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">

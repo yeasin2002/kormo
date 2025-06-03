@@ -40,13 +40,14 @@ export const SocialLoginLink = ({ isLoginPage = false }: Props) => {
         </Button>
       </div>
 
-      <div className="mt-8 text-center">
+      <div className="mt-8 text-center ">
         <p className="text-muted-foreground space-x-2">
           <span>
             {isLoginPage
               ? "Don't have an account?"
               : "Already have an account?"}
           </span>
+          <br className="md:hidden" />
           <Link
             href={isLoginPage ? "/register" : "/login"}
             className="text-yellow-600 hover:text-yellow-500 font-bold transition-colors"
