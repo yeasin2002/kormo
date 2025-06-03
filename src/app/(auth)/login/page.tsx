@@ -27,24 +27,6 @@ export default function LoginPage() {
             </div>
 
             <div className="w-full max-w-md">
-              {/* Logo for Desktop */}
-              <div className="hidden lg:flex items-center space-x-3 mb-12">
-                <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center">
-                  <div className="w-5 h-5 bg-background rounded-full" />
-                </div>
-                <span className="text-2xl font-black">TechJobs</span>
-              </div>
-
-              {/* Header */}
-              <div className="mb-8 mt-12 lg:mt-0">
-                <h1 className="text-4xl lg:text-5xl font-black mb-3">
-                  Sign in
-                </h1>
-                <p className="text-muted-foreground text-lg">
-                  Enter your account details or use QR code
-                </p>
-              </div>
-
               {/* Login Form */}
               <form className="space-y-6">
                 {/* Email Field */}
