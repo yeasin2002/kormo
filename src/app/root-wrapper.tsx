@@ -1,5 +1,6 @@
 import { IconoirProvider } from "iconoir-react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { EdgeStoreProvider } from "../lib/edgestore";
 
 export const RootWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,9 +13,8 @@ export const RootWrapper = ({ children }: { children: React.ReactNode }) => {
       <IconoirProvider
         iconProps={{ strokeWidth: 2, width: "1em", height: "1em" }}
       >
-        {children}
+        <EdgeStoreProvider>{children}</EdgeStoreProvider>
       </IconoirProvider>
     </NextThemesProvider>
   );
 };
-
