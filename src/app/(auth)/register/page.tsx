@@ -26,6 +26,9 @@ export default function RegisterPage() {
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      acceptTerms: true,
+    },
   });
 
   const onSubmit = async (data: RegisterFormValues) => {
@@ -55,7 +58,7 @@ export default function RegisterPage() {
       reader.readAsDataURL(file);
     }
   };
-
+  console.log(errors);
   return (
     <>
       <div className="flex items-center justify-center px-6 py-12">
@@ -124,7 +127,19 @@ export default function RegisterPage() {
               />
 
               <div className="flex items-center space-x-2">
-                <Checkbox id="terms" {...register("acceptTerms")} />
+                <Checkbox
+                  id="terms"
+                  {...register("acceptTerms")}
+                  onCheckedChange={(checked) => {
+                    const event = {
+                      target: {
+                        name: "acceptTerms",
+                        value: checked,
+                      },
+                    };
+                    register("acceptTerms").onChange(event);
+                  }}
+                />
                 <label htmlFor="terms" className="text-sm text-foreground">
                   I accept the{" "}
                   <Link

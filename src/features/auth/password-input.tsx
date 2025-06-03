@@ -21,7 +21,7 @@ export const PasswordInput = ({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <AuthInput
         id={id}
         type={showPassword ? "text" : "password"}
@@ -34,7 +34,7 @@ export const PasswordInput = ({
       <button
         type="button"
         onClick={() => setShowPassword(!showPassword)}
-        className="absolute right-3 top-[38px] text-muted-foreground hover:text-foreground transition-colors"
+        className="absolute right-4 top-[55%] text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
       >
         {showPassword ? (
           <EyeOff className="w-5 h-5" />

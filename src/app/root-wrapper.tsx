@@ -4,9 +4,9 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 export const RootWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <NextThemesProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
+      // attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
       disableTransitionOnChange
     >
       <IconoirProvider
@@ -17,3 +17,4 @@ export const RootWrapper = ({ children }: { children: React.ReactNode }) => {
     </NextThemesProvider>
   );
 };
+
