@@ -8,6 +8,6 @@ export default defineConfig({
   dbCredentials: {
     url: process.env.DATABASE_URL!,
   },
-  // verbose: true,      // Uncomment to print SQL statements before running them
-  // strict: true,       // Uncomment to prompt for confirmation before executing migrations
+  // verbose: true,      //  print SQL statements before running them
+  // strict: true,       //  prompt for confirmation before executing migrations
 });
