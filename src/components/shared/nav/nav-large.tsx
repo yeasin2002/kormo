@@ -31,6 +31,16 @@ export const NavLarge = () => {
           <Github className="w-4 h-4" />
           <span>Star on GitHub</span>
         </Link>
+        <Link
+          href="/login"
+          className={buttonVariants({
+            variant: "default",
+            size: "sm",
+            className: "flex items-center space-x-2 py-2",
+          })}
+        >
+          <span>Login</span>
+        </Link>
         <ThemeToggle />
       </div>
     </>

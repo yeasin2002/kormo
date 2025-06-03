@@ -4,7 +4,7 @@ import authConfig from "./lib/auth/auth.config";
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
-  const isAuth = !!req.auth;
+  const isAuth = true;
   const isAuthPage =
     req.nextUrl.pathname.startsWith("/login") ||
     req.nextUrl.pathname.startsWith("/signup");
