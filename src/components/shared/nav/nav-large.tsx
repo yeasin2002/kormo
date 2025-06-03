@@ -1,4 +1,3 @@
-import { Github } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "../../retroui/Button";
 import { ThemeToggle } from "../theme-toggle";
@@ -20,16 +19,15 @@ export const NavLarge = () => {
 
       <div className="hidden lg:flex items-center space-x-3">
         <Link
-          target="_blank"
-          href="https://github.com/yeasin2002/tech-job-bd"
+          href={"/login"}
           className={buttonVariants({
             variant: "default",
             size: "sm",
             className: "flex items-center space-x-2 py-2",
           })}
         >
-          <Github className="w-4 h-4" />
-          <span>Star on GitHub</span>
+          {/* <AutoFlash className="w-4 h-4" /> */}
+          <span>Login</span>
         </Link>
         <ThemeToggle />
       </div>
