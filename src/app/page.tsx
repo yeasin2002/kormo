@@ -7,7 +7,7 @@ import {
   SiteStatistics,
 } from "@/features/homepage";
 
-const RootPage = () => {
+const RootPage = async () => {
   return (
     <div className="h-screen  container mx-auto">
       <Hero2 />
