@@ -1,5 +1,6 @@
 import { IconoirProvider } from "iconoir-react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
 import { EdgeStoreProvider } from "../lib/edgestore";
 
 export const RootWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -13,7 +14,10 @@ export const RootWrapper = ({ children }: { children: React.ReactNode }) => {
       <IconoirProvider
         iconProps={{ strokeWidth: 2, width: "1em", height: "1em" }}
       >
-        <EdgeStoreProvider>{children}</EdgeStoreProvider>
+        <EdgeStoreProvider>
+          {children}
+          <Toaster />
+        </EdgeStoreProvider>
       </IconoirProvider>
     </NextThemesProvider>
   );

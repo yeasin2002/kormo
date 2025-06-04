@@ -5,25 +5,31 @@ import type React from "react";
 import { Input, Label } from "@/components/retroui";
 import { Button } from "@/components/ui/button";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
 import { writingTones } from "@/data/writing-tone.data";
 import {
-    AlertCircle,
-    CheckCircle,
-    FileText,
-    Sparkles,
-    Upload,
-    Zap,
+  aiCoverLetterSchema,
+  aiCoverLetterSchemaValues,
+} from "@/features/ai-cover-letter";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  AlertCircle,
+  CheckCircle,
+  FileText,
+  Sparkles,
+  Upload,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 
 export default function CoverLetterGenerator() {
   const [file, setFile] = useState<File | null>(null);
@@ -35,6 +41,14 @@ export default function CoverLetterGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [coverLetter, setCoverLetter] = useState("");
   const [showResult, setShowResult] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<aiCoverLetterSchemaValues>({
+    resolver: zodResolver(aiCoverLetterSchema),
+  });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
