@@ -1,5 +1,6 @@
 "use client";
 
+import { buttonVariants } from "@/components/retroui";
 import {
   CompanyLogos,
   EarningCards,
@@ -10,6 +11,9 @@ import {
   ProfileCard,
   SecureLogin,
 } from "@/features/auth/auth-floating-cards";
+import { cn } from "@/lib/utils";
+import { Home } from "iconoir-react";
+import Link from "next/link";
 
 export default function LoginPage({
   children,
@@ -19,6 +23,19 @@ export default function LoginPage({
   return (
     <div className="text-foreground  bg-background min-h-screen relative  flex flex-col justify-center overflow-x-hidden ">
       <div>{children}</div>
+
+      <Link
+        href={"/"}
+        className={cn(
+          buttonVariants(),
+          "bg-background text-foreground border-2 border-foreground hover:bg-muted font-semibold  text-lg  shadow-md flex items-center gap-x-2 ",
+          `rounded-full absolute top-2 left-4`
+        )}
+      >
+        <Home className="w-4 h-4" />
+        <span>Go to Home</span>
+      </Link>
+
       <div className="overflow-y-hidden hidden lg:block">
         <EarningCards />
         <JobStateCard />

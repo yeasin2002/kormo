@@ -10,16 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 
+import { loginSchema, type LoginFormValues } from "@/features/auth/auth.schema";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const loginSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  rememberMe: z.boolean().default(true).optional(),
-});
-type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const {
