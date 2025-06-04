@@ -5,12 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, Sparkles, User } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 
-import {
-  ComboSelect,
-  FileUploader,
-  InputCombo,
-  TextareaCombo,
-} from "@/components/custom-ui";
+import { ComboSelect, InputCombo, TextareaCombo } from "@/components/custom-ui";
+import DocUpload from "@/components/custom-ui/doc-upload";
 import { writingTones } from "@/data/writing-tone.data";
 import {
   aiCoverLetterSchema,
@@ -19,17 +15,37 @@ import {
   CoverLetterHeading,
   DecorativeElements,
 } from "@/features/ai-cover-letter";
+import { useFileUpload } from "@/hooks/use-file-upload";
 import { Suitcase } from "iconoir-react";
+import { useEffect } from "react";
+
+const maxSizeMB = 5;
+const maxSize = maxSizeMB * 1024 * 1024;
 
 export default function CoverLetterGenerator() {
   const {
     register,
     handleSubmit,
     control,
+    setValue,
+
     formState: { errors, isSubmitting },
   } = useForm<aiCoverLetterSchemaValues>({
     resolver: zodResolver(aiCoverLetterSchema),
   });
+
+  const [{ files, isDragging, errors: fileErrors }, action] = useFileUpload({
+    accept: ".pdf,.doc,.docx",
+    maxSize,
+  });
+
+  useEffect(() => {
+    setValue("cv", files[0] || null);
+
+    return () => {
+      setValue("cv", null);
+    };
+  }, [files, setValue]);
 
   const onSubmit = async (data: aiCoverLetterSchemaValues) => {
     try {
@@ -54,37 +70,12 @@ export default function CoverLetterGenerator() {
                 className="space-y-6"
                 noValidate
               >
-                <div>
-                  <Controller
-                    name="cv"
-                    control={control}
-                    render={({ field }) => (
-                      <FileUploader
-                        handleFileChange={(e) => {
-                          const file =
-                            e.target.files && e.target.files[0]
-                              ? e.target.files[0]
-                              : null;
-                          field.onChange(file);
-                        }}
-                        file={
-                          field.value instanceof FileList
-                            ? field.value[0] ?? null
-                            : field.value
-                        }
-                        onFileChange={(file) => {
-                          field.onChange(file);
-                        }}
-                      />
-                    )}
-                  />
-
-                  {errors.cv && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.cv.message}
-                    </p>
-                  )}
-                </div>
+                <DocUpload
+                  state={{ files, isDragging, errors: fileErrors }}
+                  action={action}
+                  maxSizeMB={maxSizeMB}
+                  err={errors?.cv?.message?.toString()}
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <InputCombo

@@ -1,4 +1,5 @@
 export * from "./combo-select";
+export * from "./doc-upload";
 export * from "./file-uploader";
 export * from "./image-upload";
 export * from "./input-combo";

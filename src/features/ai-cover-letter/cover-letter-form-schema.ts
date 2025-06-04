@@ -1,12 +1,9 @@
 import { z } from "zod";
 
 export const aiCoverLetterSchema = z.object({
-  cv: z
-    .instanceof(FileList)
-    .refine(
-      (files) => files?.length === 1,
-      "Please select a single file to upload"
-    ),
+  cv: z.any().refine((value) => value, {
+    message: "CV is required",
+  }),
   jobTitle: z.string().min(1, "Job title is required"),
   jobDescription: z.string().min(1, "Job description is required"),
   yourName: z.string().min(1, "Your name is required"),
