@@ -1,6 +1,6 @@
 import { Input } from "@/components/retroui";
 import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
+import { AlertCircleIcon, LucideIcon } from "lucide-react";
 import React from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
@@ -57,7 +57,15 @@ export const InputCombo = ({
         />
       </div>
 
-      {error && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
+      {error && (
+        <div
+          className="text-destructive flex items-center gap-1 text-xs mt-2"
+          role="alert"
+        >
+          <AlertCircleIcon className="size-3 shrink-0" />
+          <span>{error.message}</span>
+        </div>
+      )}
     </div>
   );
 };

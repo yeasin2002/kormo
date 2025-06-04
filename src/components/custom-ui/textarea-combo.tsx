@@ -1,5 +1,6 @@
 import { Label } from "@/components/retroui";
 import { Textarea } from "@/components/ui/textarea";
+import { AlertCircleIcon } from "lucide-react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface TextareaComboProps {
@@ -33,7 +34,15 @@ export function TextareaCombo({
         className={`bg-background border-2 border-border rounded-lg px-4 py-3 text-base focus:ring-2 focus:ring-purple-400 min-h-[150px] ${className}`}
         required={required}
       />
-      {errors && <p className="text-red-500 text-sm mt-1">{errors}</p>}
+      {errors && (
+        <div
+          className="text-destructive flex items-center gap-1 text-xs mt-2"
+          role="alert"
+        >
+          <AlertCircleIcon className="size-3 shrink-0" />
+          <span>{errors}</span>
+        </div>
+      )}
     </div>
   );
 }
