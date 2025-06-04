@@ -61,7 +61,7 @@ export default function CoverLetterGenerator() {
         <DecorativeElements />
 
         <main className="container mx-auto px-6 py-12">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <CoverLetterHeading />
 
             <div className="bg-card border-4 border-border rounded-3xl p-8 shadow-xl">
@@ -98,14 +98,44 @@ export default function CoverLetterGenerator() {
                   />
                 </div>
 
-                <InputCombo
-                  id="jobTitle"
-                  label="Job Title"
-                  placeholder="Enter the job title here..."
-                  icon={Suitcase}
-                  error={errors.jobTitle}
-                  registration={register("jobTitle")}
-                />
+                <div className="flex items-center  gap-4">
+                  <InputCombo
+                    id="jobTitle"
+                    label="Job Title"
+                    placeholder="Enter the job title here..."
+                    icon={Suitcase}
+                    error={errors.jobTitle}
+                    registration={register("jobTitle")}
+                    wrapperClassName="w-full"
+                  />
+
+                  <div>
+                    <Label
+                      htmlFor="tone"
+                      className=" text-sm font-bold text-foreground "
+                    >
+                      Cover Letter Tone
+                    </Label>
+                    <Controller
+                      name="coverLetterTone"
+                      control={control}
+                      render={({ field }) => (
+                        <ComboSelect
+                          value={field.value}
+                          onValueChange={field.onChange}
+                          menuItem={writingTones}
+                          label="Select Tone"
+                          className="py-3.5 rounded-lg  text-sm !bg-card"
+                        />
+                      )}
+                    />
+                    {errors.coverLetterTone && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.coverLetterTone.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
 
                 <TextareaCombo
                   label="Job Description"
@@ -123,31 +153,6 @@ export default function CoverLetterGenerator() {
                   errors={errors.additionalInstructions?.message}
                 />
 
-                <div>
-                  <Label
-                    htmlFor="tone"
-                    className="text-lg font-bold mb-2 block"
-                  >
-                    Cover Letter Tone
-                  </Label>
-                  <Controller
-                    name="coverLetterTone"
-                    control={control}
-                    render={({ field }) => (
-                      <ComboSelect
-                        value={field.value}
-                        onValueChange={field.onChange}
-                        menuItem={writingTones}
-                      />
-                    )}
-                  />
-                  {errors.coverLetterTone && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.coverLetterTone.message}
-                    </p>
-                  )}
-                </div>
-
                 <Button
                   type="submit"
                   className="w-full  font-bold py-2 text-lg rounded-lg shadow-lg  flex items-center justify-center space-x-2 group"
@@ -162,10 +167,6 @@ export default function CoverLetterGenerator() {
             </div>
           </div>
         </main>
-
-        <div className="fixed bottom-6 right-6 bg-yellow-400 text-black px-4 py-2 rounded-lg border-2 border-black shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300 hidden md:block">
-          <span className="text-sm font-bold">AI-Powered ✨</span>
-        </div>
       </div>
     </>
   );

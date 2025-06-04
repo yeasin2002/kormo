@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertCircleIcon, ImageUpIcon } from "lucide-react";
+import { AlertCircleIcon, Check, ImageUpIcon } from "lucide-react";
 
 import {
   type FileUploadState,
@@ -18,7 +18,7 @@ export default function DocUpload({
   state,
   action,
   maxSizeMB,
-  err
+  err,
 }: DocUploadProps) {
   const { files, isDragging } = state;
   const {
@@ -36,7 +36,6 @@ export default function DocUpload({
   return (
     <div className="flex flex-col gap-2">
       <div className="relative">
-        {/* Drop area */}
         <div
           role="button"
           onClick={openFileDialog}
@@ -45,7 +44,7 @@ export default function DocUpload({
           onDragOver={handleDragOver}
           onDrop={handleDrop}
           data-dragging={isDragging || undefined}
-          className="border-input hover:bg-background/40 data-[dragging=true]:bg-background/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
+          className="!bg-background border-input hover:bg-background data-[dragging=true]:bg-background has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
         >
           <input
             {...getInputProps()}
@@ -57,17 +56,25 @@ export default function DocUpload({
               className="bg-card mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
               aria-hidden="true"
             >
-              <ImageUpIcon className="size-4 opacity-60" />
+              {previewUrl ? (
+                <Check className="size-5 opacity-60 text-green-600" />
+              ) : (
+                <ImageUpIcon className="size-5 opacity-60" />
+              )}
             </div>
-            <p className="mb-1.5 text-sm font-medium">
-              {previewUrl
-                ? previewUrl.file.name
-                : "Drag and drop your document here"}
-              {/* Drop your image here or click to browse */}
-            </p>
-            <p className="text-muted-foreground text-xs">
-              Max size: {maxSizeMB}MB
-            </p>
+            {!previewUrl ? (
+              <>
+                <p className="mb-1.5 text-sm font-medium">
+                  Drag and drop your document here
+                </p>
+
+                <p className="text-muted-foreground text-xs">
+                  Max size: {maxSizeMB}MB
+                </p>
+              </>
+            ) : (
+              <p>{previewUrl?.file?.name}</p>
+            )}
           </div>
         </div>
       </div>

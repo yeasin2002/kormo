@@ -3,7 +3,7 @@
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/retroui";
 import {
   Command,
   CommandEmpty,
@@ -23,10 +23,19 @@ type Props = {
   menuItem: string[];
   value: string;
   onValueChange: (value: string) => void;
+  className?: string;
+  label: string;
 };
 
-export function ComboSelect({ menuItem, value, onValueChange }: Props) {
+export function ComboSelect({
+  menuItem,
+  value,
+  onValueChange,
+  className,
+  label,
+}: Props) {
   const [open, setOpen] = React.useState(false);
+  const selectValue = menuItem.find((framework) => framework === value);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -35,11 +44,9 @@ export function ComboSelect({ menuItem, value, onValueChange }: Props) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className={cn("w-[200px] justify-between ", className)}
         >
-          {value
-            ? menuItem.find((framework) => framework === value)
-            : "Select framework..."}
+          {value ? selectValue : label}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
