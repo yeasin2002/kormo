@@ -1,5 +1,6 @@
 "use client";
 
+import { ImageUpload } from "@/components/custom-ui";
 import { InputCombo } from "@/components/custom-ui/input-combo";
 import { PasswordInput } from "@/components/custom-ui/password-input";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,6 @@ import {
   RegisterFormValues,
   registerSchema,
 } from "@/features/auth/auth.schema";
-import { ProfileImageUpload } from "@/features/auth/profile-image-upload";
 import { SocialLoginLink } from "@/features/auth/social-login-link";
 import { authClient as auth } from "@/lib/auth-client";
 import { useEdgeStore } from "@/lib/edgestore";
@@ -126,13 +126,18 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <ProfileImageUpload
-                previewImage={previewImage}
-                registration={register("image")}
-                error={errors.image}
-                acceptedTypes={ACCEPTED_IMAGE_TYPES}
-                onChange={handleImageChange}
-              />
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-foreground">
+                  Profile Picture
+                </label>
+                <ImageUpload
+                  previewImage={previewImage}
+                  registration={register("image")}
+                  error={errors.image}
+                  acceptedTypes={ACCEPTED_IMAGE_TYPES}
+                  onChange={handleImageChange}
+                />
+              </div>
 
               <div className="flex items-center space-x-2">
                 <Checkbox

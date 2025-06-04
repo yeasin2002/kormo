@@ -5,22 +5,23 @@ import type React from "react";
 import { Input, Label } from "@/components/retroui";
 import { Button } from "@/components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
+import { writingTones } from "@/data/writing-tone.data";
 import {
-  AlertCircle,
-  CheckCircle,
-  FileText,
-  Sparkles,
-  Upload,
-  Zap,
+    AlertCircle,
+    CheckCircle,
+    FileText,
+    Sparkles,
+    Upload,
+    Zap,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -61,29 +62,6 @@ ${candidateName}`);
       setShowResult(true);
     }, 2000);
   };
-
-  const tones = [
-    "Appreciative",
-    "Assertive",
-    "Awestruck",
-    "Candid",
-    "Casual",
-    "Cautionary",
-    "Compassionate",
-    "Convincing",
-    "Critical",
-    "Earnest",
-    "Enthusiastic",
-    "Formal",
-    "Funny",
-    "Humble",
-    "Humorous",
-    "Informative",
-    "Inspirational",
-    "Joyful",
-    "Passionate",
-    "Thoughtful",
-  ];
 
   return (
     <>
@@ -276,7 +254,7 @@ ${candidateName}`);
                         <SelectValue placeholder="Select a tone" />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-2 border-border">
-                        {tones.map((t) => (
+                        {writingTones.map((t) => (
                           <SelectItem
                             key={t}
                             value={t}
