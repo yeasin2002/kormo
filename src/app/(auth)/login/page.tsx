@@ -1,10 +1,10 @@
 "use client";
 
+import { InputCombo } from "@/components/custom-ui/input-combo";
 import { LoaderDots } from "@/components/custom-ui/loader-dots";
+import { PasswordInput } from "@/components/custom-ui/password-input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { AuthInput } from "@/features/auth/auth-input";
-import { PasswordInput } from "@/features/auth/password-input";
 import { SocialLoginLink } from "@/features/auth/social-login-link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Mail } from "lucide-react";
@@ -65,7 +65,7 @@ export default function LoginPage() {
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <AuthInput
+              <InputCombo
                 id="email"
                 type="email"
                 label="Email Address"

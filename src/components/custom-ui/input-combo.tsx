@@ -3,7 +3,7 @@ import { LucideIcon } from "lucide-react";
 import React from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
-interface AuthInputProps {
+interface InputComboProps {
   id: string;
   type?: "text" | "email" | "password" | "number";
   placeholder?: string;
@@ -14,7 +14,7 @@ interface AuthInputProps {
   className?: string;
 }
 
-export const AuthInput = React.forwardRef<HTMLInputElement, AuthInputProps>(
+export const InputCombo = React.forwardRef<HTMLInputElement, InputComboProps>(
   (
     {
       id,
@@ -65,4 +65,4 @@ export const AuthInput = React.forwardRef<HTMLInputElement, AuthInputProps>(
   }
 );
 
-AuthInput.displayName = "AuthInput";
+InputCombo.displayName = "InputCombo";

@@ -1,14 +1,14 @@
 "use client";
 
+import { InputCombo } from "@/components/custom-ui/input-combo";
+import { PasswordInput } from "@/components/custom-ui/password-input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { AuthInput } from "@/features/auth/auth-input";
 import {
   ACCEPTED_IMAGE_TYPES,
   RegisterFormValues,
   registerSchema,
 } from "@/features/auth/auth.schema";
-import { PasswordInput } from "@/features/auth/password-input";
 import { ProfileImageUpload } from "@/features/auth/profile-image-upload";
 import { SocialLoginLink } from "@/features/auth/social-login-link";
 import { authClient as auth } from "@/lib/auth-client";
@@ -89,7 +89,7 @@ export default function RegisterPage() {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
-                <AuthInput
+                <InputCombo
                   id="name"
                   type="text"
                   label="Full Name"
@@ -99,7 +99,7 @@ export default function RegisterPage() {
                   registration={register("name")}
                 />
 
-                <AuthInput
+                <InputCombo
                   id="email"
                   type="email"
                   label="Email Address"

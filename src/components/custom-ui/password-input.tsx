@@ -1,7 +1,7 @@
 import { Eye, EyeOff, Lock } from "lucide-react";
 import { useState } from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
-import { AuthInput } from "./auth-input";
+import { InputCombo } from "./input-combo";
 
 interface PasswordInputProps {
   id: string;
@@ -22,7 +22,7 @@ export const PasswordInput = ({
 
   return (
     <div className="relative ">
-      <AuthInput
+      <InputCombo
         id={id}
         type={showPassword ? "text" : "password"}
         label={label}
