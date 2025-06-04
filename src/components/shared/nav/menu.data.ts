@@ -15,7 +15,7 @@ export const menuListForResource = [
 export const menuListForTools = [
   {
     name: "AI cover letter generator",
-    href: "/",
+    href: "/tools/ai-cover-letter",
     isPro: true,
   },
   {

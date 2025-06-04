@@ -20,7 +20,7 @@ import { ChevronDownIcon, LogOut, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export const NavLarge = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
 
   return (
@@ -36,7 +36,7 @@ export const NavLarge = () => {
       </div>
 
       <div className="hidden lg:flex items-center ">
-        {session?.user ? (
+        {isPending ? null : session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -59,12 +59,16 @@ export const NavLarge = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem onClick={() => router.push("/profile")}>
+              <DropdownMenuItem
+                onClick={() => router.push("/profile")}
+                className="cursor-pointer"
+              >
                 <User className="size-4" />
                 <span>Profile</span>
               </DropdownMenuItem>
 
               <DropdownMenuItem
+                className="cursor-pointer"
                 onClick={() => {
                   authClient.signOut();
                   router.push("/");
