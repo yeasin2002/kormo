@@ -39,6 +39,7 @@ export const registerSchema = z
       ),
     acceptTerms: z
       .boolean()
+
       .refine((val) => val, "You must accept the terms and conditions"),
   })
   .refine((data) => data.password === data.confirmPassword, {

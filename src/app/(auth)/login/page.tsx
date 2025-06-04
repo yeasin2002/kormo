@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 
-import { auth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,41 +26,27 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setError,
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: true,
+      rememberMe: false,
     },
   });
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      const { user } = await auth.api.signInEmail({
-        body: {
-          email: data.email,
-          password: data.password,
-        },
+      const user = await authClient.signIn.email({
+        email: data.email,
+        password: data.password,
+        rememberMe: data.rememberMe,
       });
 
-      if (!user) {
-        setError("root", {
-          type: "manual",
-          message: "Invalid email or password",
-        });
-        return;
-      }
-
-      // Successful login
-      window.location.href = "/dashboard";
+      // {body: { email: data.email, password: data.password }}
+      console.log(user);
     } catch (error) {
       console.error(error);
-      setError("root", {
-        type: "manual",
-        message: "An error occurred while signing in",
-      });
     }
   };
 

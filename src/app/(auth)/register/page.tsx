@@ -11,7 +11,8 @@ import {
 import { PasswordInput } from "@/features/auth/password-input";
 import { ProfileImageUpload } from "@/features/auth/profile-image-upload";
 import { SocialLoginLink } from "@/features/auth/social-login-link";
-import { auth } from "@/lib/auth";
+import { authClient as auth } from "@/lib/auth-client";
+import { useEdgeStore } from "@/lib/edgestore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Mail, User } from "lucide-react";
 import Link from "next/link";
@@ -21,11 +22,12 @@ import { useForm } from "react-hook-form";
 export default function RegisterPage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
+  const { edgestore } = useEdgeStore();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setError,
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -35,36 +37,22 @@ export default function RegisterPage() {
 
   const onSubmit = async (data: RegisterFormValues) => {
     try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("email", data.email);
-      formData.append("password", data.password);
-      if (data.image?.[0]) {
-        formData.append("image", data.image[0]);
-      }
-
-      const result = await auth.api.signUpEmail({
-        body: {
-          email: data.email,
-          password: data.password,
-          name: data.name,
-          // image: data.image?.[0],
-        },
+      //  upload image
+      const uploadedImage = await edgestore.publicFiles.upload({
+        file: data.image?.[0],
+        // onProgressChange: (progress) => {console.log(progress);},
       });
 
-      if (!result?.user) {
-        setError("root", {
-          type: "manual",
-          message: "Registration failed. Please try again.",
-        });
-        return;
-      }
+      const result = await auth.signUp.email({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        image: uploadedImage.url,
+      });
+
+      console.log(result);
     } catch (error) {
       console.error(error);
-      setError("root", {
-        type: "manual",
-        message: "An error occurred during registration",
-      });
     }
   };
 
@@ -78,7 +66,7 @@ export default function RegisterPage() {
       reader.readAsDataURL(file);
     }
   };
-  console.log(errors);
+
   return (
     <>
       <div className="flex items-center justify-center px-6 py-12">
@@ -149,6 +137,7 @@ export default function RegisterPage() {
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="terms"
+                  defaultChecked={true}
                   {...register("acceptTerms")}
                   onCheckedChange={(checked) => {
                     const event = {
