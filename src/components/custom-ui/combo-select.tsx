@@ -22,10 +22,10 @@ import { cn } from "@/lib/utils";
 type Props = {
   menuItem: string[];
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  onValueChange: (value: string) => void;
 };
 
-export function ComboSelect({ menuItem, value, setValue }: Props) {
+export function ComboSelect({ menuItem, value, onValueChange }: Props) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -54,7 +54,7 @@ export function ComboSelect({ menuItem, value, setValue }: Props) {
                   key={item}
                   value={item}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    onValueChange(currentValue === value ? "" : currentValue);
                     setOpen(false);
                   }}
                 >

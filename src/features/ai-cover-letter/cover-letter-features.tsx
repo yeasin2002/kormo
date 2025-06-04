@@ -3,7 +3,7 @@ import React from "react";
 
 export const CoverLetterFeatures = () => {
   return (
-    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div className="bg-yellow-100 dark:bg-yellow-900/20 border-2 border-border rounded-xl p-4 shadow-md">
         <div className="flex items-center space-x-2 mb-2">
           <Zap className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
