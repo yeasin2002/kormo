@@ -1,1 +1,1 @@
-export * from "./ShowContributors";
+export * from './ShowContributors';

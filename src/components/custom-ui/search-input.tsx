@@ -1,19 +1,19 @@
-import { cn } from "@/lib/utils";
-import { Search } from "lucide-react";
-import { Input } from "../retroui";
-type Props = React.ComponentProps<"input">;
+import { cn } from '@/lib/utils';
+import { Search } from 'lucide-react';
+import { Input } from '../retroui';
+type Props = React.ComponentProps<'input'>;
 
 export const SearchInput = ({ className, ...props }: Props) => {
   return (
     <div className="relative flex-1">
-      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+      <Search className="text-muted-foreground absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 transform" />
 
       <Input
         type="text"
         placeholder="Search companies..."
         className={cn(
-          "!pl-10 bg-background border-2 border-border rounded-lg px-4  text-lg focus:ring-2 focus:ring-yellow-400",
-          className
+          'bg-background border-border rounded-lg border-2 px-4 !pl-10 text-lg focus:ring-2 focus:ring-yellow-400',
+          className,
         )}
         {...props}
       />

@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import defaultNotFoundImg from "@/assets/avatar-not-found.png";
-import { authClient } from "@/lib/auth-client";
-import Link from "next/link";
-import { buttonVariants } from "../../retroui/Button";
-import { menuListForTools } from "./menu.data";
-import { NavItems } from "./nav-items";
+import defaultNotFoundImg from '@/assets/avatar-not-found.png';
+import { authClient } from '@/lib/auth-client';
+import Link from 'next/link';
+import { buttonVariants } from '../../retroui/Button';
+import { menuListForTools } from './menu.data';
+import { NavItems } from './nav-items';
 
-import { Avatar } from "@/components/retroui";
-import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Avatar } from '@/components/retroui';
+import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDownIcon, LogOut, User } from "lucide-react";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/dropdown-menu';
+import { ChevronDownIcon, LogOut, User } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export const NavLarge = () => {
   const { data: session, isPending } = authClient.useSession();
@@ -25,23 +25,23 @@ export const NavLarge = () => {
 
   return (
     <>
-      <div className="space-x-5 hidden lg:block">
+      <div className="hidden space-x-5 lg:block">
         <Link
           href="/bd-tech-companies"
-          className="font-bold font-sans outline-none focus:outline-none cursor-pointer group"
+          className="group cursor-pointer font-sans font-bold outline-none focus:outline-none"
         >
           Tech Companies 🇧🇩
         </Link>
         <NavItems name="Tools" items={menuListForTools} />
       </div>
 
-      <div className="hidden lg:flex items-center ">
+      <div className="hidden items-center lg:flex">
         {isPending ? null : session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-auto p-0 hover:bg-transparent cursor-pointer outline-none focus:outline-none ring-0 ring-offset-0 ring-transparent"
+                className="h-auto cursor-pointer p-0 ring-0 ring-transparent ring-offset-0 outline-none hover:bg-transparent focus:outline-none"
               >
                 <Avatar className="size-10">
                   <AvatarImage
@@ -51,18 +51,11 @@ export const NavLarge = () => {
                   />
                   <AvatarFallback>{session.user?.name}</AvatarFallback>
                 </Avatar>
-                <ChevronDownIcon
-                  size={16}
-                  className="opacity-60"
-                  aria-hidden="true"
-                />
+                <ChevronDownIcon size={16} className="opacity-60" aria-hidden="true" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem
-                onClick={() => router.push("/profile")}
-                className="cursor-pointer"
-              >
+              <DropdownMenuItem onClick={() => router.push('/profile')} className="cursor-pointer">
                 <User className="size-4" />
                 <span>Profile</span>
               </DropdownMenuItem>
@@ -71,7 +64,7 @@ export const NavLarge = () => {
                 className="cursor-pointer"
                 onClick={() => {
                   authClient.signOut();
-                  router.push("/");
+                  router.push('/');
                 }}
               >
                 <LogOut className="size-4" />
@@ -81,11 +74,11 @@ export const NavLarge = () => {
           </DropdownMenu>
         ) : (
           <Link
-            href={"/login"}
+            href={'/login'}
             className={buttonVariants({
-              variant: "default",
-              size: "sm",
-              className: "flex items-center py-2",
+              variant: 'default',
+              size: 'sm',
+              className: 'flex items-center py-2',
             })}
           >
             <span>Login</span>

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Check, ChevronsUpDown } from "lucide-react";
-import * as React from "react";
+import { Check, ChevronsUpDown } from 'lucide-react';
+import * as React from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -11,26 +11,17 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-interface Props extends React.ComponentProps<"button"> {
+interface Props extends React.ComponentProps<'button'> {
   value: string[];
   onToggleItem: (currentValue: string) => void;
   allOptions: string[];
   label: string;
 }
 
-export function MultiSelect({
-  value,
-  onToggleItem: onToggle,
-  allOptions,
-  label,
-}: Props) {
+export function MultiSelect({ value, onToggleItem: onToggle, allOptions, label }: Props) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -47,7 +38,7 @@ export function MultiSelect({
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0 bg-background z-40">
+      <PopoverContent className="bg-background z-40 w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search framework..." className="h-9" />
 
@@ -63,9 +54,7 @@ export function MultiSelect({
                     className="flex items-center justify-between"
                   >
                     <span>{tech}</span>
-                    {value.includes(tech) && (
-                      <Check className="mr-2 h-4 w-4 text-green-600" />
-                    )}
+                    {value.includes(tech) && <Check className="mr-2 h-4 w-4 text-green-600" />}
                   </CommandItem>
                 ))}
               </React.Suspense>

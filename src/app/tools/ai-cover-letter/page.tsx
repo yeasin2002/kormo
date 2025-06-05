@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   AiCoverLetterMainResponse,
@@ -6,9 +6,9 @@ import {
   CoverLetterFeatures,
   CoverLetterHeading,
   DecorativeElements,
-} from "@/features/ai-cover-letter";
-import { AiCoverMainForm } from "@/features/ai-cover-letter/ai-cover-main-form";
-import { useState } from "react";
+} from '@/features/ai-cover-letter';
+import { AiCoverMainForm } from '@/features/ai-cover-letter/ai-cover-main-form';
+import { useState } from 'react';
 
 export default function CoverLetterGenerator() {
   const [isNext, setIsNext] = useState(false);
@@ -24,19 +24,15 @@ export default function CoverLetterGenerator() {
 
   return (
     <>
-      <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      <div className="bg-background text-foreground relative min-h-screen overflow-hidden">
         <DecorativeElements />
 
         <main className="container mx-auto px-6 py-12">
-          <div className="max-w-7xl mx-auto">
+          <div className="mx-auto max-w-7xl">
             <CoverLetterHeading />
 
-            <div className="bg-card border-4 border-border rounded-3xl p-8 shadow-xl">
-              {isNext ? (
-                <AiCoverLetterMainResponse />
-              ) : (
-                <AiCoverMainForm onSubmit={onSubmit} />
-              )}
+            <div className="bg-card border-border rounded-3xl border-4 p-8 shadow-xl">
+              {isNext ? <AiCoverLetterMainResponse /> : <AiCoverMainForm onSubmit={onSubmit} />}
               {isNext || <CoverLetterFeatures />}
             </div>
           </div>

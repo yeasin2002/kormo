@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Label } from "@/components/retroui";
-import { FileText, Upload } from "lucide-react";
-import { useCallback } from "react";
+import { Label } from '@/components/retroui';
+import { FileText, Upload } from 'lucide-react';
+import { useCallback } from 'react';
 
 type Props = {
   file: File | null;
@@ -15,8 +15,8 @@ type Props = {
 export const FileUploader = ({
   file,
   onFileChange,
-  label = "Upload Your Resume",
-  accept = ".pdf,.doc,.docx",
+  label = 'Upload Your Resume',
+  accept = '.pdf,.doc,.docx',
   maxSize = 5, // 5MB default
 }: Props) => {
   const handleFileChange = useCallback(
@@ -36,16 +36,13 @@ export const FileUploader = ({
 
       onFileChange(selectedFile);
     },
-    [maxSize, onFileChange]
+    [maxSize, onFileChange],
   );
 
-  const handleDragOver = useCallback(
-    (event: React.DragEvent<HTMLDivElement>) => {
-      event.preventDefault();
-      event.stopPropagation();
-    },
-    []
-  );
+  const handleDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }, []);
 
   const handleDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
@@ -60,14 +57,10 @@ export const FileUploader = ({
       // Check if the file type is accepted
       if (
         !accept
-          .split(",")
-          .some((type) =>
-            droppedFile.name
-              .toLowerCase()
-              .endsWith(type.trim().replace(".", ""))
-          )
+          .split(',')
+          .some((type) => droppedFile.name.toLowerCase().endsWith(type.trim().replace('.', '')))
       ) {
-        alert("Please upload a valid file type");
+        alert('Please upload a valid file type');
         return;
       }
 
@@ -79,16 +72,16 @@ export const FileUploader = ({
 
       onFileChange(droppedFile);
     },
-    [accept, maxSize, onFileChange]
+    [accept, maxSize, onFileChange],
   );
 
   return (
     <div>
-      <Label htmlFor="file-upload" className="text-lg font-bold mb-2 block">
+      <Label htmlFor="file-upload" className="mb-2 block text-lg font-bold">
         {label}
       </Label>
       <div
-        className="border-2 border-dashed border-border rounded-xl p-8 text-center bg-background"
+        className="border-border bg-background rounded-xl border-2 border-dashed p-8 text-center"
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
@@ -101,23 +94,20 @@ export const FileUploader = ({
         />
         <label
           htmlFor="file-upload"
-          className="flex flex-col items-center justify-center cursor-pointer"
+          className="flex cursor-pointer flex-col items-center justify-center"
         >
-          <Upload className="w-12 h-12 text-muted-foreground mb-4" />
+          <Upload className="text-muted-foreground mb-4 h-12 w-12" />
           {file ? (
-            <div className="flex items-center space-x-2 text-foreground">
-              <FileText className="w-5 h-5" />
+            <div className="text-foreground flex items-center space-x-2">
+              <FileText className="h-5 w-5" />
               <span className="font-medium">{file.name}</span>
             </div>
           ) : (
             <>
-              <p className="text-lg font-bold text-foreground mb-1">
-                Drag & drop your file here
-              </p>
+              <p className="text-foreground mb-1 text-lg font-bold">Drag & drop your file here</p>
               <p className="text-muted-foreground">
-                or{" "}
-                <span className="text-purple-500 font-bold">browse files</span>{" "}
-                {accept.replace(/\./g, "").toUpperCase()}
+                or <span className="font-bold text-purple-500">browse files</span>{' '}
+                {accept.replace(/\./g, '').toUpperCase()}
               </p>
             </>
           )}

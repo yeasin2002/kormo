@@ -1,47 +1,46 @@
-import bkashLogo from "@/assets/BKash-logo.svg";
-import { Button } from "@/components/retroui";
-import Image from "next/image";
+import bkashLogo from '@/assets/BKash-logo.svg';
+import { Button } from '@/components/retroui';
+import Image from 'next/image';
 
 export const FinanceCto = () => {
   return (
     <div className="py-20">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-primary rounded-3xl p-8 lg:p-12 border-4 border-border shadow-xl relative overflow-hidden">
-            <div className="flex  gap-8 items-center relative z-10">
-              <div className="space-y-6 w-2/3">
-                <h2 className="text-4xl lg:text-5xl font-bold text-black leading-tight font-head">
+        <div className="mx-auto max-w-6xl">
+          <div className="bg-primary border-border relative overflow-hidden rounded-3xl border-4 p-8 shadow-xl lg:p-12">
+            <div className="relative z-10 flex items-center gap-8">
+              <div className="w-2/3 space-y-6">
+                <h2 className="font-head text-4xl leading-tight font-bold text-black lg:text-5xl">
                   Financial Contribution
                 </h2>
-                <p className="text-lg text-black/80 leading-relaxed">
-                  This job finding platform is open source. If you find our
-                  services valuable, please consider making a donation to
-                  support our ongoing efforts. Your contributions help us
-                  maintain and improve the platform for everyone.
+                <p className="text-lg leading-relaxed text-black/80">
+                  This job finding platform is open source. If you find our services valuable,
+                  please consider making a donation to support our ongoing efforts. Your
+                  contributions help us maintain and improve the platform for everyone.
                 </p>
                 <Button
                   size="lg"
-                  className="bg-black text-white hover:bg-gray-800 font-semibold px-8 py-4 text-lg rounded-lg shadow-md border-2 border-black"
+                  className="rounded-lg border-2 border-black bg-black px-8 py-4 text-lg font-semibold text-white shadow-md hover:bg-gray-800"
                 >
                   Know More
                 </Button>
               </div>
 
-              <div className="flex justify-center items-center">
+              <div className="flex items-center justify-center">
                 <Image
                   src={bkashLogo}
                   alt="Paper Airplane"
-                  className="w-32 h-32 lg:w-40 lg:h-72 relative z-20"
+                  className="relative z-20 h-32 w-32 lg:h-72 lg:w-40"
                 />
               </div>
             </div>
 
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-4 left-4 w-8 h-8 bg-black rounded-full"></div>
-              <div className="absolute top-12 right-8 w-6 h-6 bg-black rounded-full"></div>
-              <div className="absolute bottom-8 left-12 w-4 h-4 bg-black rounded-full"></div>
-              <div className="absolute bottom-4 right-4 w-10 h-10 bg-black rounded-full"></div>
+              <div className="absolute top-4 left-4 h-8 w-8 rounded-full bg-black"></div>
+              <div className="absolute top-12 right-8 h-6 w-6 rounded-full bg-black"></div>
+              <div className="absolute bottom-8 left-12 h-4 w-4 rounded-full bg-black"></div>
+              <div className="absolute right-4 bottom-4 h-10 w-10 rounded-full bg-black"></div>
             </div>
           </div>
         </div>

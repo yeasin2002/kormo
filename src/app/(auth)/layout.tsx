@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { buttonVariants } from "@/components/retroui";
+import { buttonVariants } from '@/components/retroui';
 import {
   CompanyLogos,
   EarningCards,
@@ -10,10 +10,10 @@ import {
   NotificationCard,
   ProfileCard,
   SecureLogin,
-} from "@/features/auth/auth-floating-cards";
-import { cn } from "@/lib/utils";
-import { Home } from "iconoir-react";
-import Link from "next/link";
+} from '@/features/auth/auth-floating-cards';
+import { cn } from '@/lib/utils';
+import { Home } from 'iconoir-react';
+import Link from 'next/link';
 
 export default function LoginPage({
   children,
@@ -21,22 +21,22 @@ export default function LoginPage({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="text-foreground  bg-background min-h-screen relative  flex flex-col justify-center overflow-x-hidden ">
+    <div className="text-foreground bg-background relative flex min-h-screen flex-col justify-center overflow-x-hidden">
       <div>{children}</div>
 
       <Link
-        href={"/"}
+        href={'/'}
         className={cn(
           buttonVariants(),
-          "bg-background text-foreground border-2 border-foreground hover:bg-muted font-semibold  text-lg  shadow-md flex items-center gap-x-2 ",
-          `rounded-full absolute top-2 left-4`
+          'bg-background text-foreground border-foreground hover:bg-muted flex items-center gap-x-2 border-2 text-lg font-semibold shadow-md',
+          `absolute top-2 left-4 rounded-full`,
         )}
       >
-        <Home className="w-4 h-4" />
+        <Home className="h-4 w-4" />
         <span>Go to Home</span>
       </Link>
 
-      <div className="overflow-y-hidden hidden lg:block">
+      <div className="hidden overflow-y-hidden lg:block">
         <EarningCards />
         <JobStateCard />
         <ProfileCard />

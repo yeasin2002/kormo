@@ -1,20 +1,17 @@
-"use client";
+'use client';
 
-import { Button, Label } from "@/components/retroui";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircleIcon, Mail, Sparkles, User } from "lucide-react";
-import { Controller, useForm } from "react-hook-form";
+import { Button, Label } from '@/components/retroui';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { AlertCircleIcon, Mail, Sparkles, User } from 'lucide-react';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ComboSelect, InputCombo, TextareaCombo } from "@/components/custom-ui";
-import DocUpload from "@/components/custom-ui/doc-upload";
-import { writingTones } from "@/data/writing-tone.data";
-import {
-    aiCoverLetterSchema,
-    aiCoverLetterSchemaValues,
-} from "@/features/ai-cover-letter";
-import { useFileUpload } from "@/hooks/use-file-upload";
-import { Suitcase } from "iconoir-react";
-import { useEffect } from "react";
+import { ComboSelect, InputCombo, TextareaCombo } from '@/components/custom-ui';
+import DocUpload from '@/components/custom-ui/doc-upload';
+import { writingTones } from '@/data/writing-tone.data';
+import { aiCoverLetterSchema, aiCoverLetterSchemaValues } from '@/features/ai-cover-letter';
+import { useFileUpload } from '@/hooks/use-file-upload';
+import { Suitcase } from 'iconoir-react';
+import { useEffect } from 'react';
 
 const maxSizeMB = 5;
 const maxSize = maxSizeMB * 1024 * 1024;
@@ -36,15 +33,15 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
   });
 
   const [{ files, isDragging, errors: fileErrors }, action] = useFileUpload({
-    accept: ".pdf",
+    accept: '.pdf',
     maxSize,
   });
 
   useEffect(() => {
-    setValue("cv", files[0] || null);
+    setValue('cv', files[0] || null);
 
     return () => {
-      setValue("cv", null);
+      setValue('cv', null);
     };
   }, [files, setValue]);
 
@@ -57,7 +54,7 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
         err={errors?.cv?.message?.toString()}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <InputCombo
           id="email"
           type="email"
@@ -65,7 +62,7 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
           placeholder="example@email.com"
           icon={Mail}
           error={errors.jobTitle}
-          registration={register("jobTitle")}
+          registration={register('jobTitle')}
         />
 
         <InputCombo
@@ -74,23 +71,23 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
           placeholder="John Doe"
           icon={User}
           error={errors.yourName}
-          registration={register("yourName")}
+          registration={register('yourName')}
         />
       </div>
 
-      <div className="flex items-center  gap-4">
+      <div className="flex items-center gap-4">
         <InputCombo
           id="jobTitle"
           label="Job Title"
           placeholder="Enter the job title here..."
           icon={Suitcase}
           error={errors.jobTitle}
-          registration={register("jobTitle")}
+          registration={register('jobTitle')}
           wrapperClassName="w-full"
         />
 
         <div>
-          <Label htmlFor="tone" className=" text-sm font-bold text-foreground ">
+          <Label htmlFor="tone" className="text-foreground text-sm font-bold">
             Cover Letter Tone
           </Label>
           <Controller
@@ -102,15 +99,12 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
                 onValueChange={field.onChange}
                 menuItem={writingTones}
                 label="Select Tone"
-                className="py-3.5 rounded-lg  text-sm !bg-card"
+                className="!bg-card rounded-lg py-3.5 text-sm"
               />
             )}
           />
           {errors.coverLetterTone && (
-            <div
-              className="text-destructive flex items-center gap-1 text-xs mt-2"
-              role="alert"
-            >
+            <div className="text-destructive mt-2 flex items-center gap-1 text-xs" role="alert">
               <AlertCircleIcon className="size-3 shrink-0" />
               <span>{errors.coverLetterTone.message}</span>
             </div>
@@ -122,7 +116,7 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
         label="Job Description"
         placeholder="Enter the job description here..."
         required
-        registration={register("jobDescription")}
+        registration={register('jobDescription')}
         errors={errors.jobDescription?.message}
       />
 
@@ -130,16 +124,16 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
         label="Additional Instructions"
         placeholder="Write your Prompt here..."
         required
-        registration={register("additionalInstructions")}
+        registration={register('additionalInstructions')}
         errors={errors.additionalInstructions?.message}
       />
 
       <Button
         type="submit"
-        className="w-full  font-bold py-2 text-lg rounded-lg shadow-lg  flex items-center justify-center space-x-2 group"
+        className="group flex w-full items-center justify-center space-x-2 rounded-lg py-2 text-lg font-bold shadow-lg"
         disabled={isSubmitting}
       >
-        <Sparkles className="w-5 h-5 group-hover:animate-pulse" />
+        <Sparkles className="h-5 w-5 group-hover:animate-pulse" />
         <span>Generate Cover Letter</span>
       </Button>
     </form>

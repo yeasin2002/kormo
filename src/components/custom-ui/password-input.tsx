@@ -1,7 +1,7 @@
-import { Eye, EyeOff, Lock } from "lucide-react";
-import { useState } from "react";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
-import { InputCombo } from "./input-combo";
+import { Eye, EyeOff, Lock } from 'lucide-react';
+import { useState } from 'react';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+import { InputCombo } from './input-combo';
 
 interface PasswordInputProps {
   id: string;
@@ -21,10 +21,10 @@ export const PasswordInput = ({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="relative ">
+    <div className="relative">
       <InputCombo
         id={id}
-        type={showPassword ? "text" : "password"}
+        type={showPassword ? 'text' : 'password'}
         label={label}
         placeholder={placeholder}
         icon={Lock}
@@ -34,13 +34,9 @@ export const PasswordInput = ({
       <button
         type="button"
         onClick={() => setShowPassword(!showPassword)}
-        className="absolute right-4 top-[55%] text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+        className="text-muted-foreground hover:text-foreground absolute top-[55%] right-4 cursor-pointer transition-colors"
       >
-        {showPassword ? (
-          <EyeOff className="w-5 h-5" />
-        ) : (
-          <Eye className="w-5 h-5" />
-        )}
+        {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
       </button>
     </div>
   );

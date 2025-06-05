@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -36,7 +36,7 @@
 :root {
   /* --background: #f9fad8; */
   /* --background: #dff7e1; */
-  --background: #F2EFE8;
+  --background: #f2efe8;
   --foreground: #000;
   --card: #fff;
   --card-foreground: #000;
@@ -75,7 +75,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground ;
+    @apply bg-background text-foreground;
   }
 }
 /* bg-purple-400 text-black hover:bg-purple-500 font-semibold p-6 h-auto rounded-xl shadow-lg border-2 border-black group sm:col-span-2 lg:col-span-1 */

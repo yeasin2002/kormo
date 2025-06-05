@@ -1,10 +1,10 @@
-import { fontVariables } from "@/fonts";
-import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
+import { fontVariables } from '@/fonts';
+import { cn } from '@/lib/utils';
+import type { Metadata } from 'next';
 
-import { NavBar } from "@/components/shared";
-import { RootWrapper } from "./app/root-wrapper";
-import "./globals.css";
+import { NavBar } from '@/components/shared';
+import { RootWrapper } from './app/root-wrapper';
+import './globals.css';
 
 export default function RootLayout({
   children,
@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={cn(`antialiased  `, fontVariables)}>
+      <body className={cn(`antialiased`, fontVariables)}>
         <RootWrapper>
           <NavBar />
           {children}
@@ -25,6 +25,6 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Kormo Setu",
-  description: "Find all tech companies in Bangladesh",
+  title: 'Kormo Setu',
+  description: 'Find all tech companies in Bangladesh',
 };

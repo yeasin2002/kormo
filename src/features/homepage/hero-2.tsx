@@ -1,49 +1,48 @@
-import { Badge, Button } from "@/components/retroui";
-import { SparklesStars } from "@/components/shared";
+import { Badge, Button } from '@/components/retroui';
+import { SparklesStars } from '@/components/shared';
 
 export const Hero2 = () => {
   return (
-    <div className=" bg-background text-foreground relative overflow-hidden container mx-auto">
+    <div className="bg-background text-foreground relative container mx-auto overflow-hidden">
       {/* Decorative Stars */}
       <SparklesStars />
       {/* Main Content */}
       <div className="container mx-auto px-6 pt-16 lg:pt-24">
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl text-center">
           {/* Promotional Badge */}
           <div className="mb-12">
-            <Badge className="bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-2 text-sm font-medium rounded-full shadow-sm border-2 border-black">
+            <Badge className="rounded-full border-2 border-black bg-yellow-400 px-6 py-2 text-sm font-medium text-black shadow-sm hover:bg-yellow-500">
               Under Maintenance
             </Badge>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold - mb-8 font-head uppercase">
+          <h1 className="- font-head mb-8 text-4xl font-bold uppercase md:text-5xl lg:text-6xl xl:text-7xl">
             Finding Jobs
             <br />
             <span className="text-yellow-500">is easy now!</span>
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            We are a platform that helps you find the best job for you. A place
-            where you can find companies that match your skills and interests. A
-            place where you can find remote job opportunities. A place where you
-            can grow your skills and get hired.
+          <p className="text-muted-foreground mx-auto mb-12 max-w-3xl text-lg leading-relaxed md:text-xl">
+            We are a platform that helps you find the best job for you. A place where you can find
+            companies that match your skills and interests. A place where you can find remote job
+            opportunities. A place where you can grow your skills and get hired.
             {/* <span className="font-semibold text-foreground">stand out</span>. */}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+          <div className="mb-20 flex flex-col justify-center gap-4 sm:flex-row">
             <Button
               size="lg"
-              className="bg-yellow-400 text-black hover:bg-yellow-500 font-semibold px-8 py-4 text-lg rounded-lg shadow-md border-2 border-black"
+              className="rounded-lg border-2 border-black bg-yellow-400 px-8 py-4 text-lg font-semibold text-black shadow-md hover:bg-yellow-500"
             >
               Get Access Now
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="bg-background text-foreground border-2 border-foreground hover:bg-muted font-semibold px-8 py-4 text-lg rounded-lg shadow-md"
+              className="bg-background text-foreground border-foreground hover:bg-muted rounded-lg border-2 px-8 py-4 text-lg font-semibold shadow-md"
             >
               Explore Components
             </Button>

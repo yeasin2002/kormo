@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import premiumIcon from "@/assets/premium-icon.png";
+import premiumIcon from '@/assets/premium-icon.png';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Image from "next/image";
-import Link from "next/link";
+} from '@/components/ui/dropdown-menu';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface Props {
   name: string;
@@ -23,9 +23,9 @@ export function NavItems({ items, name }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="font-bold font-sans outline-none focus:outline-none cursor-pointer group">
+        <button className="group cursor-pointer font-sans font-bold outline-none focus:outline-none">
           {name}
-          <span className="h-[0.20rem] w-0 group-hover:w-full bg-primary  block transition-all"></span>
+          <span className="bg-primary block h-[0.20rem] w-0 transition-all group-hover:w-full"></span>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -34,13 +34,7 @@ export function NavItems({ items, name }: Props) {
             <Link href={{ pathname: item.href }}>{item.name}</Link>
 
             {item.isPro && (
-              <Image
-                src={premiumIcon}
-                alt="Premium"
-                width={20}
-                height={20}
-                className="ml-2"
-              />
+              <Image src={premiumIcon} alt="Premium" width={20} height={20} className="ml-2" />
             )}
           </DropdownMenuItem>
         ))}

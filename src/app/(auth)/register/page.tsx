@@ -71,15 +71,15 @@ export default function RegisterPage() {
     <>
       <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-2xl">
-          <div className="bg-card border-4 border-border rounded-3xl p-8 shadow-2xl relative">
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <div className="bg-yellow-400 text-black px-6 py-2 rounded-full border-2 border-black shadow-lg font-bold text-sm">
+          <div className="bg-card border-border relative rounded-3xl border-4 p-8 shadow-2xl">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 transform">
+              <div className="rounded-full border-2 border-black bg-yellow-400 px-6 py-2 text-sm font-bold text-black shadow-lg">
                 Create Account!
               </div>
             </div>
 
-            <div className="text-center mb-8 mt-4">
-              <h1 className="text-3xl lg:text-4xl font-black mb-2">
+            <div className="mt-4 mb-8 text-center">
+              <h1 className="mb-2 text-3xl font-black lg:text-4xl">
                 Sign <span className="text-yellow-500">Up</span>
               </h1>
               <p className="text-muted-foreground text-sm">
@@ -127,7 +127,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-bold text-foreground">Profile Picture</label>
+                <label className="text-foreground block text-sm font-bold">Profile Picture</label>
                 <ImageUpload
                   previewImage={previewImage}
                   registration={register('image')}
@@ -152,7 +152,7 @@ export default function RegisterPage() {
                     register('acceptTerms').onChange(event);
                   }}
                 />
-                <label htmlFor="terms" className="text-sm text-foreground">
+                <label htmlFor="terms" className="text-foreground text-sm">
                   I accept the{' '}
                   <Link href="/" className="text-yellow-600 hover:text-yellow-500">
                     terms and conditions
@@ -160,21 +160,21 @@ export default function RegisterPage() {
                 </label>
               </div>
               {errors.acceptTerms && (
-                <p className="text-red-500 text-sm mt-1">{errors.acceptTerms.message}</p>
+                <p className="mt-1 text-sm text-red-500">{errors.acceptTerms.message}</p>
               )}
 
               {errors.root && (
-                <p className="text-red-500 text-sm text-center">{errors.root.message}</p>
+                <p className="text-center text-sm text-red-500">{errors.root.message}</p>
               )}
 
               <Button
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="w-full bg-yellow-400 text-black hover:bg-yellow-500 font-bold py-3 text-lg rounded-lg shadow-lg border-2 border-black flex items-center justify-center space-x-2 group"
+                className="group flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-black bg-yellow-400 py-3 text-lg font-bold text-black shadow-lg hover:bg-yellow-500"
               >
                 <span>{isSubmitting ? 'Creating Account...' : 'Create Account'}</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </form>
 
@@ -184,7 +184,7 @@ export default function RegisterPage() {
           </div>
 
           <div className="mt-6 text-center">
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               🔒 Your data is protected with industry-standard encryption
             </p>
           </div>

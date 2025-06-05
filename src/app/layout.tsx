@@ -1,9 +1,9 @@
-import { fontVariables } from "@/fonts";
-import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
+import { fontVariables } from '@/fonts';
+import { cn } from '@/lib/utils';
+import type { Metadata } from 'next';
 
-import "./globals.css";
-import { RootWrapper } from "./root-wrapper";
+import './globals.css';
+import { RootWrapper } from './root-wrapper';
 
 export default function RootLayout({
   children,
@@ -12,7 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(`antialiased  `, fontVariables)}>
+      <body className={cn(`antialiased`, fontVariables)}>
         <RootWrapper>{children}</RootWrapper>
       </body>
     </html>
@@ -20,6 +20,6 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Kormo Setu",
-  description: "Find all tech companies in Bangladesh",
+  title: 'Kormo Setu',
+  description: 'Find all tech companies in Bangladesh',
 };

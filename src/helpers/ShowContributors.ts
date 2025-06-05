@@ -4,21 +4,19 @@ export async function getContributors(): Promise<
   const request = await fetch(
     `https://api.github.com/repos/yeasin2002/Stack-Unboxed/contributors`,
     {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    }
+    },
   );
 
   const contributorsList = await request.json();
   return [
-    ...contributorsList.map(
-      (c: { avatar_url: string; login: string; html_url: string }) => ({
-        avatar: c.avatar_url,
-        username: c.login,
-        url: c.html_url,
-      })
-    ),
+    ...contributorsList.map((c: { avatar_url: string; login: string; html_url: string }) => ({
+      avatar: c.avatar_url,
+      username: c.login,
+      url: c.html_url,
+    })),
   ];
 }

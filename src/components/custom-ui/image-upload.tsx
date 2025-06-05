@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils";
-import { Loader2, Upload, X } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import { cn } from '@/lib/utils';
+import { Loader2, Upload, X } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 interface ImageUploadProps {
   previewImage: string | null;
@@ -65,7 +65,7 @@ export const ImageUpload = ({
     const event = {
       target: {
         files: null,
-        value: "",
+        value: '',
       },
     } as unknown as React.ChangeEvent<HTMLInputElement>;
     onChange(event);
@@ -75,12 +75,10 @@ export const ImageUpload = ({
     <div className="flex items-center space-x-4">
       <div
         className={cn(
-          "relative w-24 h-24 border-2 border-dashed rounded-lg overflow-hidden transition-all duration-200 group",
-          isDragging
-            ? "border-yellow-400 bg-yellow-50/10 scale-105"
-            : "border-border",
-          error ? "border-red-500" : "",
-          "hover:border-yellow-400 hover:bg-yellow-50/5"
+          'group relative h-24 w-24 overflow-hidden rounded-lg border-2 border-dashed transition-all duration-200',
+          isDragging ? 'scale-105 border-yellow-400 bg-yellow-50/10' : 'border-border',
+          error ? 'border-red-500' : '',
+          'hover:border-yellow-400 hover:bg-yellow-50/5',
         )}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragEnter}
@@ -88,47 +86,43 @@ export const ImageUpload = ({
         onDrop={handleDrop}
       >
         {isLoading ? (
-          <div className="flex items-center justify-center h-full">
-            <Loader2 className="w-8 h-8 text-muted-foreground animate-spin" />
+          <div className="flex h-full items-center justify-center">
+            <Loader2 className="text-muted-foreground h-8 w-8 animate-spin" />
           </div>
         ) : previewImage ? (
-          <div className="relative w-full h-full group">
+          <div className="group relative h-full w-full">
             <Image
               src={previewImage}
               alt="Preview"
               fill
               className="object-cover transition-transform duration-200 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
               <button
                 onClick={handleRemoveImage}
-                className="p-1 bg-red-500 rounded-full text-white hover:bg-red-600 transition-colors"
+                className="rounded-full bg-red-500 p-1 text-white transition-colors hover:bg-red-600"
               >
-                <X className="w-4 h-4" />
+                <X className="h-4 w-4" />
               </button>
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full p-2 text-center">
-            <Upload className="w-8 h-8 text-muted-foreground mb-1 group-hover:text-yellow-400 transition-colors" />
-            <span className="text-xs text-muted-foreground">Drop or Click</span>
+          <div className="flex h-full flex-col items-center justify-center p-2 text-center">
+            <Upload className="text-muted-foreground mb-1 h-8 w-8 transition-colors group-hover:text-yellow-400" />
+            <span className="text-muted-foreground text-xs">Drop or Click</span>
           </div>
         )}
         <input
           type="file"
           {...registration}
           onChange={handleChange}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          accept={acceptedTypes.join(",")}
+          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+          accept={acceptedTypes.join(',')}
         />
       </div>
       <div className="flex-1">
-        <p className="text-sm text-muted-foreground">
-          Upload a profile picture. Max size 5MB.
-        </p>
-        {error && (
-          <p className="text-red-500 text-sm mt-1">{error.message as string}</p>
-        )}
+        <p className="text-muted-foreground text-sm">Upload a profile picture. Max size 5MB.</p>
+        {error && <p className="mt-1 text-sm text-red-500">{error.message as string}</p>}
       </div>
     </div>
   );

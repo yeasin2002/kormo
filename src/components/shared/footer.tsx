@@ -1,61 +1,59 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { Button } from "../retroui";
-import { Logo } from "./logo";
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Button } from '../retroui';
+import { Logo } from './logo';
 
 export const Footer = () => {
   return (
-    <footer className=" mt-20">
+    <footer className="mt-20">
       <div className="container mx-auto px-6 py-16">
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           {/* Newsletter Signup Section */}
           {/* <Newsletter /> */}
 
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {/* Brand Section */}
             <div className="lg:col-span-1">
               <Logo />
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Building unique and playful websites with React, Tailwind CSS,
-                and modern design principles.
+                Building unique and playful websites with React, Tailwind CSS, and modern design
+                principles.
               </p>
               <div className="flex space-x-4">
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-2 border-border hover:bg-muted rounded-lg"
+                  className="border-border hover:bg-muted rounded-lg border-2"
                 >
-                  <Twitter className="w-5 h-5" />
+                  <Twitter className="h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-2 border-border hover:bg-muted rounded-lg"
+                  className="border-border hover:bg-muted rounded-lg border-2"
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-2 border-border hover:bg-muted rounded-lg"
+                  className="border-border hover:bg-muted rounded-lg border-2"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="h-5 w-5" />
                 </Button>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-2 border-border hover:bg-muted rounded-lg"
+                  className="border-border hover:bg-muted rounded-lg border-2"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="h-5 w-5" />
                 </Button>
               </div>
             </div>
 
             {/* Product Links */}
             <div>
-              <h4 className="text-lg font-bold text-foreground mb-6">
-                Product
-              </h4>
+              <h4 className="text-foreground mb-6 text-lg font-bold">Product</h4>
               <ul className="space-y-3">
                 <li>
                   <a
@@ -102,9 +100,7 @@ export const Footer = () => {
 
             {/* Resources Links */}
             <div>
-              <h4 className="text-lg font-bold text-foreground mb-6">
-                Resources
-              </h4>
+              <h4 className="text-foreground mb-6 text-lg font-bold">Resources</h4>
               <ul className="space-y-3">
                 <li>
                   <a
@@ -151,9 +147,7 @@ export const Footer = () => {
 
             {/* Company Links */}
             <div>
-              <h4 className="text-lg font-bold text-foreground mb-6">
-                Company
-              </h4>
+              <h4 className="text-foreground mb-6 text-lg font-bold">Company</h4>
               <ul className="space-y-3">
                 <li>
                   <a

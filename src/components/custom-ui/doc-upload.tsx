@@ -1,11 +1,8 @@
-"use client";
+'use client';
 
-import { AlertCircleIcon, Check, ImageUpIcon } from "lucide-react";
+import { AlertCircleIcon, Check, ImageUpIcon } from 'lucide-react';
 
-import {
-  type FileUploadState,
-  FileUploadActions,
-} from "@/hooks/use-file-upload";
+import { type FileUploadState, FileUploadActions } from '@/hooks/use-file-upload';
 
 type DocUploadProps = {
   state: FileUploadState;
@@ -14,12 +11,7 @@ type DocUploadProps = {
   err?: string | undefined;
 };
 
-export default function DocUpload({
-  state,
-  action,
-  maxSizeMB,
-  err,
-}: DocUploadProps) {
+export default function DocUpload({ state, action, maxSizeMB, err }: DocUploadProps) {
   const { files, isDragging } = state;
   const {
     handleDragEnter,
@@ -46,31 +38,23 @@ export default function DocUpload({
           data-dragging={isDragging || undefined}
           className="!bg-background border-input hover:bg-background data-[dragging=true]:bg-background has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
         >
-          <input
-            {...getInputProps()}
-            className="sr-only"
-            aria-label="Upload file"
-          />
+          <input {...getInputProps()} className="sr-only" aria-label="Upload file" />
           <div className="flex flex-col items-center justify-center px-4 py-3 text-center">
             <div
               className="bg-card mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
               aria-hidden="true"
             >
               {previewUrl ? (
-                <Check className="size-5 opacity-60 text-green-600" />
+                <Check className="size-5 text-green-600 opacity-60" />
               ) : (
                 <ImageUpIcon className="size-5 opacity-60" />
               )}
             </div>
             {!previewUrl ? (
               <>
-                <p className="mb-1.5 text-sm font-medium">
-                  Drag and drop your document here
-                </p>
+                <p className="mb-1.5 text-sm font-medium">Drag and drop your document here</p>
 
-                <p className="text-muted-foreground text-xs">
-                  Max size: {maxSizeMB}MB
-                </p>
+                <p className="text-muted-foreground text-xs">Max size: {maxSizeMB}MB</p>
               </>
             ) : (
               <p>{previewUrl?.file?.name}</p>
@@ -80,10 +64,7 @@ export default function DocUpload({
       </div>
 
       {err && (
-        <div
-          className="text-destructive flex items-center gap-1 text-xs"
-          role="alert"
-        >
+        <div className="text-destructive flex items-center gap-1 text-xs" role="alert">
           <AlertCircleIcon className="size-3 shrink-0" />
           <span>{err}</span>
         </div>
