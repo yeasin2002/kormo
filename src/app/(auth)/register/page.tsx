@@ -27,6 +27,7 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -35,11 +36,16 @@ export default function RegisterPage() {
     },
   });
 
+  console.log(watch('image'));
+
   const onSubmit = async (data: RegisterFormValues) => {
+    console.log(data);
+    // return null;
     try {
       //  upload image
       const uploadedImage = await edgestore.publicFiles.upload({
-        file: data.image?.[0],
+        // file: data.image?.[0],
+        file: data.image,
         // onProgressChange: (progress) => {console.log(progress);},
       });
 

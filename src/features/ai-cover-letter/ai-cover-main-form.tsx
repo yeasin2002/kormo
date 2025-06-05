@@ -26,19 +26,21 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
     handleSubmit,
     control,
     setValue,
+    watch,
 
     formState: { errors, isSubmitting },
   } = useForm<aiCoverLetterSchemaValues>({
     resolver: zodResolver(aiCoverLetterSchema),
   });
-
+  console.log(watch('cv'));
   const [{ files, isDragging, errors: fileErrors }, action] = useFileUpload({
     accept: '.pdf',
     maxSize,
   });
 
   useEffect(() => {
-    setValue('cv', files[0] || null);
+    const actualFile = files[0]?.file instanceof File ? files[0].file : null;
+    setValue('cv', actualFile);
 
     return () => {
       setValue('cv', null);
