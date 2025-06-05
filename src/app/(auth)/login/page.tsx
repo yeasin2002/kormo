@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { InputCombo } from "@/components/custom-ui/input-combo";
-import { LoaderDots } from "@/components/custom-ui/loader-dots";
-import { PasswordInput } from "@/components/custom-ui/password-input";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { SocialLoginLink } from "@/features/auth/social-login-link";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Mail } from "lucide-react";
-import Link from "next/link";
+import { InputCombo } from '@/components/custom-ui/input-combo';
+import { LoaderDots } from '@/components/custom-ui/loader-dots';
+import { PasswordInput } from '@/components/custom-ui/password-input';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { SocialLoginLink } from '@/features/auth/social-login-link';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ArrowRight, Mail } from 'lucide-react';
+import Link from 'next/link';
 
-import { loginSchema, type LoginFormValues } from "@/features/auth/auth.schema";
-import { authClient } from "@/lib/auth-client";
-import { useForm } from "react-hook-form";
+import { loginSchema, type LoginFormValues } from '@/features/auth/auth.schema';
+import { authClient } from '@/lib/auth-client';
+import { useForm } from 'react-hook-form';
 
 export default function LoginPage() {
   const {
@@ -22,8 +22,8 @@ export default function LoginPage() {
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       rememberMe: false,
     },
   });
@@ -47,16 +47,16 @@ export default function LoginPage() {
     <>
       <div className="flex items-center justify-center px-6 py-4 md:py-12">
         <div className="w-full max-w-md">
-          <div className="bg-card border-4 border-border rounded-3xl p-8 shadow-2xl relative">
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <div className="bg-yellow-400 text-black px-6 py-2 rounded-full border-2 border-black shadow-lg font-bold text-sm">
+          <div className="bg-card border-border relative rounded-3xl border-4 p-8 shadow-2xl">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 transform">
+              <div className="rounded-full border-2 border-black bg-yellow-400 px-6 py-2 text-sm font-bold text-black shadow-lg">
                 Welcome Back!
               </div>
             </div>
 
             {/* Header */}
-            <div className="text-center mb-8 mt-4">
-              <h1 className="text-3xl lg:text-4xl font-black mb-2">
+            <div className="mt-4 mb-8 text-center">
+              <h1 className="mb-2 text-3xl font-black lg:text-4xl">
                 Sign <span className="text-yellow-500">In</span>
               </h1>
               <p className="text-muted-foreground text-sm">
@@ -72,7 +72,7 @@ export default function LoginPage() {
                 placeholder="your@email.com"
                 icon={Mail}
                 error={errors.email}
-                registration={register("email")}
+                registration={register('email')}
               />
 
               <PasswordInput
@@ -80,40 +80,36 @@ export default function LoginPage() {
                 label="Password"
                 placeholder="Enter your password"
                 error={errors.password}
-                registration={register("password")}
+                registration={register('password')}
               />
 
               <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <Checkbox {...register("rememberMe")} defaultChecked={true} />
-                  <span className="text-foreground font-medium">
-                    Remember me
-                  </span>
+                <label className="flex cursor-pointer items-center space-x-2">
+                  <Checkbox {...register('rememberMe')} defaultChecked={true} />
+                  <span className="text-foreground font-medium">Remember me</span>
                 </label>
                 <Link
                   href="/"
-                  className="text-yellow-600 hover:text-yellow-500 font-medium transition-colors"
+                  className="font-medium text-yellow-600 transition-colors hover:text-yellow-500"
                 >
                   Forgot password?
                 </Link>
               </div>
 
               {errors.root && (
-                <p className="text-red-500 text-sm text-center">
-                  {errors.root.message}
-                </p>
+                <p className="text-center text-sm text-red-500">{errors.root.message}</p>
               )}
 
               <Button
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="w-full bg-yellow-400 text-black hover:bg-yellow-500 font-bold py-3 text-lg rounded-lg shadow-lg border-2 border-black flex items-center justify-center space-x-2 group"
+                className="group flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-black bg-yellow-400 py-3 text-lg font-bold text-black shadow-lg hover:bg-yellow-500"
               >
                 {!isSubmitting ? (
                   <>
                     <span> Sign in </span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </>
                 ) : (
                   <LoaderDots className="-translate-x-9" />
@@ -124,7 +120,7 @@ export default function LoginPage() {
           </div>
 
           <div className="mt-6 text-center">
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               🔒 Your data is protected with industry-standard encryption
             </p>
           </div>

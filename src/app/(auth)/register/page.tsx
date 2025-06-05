@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { ImageUpload } from "@/components/custom-ui";
-import { InputCombo } from "@/components/custom-ui/input-combo";
-import { PasswordInput } from "@/components/custom-ui/password-input";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { ImageUpload } from '@/components/custom-ui';
+import { InputCombo } from '@/components/custom-ui/input-combo';
+import { PasswordInput } from '@/components/custom-ui/password-input';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   ACCEPTED_IMAGE_TYPES,
   RegisterFormValues,
   registerSchema,
-} from "@/features/auth/auth.schema";
-import { SocialLoginLink } from "@/features/auth/social-login-link";
-import { authClient as auth } from "@/lib/auth-client";
-import { useEdgeStore } from "@/lib/edgestore";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Mail, User } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+} from '@/features/auth/auth.schema';
+import { SocialLoginLink } from '@/features/auth/social-login-link';
+import { authClient as auth } from '@/lib/auth-client';
+import { useEdgeStore } from '@/lib/edgestore';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ArrowRight, Mail, User } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 export default function RegisterPage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -96,7 +96,7 @@ export default function RegisterPage() {
                   placeholder="John Doe"
                   icon={User}
                   error={errors.name}
-                  registration={register("name")}
+                  registration={register('name')}
                 />
 
                 <InputCombo
@@ -106,7 +106,7 @@ export default function RegisterPage() {
                   placeholder="your@email.com"
                   icon={Mail}
                   error={errors.email}
-                  registration={register("email")}
+                  registration={register('email')}
                 />
 
                 <PasswordInput
@@ -114,7 +114,7 @@ export default function RegisterPage() {
                   label="Password"
                   placeholder="Create a password"
                   error={errors.password}
-                  registration={register("password")}
+                  registration={register('password')}
                 />
 
                 <PasswordInput
@@ -122,17 +122,15 @@ export default function RegisterPage() {
                   label="Confirm Password"
                   placeholder="Confirm your password"
                   error={errors.confirmPassword}
-                  registration={register("confirmPassword")}
+                  registration={register('confirmPassword')}
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-bold text-foreground">
-                  Profile Picture
-                </label>
+                <label className="block text-sm font-bold text-foreground">Profile Picture</label>
                 <ImageUpload
                   previewImage={previewImage}
-                  registration={register("image")}
+                  registration={register('image')}
                   error={errors.image}
                   acceptedTypes={ACCEPTED_IMAGE_TYPES}
                   onChange={handleImageChange}
@@ -143,37 +141,30 @@ export default function RegisterPage() {
                 <Checkbox
                   id="terms"
                   defaultChecked={true}
-                  {...register("acceptTerms")}
+                  {...register('acceptTerms')}
                   onCheckedChange={(checked) => {
                     const event = {
                       target: {
-                        name: "acceptTerms",
+                        name: 'acceptTerms',
                         value: checked,
                       },
                     };
-                    register("acceptTerms").onChange(event);
+                    register('acceptTerms').onChange(event);
                   }}
                 />
                 <label htmlFor="terms" className="text-sm text-foreground">
-                  I accept the{" "}
-                  <Link
-                    href="/"
-                    className="text-yellow-600 hover:text-yellow-500"
-                  >
+                  I accept the{' '}
+                  <Link href="/" className="text-yellow-600 hover:text-yellow-500">
                     terms and conditions
                   </Link>
                 </label>
               </div>
               {errors.acceptTerms && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.acceptTerms.message}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{errors.acceptTerms.message}</p>
               )}
 
               {errors.root && (
-                <p className="text-red-500 text-sm text-center">
-                  {errors.root.message}
-                </p>
+                <p className="text-red-500 text-sm text-center">{errors.root.message}</p>
               )}
 
               <Button
@@ -182,9 +173,7 @@ export default function RegisterPage() {
                 disabled={isSubmitting}
                 className="w-full bg-yellow-400 text-black hover:bg-yellow-500 font-bold py-3 text-lg rounded-lg shadow-lg border-2 border-black flex items-center justify-center space-x-2 group"
               >
-                <span>
-                  {isSubmitting ? "Creating Account..." : "Create Account"}
-                </span>
+                <span>{isSubmitting ? 'Creating Account...' : 'Create Account'}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </form>
