@@ -8,21 +8,34 @@ import {
   DecorativeElements,
 } from '@/features/ai-cover-letter';
 import { AiCoverMainForm } from '@/features/ai-cover-letter/ai-cover-main-form';
-import { extractTextFromPdf } from '@/lib/pdf-to-text';
+import { AiCoverLetterResponse } from '@/features/ai-cover-letter/helper/ai-cover-letter-response';
 import { useState } from 'react';
 
 export default function CoverLetterGenerator() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isNext, setIsNext] = useState(false);
+  const [isCoverLetterGenerating, setIsCoverLetterGenerating] = useState(false);
 
-  const onSubmit = async (data: aiCoverLetterSchemaValues) => {
+  const onSubmitComplete = async ({
+    data,
+    cvText,
+  }: {
+    data: aiCoverLetterSchemaValues;
+    cvText: string;
+  }) => {
     try {
-      console.log(data);
-      const result = await extractTextFromPdf(data.cv!);
-      console.log(result);
-      // setIsNext(true);
+      console.table({ data, cvText });
+
+      setIsCoverLetterGenerating(true);
+      setIsNext(true);
+
+      // final part
+
+      const finalResponse = await AiCoverLetterResponse();
+      console.log(finalResponse);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsCoverLetterGenerating(false);
     }
   };
 
@@ -36,7 +49,11 @@ export default function CoverLetterGenerator() {
             <CoverLetterHeading />
 
             <div className="bg-card border-border rounded-3xl border-4 p-8 shadow-xl">
-              {isNext ? <AiCoverLetterMainResponse /> : <AiCoverMainForm onSubmit={onSubmit} />}
+              {isNext ? (
+                <AiCoverLetterMainResponse isCoverLetterGenerating={isCoverLetterGenerating} />
+              ) : (
+                <AiCoverMainForm onSubmitComplete={onSubmitComplete} />
+              )}
               {isNext || <CoverLetterFeatures />}
             </div>
           </div>

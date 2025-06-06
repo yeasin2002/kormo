@@ -1,5 +1,3 @@
-// lib/api.ts
-
 export const extractTextFromPdf = async (file: File): Promise<{ text: string }> => {
   const formData = new FormData();
   formData.append('file', file);

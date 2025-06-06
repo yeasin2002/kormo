@@ -12,15 +12,22 @@ import { aiCoverLetterSchema, aiCoverLetterSchemaValues } from '@/features/ai-co
 import { useFileUpload } from '@/hooks/use-file-upload';
 import { Suitcase } from 'iconoir-react';
 import { useEffect } from 'react';
+import { extractTextFromPdf } from './helper/pdf-to-text';
 
 const maxSizeMB = 5;
 const maxSize = maxSizeMB * 1024 * 1024;
 
 type Props = {
-  onSubmit: (data: aiCoverLetterSchemaValues) => Promise<void>;
+  onSubmitComplete: ({
+    data,
+    cvText,
+  }: {
+    data: aiCoverLetterSchemaValues;
+    cvText: string;
+  }) => Promise<void>;
 };
 
-export const AiCoverMainForm = ({ onSubmit }: Props) => {
+export const AiCoverMainForm = ({ onSubmitComplete }: Props) => {
   const {
     register,
     handleSubmit,
@@ -45,6 +52,20 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
       setValue('cv', null);
     };
   }, [files, setValue]);
+
+  const onSubmit = async (data: aiCoverLetterSchemaValues) => {
+    try {
+      console.log(data);
+      const result = await extractTextFromPdf(data.cv!);
+
+      onSubmitComplete({
+        data,
+        cvText: result.text,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
