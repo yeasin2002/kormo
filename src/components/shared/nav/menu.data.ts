@@ -19,8 +19,8 @@ export const menuListForTools = [
     isPro: true,
   },
   {
-    name: 'Resume analyzer',
-    href: '#',
+    name: 'Image To Text',
+    href: '/tools/image-to-text',
     isPro: true,
   },
 ];

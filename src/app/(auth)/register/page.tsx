@@ -44,9 +44,7 @@ export default function RegisterPage() {
     try {
       //  upload image
       const uploadedImage = await edgestore.publicFiles.upload({
-        // file: data.image?.[0],
         file: data.image,
-        // onProgressChange: (progress) => {console.log(progress);},
       });
 
       const result = await auth.signUp.email({
