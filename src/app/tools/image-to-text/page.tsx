@@ -11,30 +11,51 @@ const maxFiles = 6;
 
 export default function CoverLetterGenerator() {
   const [imgError, setImgError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [texts, setTexts] = useState<string[]>([]);
 
   const [{ files, isDragging, errors: fileErrors }, action] = useFileUpload({
-    accept: 'image/svg+xml,image/png,image/jpeg,image/jpg,image/gif',
+    accept: 'image/png,image/jpeg,image/jpg',
     maxSize,
     multiple: true,
     maxFiles,
   });
 
-  const handleSumit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (fileErrors.length > 0) {
-      setImgError('Please upload a valid image.');
+  const handleSumit = async () => {
+    // e.preventDefault();
+    // e: React.FormEvent<HTMLFormElement>
+    try {
+      if (!files || files.length < 1 || files.length > 5) {
+        alert('Please select between 1 and 5 images.');
+        return;
+      }
+
+      const formData = new FormData();
+      Array.from(files).forEach((fileWithPreview) => {
+        formData.append('images', fileWithPreview);
+      });
+
+      setLoading(true);
+      const res = await fetch('/api/img-to-text', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      console.log(data);
+      setTexts(data.texts);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error during form submission:', error);
+      setImgError('An error occurred while processing your request. Please try again.');
       return;
     }
-    console.log('Files submitted:', files);
   };
 
   return (
-    <>
-      <div className="bg-background text-foreground relative min-h-screen overflow-hidden">
-        <form
-          className="bg-card border-border container mx-auto space-y-5 rounded-3xl border-4 p-8 px-6 py-12 shadow-xl"
-          onSubmit={handleSumit}
-        >
+    <section className="min-h-screen">
+      <div className="text-foreground bg-card border-border relative container mx-auto space-y-5 overflow-hidden rounded-3xl border-4 p-8 px-6 py-12 shadow-xl">
+        <div className="space-y-8">
           <MultiMediaUploaderWithPreview
             actions={action}
             state={{ files, isDragging, errors: fileErrors }}
@@ -42,11 +63,18 @@ export default function CoverLetterGenerator() {
             maxFiles={maxFiles}
           />
           {imgError && <div className="text-destructive mt-2 text-sm">{imgError}</div>}
-          <Button className="px-20 py-3" type="submit">
-            Submit
+          <Button className="px-20 py-3" type="submit" disabled={loading} onClick={handleSumit}>
+            {loading ? 'Processing...' : 'Generate Text'}
           </Button>
-        </form>
+        </div>
+
+        {texts.length > 0 && (
+          <div>
+            <h2>Generated Text</h2>
+            {texts?.map((text, index) => <p key={index}>{text}</p>)}
+          </div>
+        )}
       </div>
-    </>
+    </section>
   );
 }
