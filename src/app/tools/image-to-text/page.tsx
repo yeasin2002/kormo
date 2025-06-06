@@ -31,9 +31,9 @@ export default function CoverLetterGenerator() {
       }
 
       const formData = new FormData();
-      Array.from(files).forEach((fileWithPreview) => {
-        formData.append('images', fileWithPreview);
-      });
+      // Array.from(files).forEach((fileWithPreview) => {
+      //   formData.append('images', fileWithPreview);
+      // });
 
       setLoading(true);
       const res = await fetch('/api/img-to-text', {

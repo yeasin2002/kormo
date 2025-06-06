@@ -1,4 +1,5 @@
 import { account, session, verification } from './auth-schema';
+import { companies } from './companies';
 import { user } from './user-schema';
 
 export const schema = {
@@ -6,4 +7,5 @@ export const schema = {
   session: session,
   verification: verification,
   user: user,
+  companies: companies,
 };
