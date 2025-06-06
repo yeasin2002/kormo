@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertCircleIcon, Mail, Sparkles, User } from 'lucide-react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { ComboSelect, InputCombo, TextareaCombo } from '@/components/custom-ui';
+import { ComboSelect, InputCombo, LoaderDots, TextareaCombo } from '@/components/custom-ui';
 import DocUpload from '@/components/custom-ui/doc-upload';
 import { writingTones } from '@/data/writing-tone.data';
 import { aiCoverLetterSchema, aiCoverLetterSchemaValues } from '@/features/ai-cover-letter';
@@ -26,13 +26,12 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
     handleSubmit,
     control,
     setValue,
-    watch,
 
     formState: { errors, isSubmitting },
   } = useForm<aiCoverLetterSchemaValues>({
     resolver: zodResolver(aiCoverLetterSchema),
   });
-  console.log(watch('cv'));
+
   const [{ files, isDragging, errors: fileErrors }, action] = useFileUpload({
     accept: '.pdf',
     maxSize,
@@ -132,11 +131,17 @@ export const AiCoverMainForm = ({ onSubmit }: Props) => {
 
       <Button
         type="submit"
-        className="group flex w-full items-center justify-center space-x-2 rounded-lg py-2 text-lg font-bold shadow-lg"
+        className="group flex min-h-14 w-full items-center justify-center space-x-2 rounded-lg py-2 text-lg font-bold shadow-lg"
         disabled={isSubmitting}
       >
-        <Sparkles className="h-5 w-5 group-hover:animate-pulse" />
-        <span>Generate Cover Letter</span>
+        {isSubmitting ? (
+          <LoaderDots />
+        ) : (
+          <>
+            <Sparkles className="h-5 w-5 group-hover:animate-pulse" />
+            <span>Generate Cover Letter</span>
+          </>
+        )}
       </Button>
     </form>
   );

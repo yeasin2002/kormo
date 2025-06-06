@@ -8,15 +8,19 @@ import {
   DecorativeElements,
 } from '@/features/ai-cover-letter';
 import { AiCoverMainForm } from '@/features/ai-cover-letter/ai-cover-main-form';
+import { extractTextFromPdf } from '@/lib/pdf-to-text';
 import { useState } from 'react';
 
 export default function CoverLetterGenerator() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isNext, setIsNext] = useState(false);
 
   const onSubmit = async (data: aiCoverLetterSchemaValues) => {
     try {
       console.log(data);
-      setIsNext(true);
+      const result = await extractTextFromPdf(data.cv!);
+      console.log(result);
+      // setIsNext(true);
     } catch (error) {
       console.error(error);
     }

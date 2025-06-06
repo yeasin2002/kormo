@@ -9,5 +9,21 @@
   },
   "prettier.enableDebugLogs": false,
   "prettier.configPath": ".prettierrc.js",
-  "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact"]
+  "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact"], 
+
+
+
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "command": "bunx",
+        "args": ["@playwright/mcp@latest"]
+      }, 
+      "vitest": {
+        "command": "bunx",
+        "args": ["@vitest/mcp@latest"]
+      }
+    }
+  },
+
 }
