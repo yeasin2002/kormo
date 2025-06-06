@@ -10,10 +10,12 @@ import {
 import { AiCoverMainForm } from '@/features/ai-cover-letter/ai-cover-main-form';
 import { AiCoverLetterResponse } from '@/features/ai-cover-letter/helper/ai-cover-letter-response';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function CoverLetterGenerator() {
   const [isNext, setIsNext] = useState(false);
   const [isCoverLetterGenerating, setIsCoverLetterGenerating] = useState(false);
+  const [finalCoverLetterContent, setFinalCoverLetterContent] = useState(``);
 
   const onSubmitComplete = async ({
     data,
@@ -23,17 +25,15 @@ export default function CoverLetterGenerator() {
     cvText: string;
   }) => {
     try {
-      console.table({ data, cvText });
-
       setIsCoverLetterGenerating(true);
       setIsNext(true);
 
-      // final part
-
-      const finalResponse = await AiCoverLetterResponse();
-      console.log(finalResponse);
+      const finalResponse = await AiCoverLetterResponse({ data, cvText });
+      if (!finalResponse.success) throw new Error(finalResponse.message);
+      setFinalCoverLetterContent(finalResponse.message!);
     } catch (error) {
       console.error(error);
+      toast.error('Failed to generate cover letter. Please try again later.');
     } finally {
       setIsCoverLetterGenerating(false);
     }
@@ -50,7 +50,10 @@ export default function CoverLetterGenerator() {
 
             <div className="bg-card border-border rounded-3xl border-4 p-8 shadow-xl">
               {isNext ? (
-                <AiCoverLetterMainResponse isCoverLetterGenerating={isCoverLetterGenerating} />
+                <AiCoverLetterMainResponse
+                  isCoverLetterGenerating={isCoverLetterGenerating}
+                  finalCoverLetterContent={finalCoverLetterContent}
+                />
               ) : (
                 <AiCoverMainForm onSubmitComplete={onSubmitComplete} />
               )}

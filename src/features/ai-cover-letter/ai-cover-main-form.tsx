@@ -55,7 +55,6 @@ export const AiCoverMainForm = ({ onSubmitComplete }: Props) => {
 
   const onSubmit = async (data: aiCoverLetterSchemaValues) => {
     try {
-      console.log(data);
       const result = await extractTextFromPdf(data.cv!);
 
       onSubmitComplete({

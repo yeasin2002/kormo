@@ -1,12 +1,20 @@
 import { EosIconsLoading } from '@/components/icons';
 import { Button } from '@/components/retroui';
 import { TextSkeleton } from '@/components/skeletons';
+import { copyToClipboard } from '@/helpers/copy-to-clipboard';
 import { Copy } from 'lucide-react';
 type Props = {
   isCoverLetterGenerating: boolean;
+  finalCoverLetterContent?: string;
 };
 
-export const AiCoverLetterMainResponse = ({ isCoverLetterGenerating }: Props) => {
+export const AiCoverLetterMainResponse = ({
+  isCoverLetterGenerating,
+  finalCoverLetterContent,
+}: Props) => {
+  const handleCopy = () => {
+    copyToClipboard(finalCoverLetterContent || '');
+  };
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
@@ -20,7 +28,7 @@ export const AiCoverLetterMainResponse = ({ isCoverLetterGenerating }: Props) =>
             'Your AI-Generated Cover Letter'
           )}
         </h2>
-        <Button className="gap-x-2">
+        <Button className="gap-x-2" onClick={handleCopy}>
           <Copy className="size-4" />
           <span>Copy</span>
         </Button>
@@ -34,16 +42,7 @@ export const AiCoverLetterMainResponse = ({ isCoverLetterGenerating }: Props) =>
           </span>
         </div>
       ) : (
-        <p>
-          🧃 Minimal Cover Letter (To the Point) Hey Fahim, I’m Yeasin—a student and software
-          engineer who loves working with JavaScript frameworks like Nuxt and building real-world
-          products. I saw your opening for a part-time Full Stack Dev and it’s exactly the kind of
-          opportunity I’m looking for. I’ve built full stack projects (like a hotel management
-          system using Nuxt and MongoDB) and have solid experience across frontend and backend. I’m
-          familiar with Next.js and can get up to speed fast. 20 hours a week sounds perfect and I’m
-          pumped to contribute to a startup MVP. Attaching my resume. Would love to chat more! Best,
-          Yeasin
-        </p>
+        <pre> {finalCoverLetterContent} </pre>
       )}
     </div>
   );
