@@ -22,7 +22,8 @@
 - [Google Analytics](https://marketingplatform.google.com/about/analytics/)
 - [Resume Maker](https://www.resumake.io/)
 
-### Future Features
+### Future Features/ things to do
 
 - Adding Captcha for security in auth
 - image-to-text generator
+- containerize the app with docker

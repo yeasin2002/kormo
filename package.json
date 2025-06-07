@@ -14,7 +14,8 @@
     "format": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "format:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "dz:g": "drizzle-kit generate",
-    "dz:s": "drizzle-kit studio"
+    "dz:s": "drizzle-kit studio",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@auth/core": "^0.28.0",
@@ -73,6 +74,8 @@
     "drizzle-kit": "^0.31.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "husky": "^8.0.0",
+    "lint-staged": "^16.1.0",
     "tailwindcss": "^4",
     "tsx": "^4.19.4",
     "tw-animate-css": "^1.3.2",
