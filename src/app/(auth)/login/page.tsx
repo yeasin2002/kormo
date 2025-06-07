@@ -12,9 +12,12 @@ import Link from 'next/link';
 
 import { loginSchema, type LoginFormValues } from '@/features/auth/auth.schema';
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export default function LoginPage() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -30,16 +33,24 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      const user = await authClient.signIn.email({
+      const authResponse = await authClient.signIn.email({
         email: data.email,
         password: data.password,
         rememberMe: data.rememberMe,
       });
 
-      // {body: { email: data.email, password: data.password }}
-      console.log(user);
+      if (authResponse.error) throw new Error(authResponse.error.message);
+      // const user = authResponse.data.user;
+
+      toast.success('Login successful!');
+      router.push('/');
     } catch (error) {
       console.error(error);
+      if (error instanceof Error) {
+        return toast.error(error.message || 'Failed to login. Please try again.');
+      } else {
+        return toast.error('Failed to login. Please try again.');
+      }
     }
   };
 

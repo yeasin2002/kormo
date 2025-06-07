@@ -16,12 +16,14 @@ import { useEdgeStore } from '@/lib/edgestore';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight, Mail, User } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export default function RegisterPage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-
+  const router = useRouter();
   const { edgestore } = useEdgeStore();
 
   const {
@@ -47,16 +49,23 @@ export default function RegisterPage() {
         file: data.image,
       });
 
-      const result = await auth.signUp.email({
+      const authResponse = await auth.signUp.email({
         email: data.email,
         password: data.password,
         name: data.name,
         image: uploadedImage.url,
       });
 
-      console.log(result);
+      if (authResponse.error) throw new Error(authResponse.error.message);
+      router.push('/');
     } catch (error) {
       console.error(error);
+
+      if (error instanceof Error) {
+        return toast.error(error.message || 'Failed to login. Please try again.');
+      } else {
+        return toast.error('Failed to login. Please try again.');
+      }
     }
   };
 

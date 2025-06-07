@@ -16,8 +16,13 @@
 - [Database(PG) - neon](https://neon.com/)
 - [Drizzle ORM](https://orm.drizzle.team/)
 
+## Feature Inspiration
 
-## Feature Inspiration 
- - [AI Image and Video Generation ](https://www.cartoonyourself.org/)
- - [Google Analytics](https://marketingplatform.google.com/about/analytics/)
- - [Resume Maker](https://www.resumake.io/)
+- [AI Image and Video Generation ](https://www.cartoonyourself.org/)
+- [Google Analytics](https://marketingplatform.google.com/about/analytics/)
+- [Resume Maker](https://www.resumake.io/)
+
+### Future Features
+
+- Adding Captcha for security in auth
+- image-to-text generator
