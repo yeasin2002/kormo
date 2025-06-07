@@ -2,6 +2,7 @@
   "name": "kormo-setu",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kormo-setu.vercel.app",
   "scripts": {
     "dev": "next dev",
     "dev:t": "next dev --turbopack",

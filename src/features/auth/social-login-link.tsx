@@ -1,13 +1,26 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { authClient } from '@/lib/auth-client';
 import { Github, Google } from 'iconoir-react';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 type Props = {
   isLoginPage?: boolean;
 };
 
 export const SocialLoginLink = ({ isLoginPage = false }: Props) => {
+  const socialSignUp = async (provider: 'google' | 'github') => {
+    try {
+      const data = await authClient.signIn.social({
+        provider: provider,
+      });
+      console.log(data);
+    } catch (error) {
+      toast.error(`Failed to login with ${provider}. Please try again.`);
+      console.error(`Error during ${provider} login:`, error);
+    }
+  };
   return (
     <>
       {/* Divider */}
@@ -22,19 +35,21 @@ export const SocialLoginLink = ({ isLoginPage = false }: Props) => {
         <Button
           variant="outline"
           size="lg"
-          className="bg-background text-foreground border-border hover:bg-muted flex w-full items-center justify-center space-x-2 rounded-lg border-2 py-3 font-semibold shadow-sm"
+          className="bg-background text-foreground border-border hover:bg-muted flex w-full cursor-pointer items-center justify-center space-x-2 rounded-lg border-2 py-3 font-semibold shadow-sm"
+          onClick={() => socialSignUp('google')}
         >
-          <Github className="h-5 w-5" />
-          <span>Continue with GitHub</span>
+          <Google />
+          <span>Continue with Google</span>
         </Button>
 
         <Button
           variant="outline"
           size="lg"
-          className="bg-background text-foreground border-border hover:bg-muted flex w-full items-center justify-center space-x-2 rounded-lg border-2 py-3 font-semibold shadow-sm"
+          className="bg-background text-foreground border-border hover:bg-muted flex w-full cursor-pointer items-center justify-center space-x-2 rounded-lg border-2 py-3 font-semibold shadow-sm"
+          onClick={() => socialSignUp('github')}
         >
-          <Google />
-          <span>Continue with Google</span>
+          <Github className="h-5 w-5" />
+          <span>Continue with GitHub</span>
         </Button>
       </div>
 

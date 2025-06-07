@@ -1,40 +1,35 @@
 import { Badge, Button } from '@/components/retroui';
 import { type Company } from '@/data';
-import { Code, ExternalLink, MapPin, Users } from 'lucide-react';
+import { Code, ExternalLink, MapPin, Trophy, Users } from 'lucide-react';
 
 interface CompanyCardProps {
   company: Company;
 }
 
 export function CompanyCardMini({ company }: CompanyCardProps) {
-  // Parse technologies from string if needed
   const techArray = Array.isArray(company.technologies)
     ? company.technologies
     : company.office_location.split(', ');
 
-  // Extract location from the mixed data
-  const location = company.company_name || 'Location not provided';
   const totalTeamMember = company.no_of_software_engineers || 'Team size not specified';
-
-  // Extract website URL
-  const websiteUrl = company.web_presence?.[0] || company.technologies?.[0] || '#';
-  // const websiteDisplay = websiteUrl
-  //   .replace(/\[Website\]$/, "")
-  //   .replace(/^https?:\/\//, "");
 
   return (
     <div className="bg-card border-border flex h-full flex-col rounded-xl border-2 p-4 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <div className="mb-3 flex items-start justify-between">
         <h3 className="text-foreground line-clamp-1 text-lg font-bold">{company.company_name}</h3>
 
-        {/* <Badge className="bg-yellow-400 text-black border border-black text-xs">
-          Hiring
-        </Badge> */}
+        {company.isTopChoice && (
+          <Badge className="flex items-center gap-x-1 rounded-lg border border-black bg-blue-100 text-xs text-black">
+            <Trophy className="size-3.5" />
+            <span>Top Choice</span>
+          </Badge>
+        )}
       </div>
 
       <div className="text-muted-foreground mb-3 flex items-start space-x-1.5 text-xs">
         <MapPin className="mt-0.5 h-3.5 w-3.5 flex-shrink-0" />
-        <span className="line-clamp-1">{location}</span>
+
+        <span className="line-clamp-1">{company.office_location}</span>
       </div>
 
       <div className="mb-3">
@@ -71,7 +66,7 @@ export function CompanyCardMini({ company }: CompanyCardProps) {
           className="hover:bg-muted h-7 px-2 text-xs"
         >
           <a
-            href={websiteUrl}
+            href={company.web_presence.web}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-1"

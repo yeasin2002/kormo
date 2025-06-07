@@ -1,6 +1,5 @@
 import { boolean, integer, json, pgEnum, pgTable, text, varchar } from 'drizzle-orm/pg-core';
 
-// Define the company type enum
 export const companyTypeEnum = pgEnum('company_type', ['onsite', 'hybrid', 'remote']);
 
 export const companies = pgTable('companies', {
