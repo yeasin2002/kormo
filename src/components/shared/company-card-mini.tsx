@@ -1,9 +1,9 @@
 import { Badge, Button } from '@/components/retroui';
-import { type Company } from '@/data';
+import { companies } from '@/db/schema/companies';
 import { Code, ExternalLink, MapPin, Trophy, Users } from 'lucide-react';
 
 interface CompanyCardProps {
-  company: Company;
+  company: typeof companies.$inferSelect;
 }
 
 export function CompanyCardMini({ company }: CompanyCardProps) {
