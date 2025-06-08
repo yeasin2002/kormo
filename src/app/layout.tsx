@@ -1,4 +1,4 @@
-import { fontVariables } from '@/fonts';
+import { fontVariables } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 

@@ -1,10 +1,10 @@
-'use server'; // This is essential to mark the file as containing Server Actions
+'use server';
 
-import { Company } from '@/data'; // Assuming this is your Drizzle select result type
+import { Company } from '@/data';
 import { db, schema } from '@/db';
+import { PaginationMetaType } from '@/type';
 import { and, ilike, or, sql } from 'drizzle-orm';
 
-// Your input types are great, no changes needed.
 type CompaniesSearchActions = {
   searchValue: string;
   techValue: string[];
@@ -12,17 +12,9 @@ type CompaniesSearchActions = {
   pageSize: number;
 };
 
-// I've refined the `totalItems` to be a `number` for better type safety.
 type Response = {
   data: Company[];
-  metadata: {
-    currentPage: number;
-    totalPages: number;
-    pageSize: number;
-    totalItems: number; // Changed from 'unknown' to 'number'
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
-  };
+  metadata: PaginationMetaType;
 };
 
 /**
