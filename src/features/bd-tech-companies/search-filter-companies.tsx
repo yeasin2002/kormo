@@ -5,37 +5,42 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { companiesTech } from '@/data/companies-tech';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
-import { useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { MultiSelect } from './multi-select';
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+interface Props {
+  techValue: string[];
+  setTechValue: Dispatch<SetStateAction<string[]>>;
 
-export function SearchFilterCompanies() {
-  const [value, setValue] = useState<string[]>([]);
-  const onTeamToggle = (currentValue: string) => {
-    setValue((pre) =>
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+
+  children?: React.ReactNode;
+}
+
+export function SearchFilterCompanies({
+  techValue,
+  setTechValue,
+  searchValue,
+  setSearchValue,
+}: Props) {
+  const onTechChange = (currentValue: string) => {
+    setTechValue((pre) =>
       pre.includes(currentValue) ? pre.filter((v) => v !== currentValue) : [...pre, currentValue],
     );
   };
-
   return (
     <div className="bg-card border-border container mx-auto mb-10 rounded-2xl border-2 p-6 shadow-lg">
       <div className="mb-6 flex flex-col gap-4 lg:flex-row">
-        <SearchInput />
+        <SearchInput value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
         <MultiSelect
           label="Technologies"
-          value={value}
-          onToggleItem={onTeamToggle}
+          value={techValue}
+          onToggleItem={onTechChange}
           allOptions={companiesTech}
         />
 
-        <Select>
+        {/* <Select>
           <SelectTrigger className="bg-background hover:bg-background w-[180px] py-6">
             <SelectValue placeholder="Team Size" className="!text-black" />
           </SelectTrigger>
@@ -44,17 +49,19 @@ export function SearchFilterCompanies() {
             <SelectItem value="dark">10-50</SelectItem>
             <SelectItem value="system">50+</SelectItem>
           </SelectContent>
-        </Select>
+        </Select> */}
       </div>
 
       <div className="space-y-6">
         <div>
-          {value.length > 0 && <h3 className="text-foreground text-lg font-bold">Technologies</h3>}
+          {techValue?.length > 0 && (
+            <h3 className="text-foreground text-lg font-bold">Technologies</h3>
+          )}
           <div className="flex flex-wrap gap-2">
-            {value.map((tech) => (
+            {techValue.map((tech) => (
               <span
                 key={tech}
-                onClick={() => onTeamToggle(tech)}
+                onClick={() => onTechChange(tech)}
                 className={cn(
                   buttonVariants(),
                   `cursor-pointer rounded-lg border-2 font-medium transition-all`,
@@ -72,6 +79,10 @@ export function SearchFilterCompanies() {
           <Button
             variant="outline"
             className="bg-background text-foreground border-border hover:bg-muted rounded-lg border-2 px-6 py-2 font-semibold shadow-sm"
+            onClick={() => {
+              setTechValue([]);
+              setSearchValue('');
+            }}
           >
             Clear All Filters
           </Button>

@@ -1,8 +1,8 @@
 import { CompanyCardMini } from '@/components/shared';
-import { db, schema } from '@/db';
+import { companies } from '@/data/companies-data';
 
-export const ShowCompaniesWithFiltered = async () => {
-  const companiesData = await db.select().from(schema.companies).limit(20);
+export const ShowCompaniesWithFiltered = () => {
+  const companiesData = companies.slice(0, 9);
 
   return (
     <section className="container mx-auto">

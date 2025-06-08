@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
 import { Input } from '../retroui';
+
 type Props = React.ComponentProps<'input'>;
 
 export const SearchInput = ({ className, ...props }: Props) => {
