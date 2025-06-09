@@ -2,9 +2,8 @@ import { Button } from '@/components/retroui';
 import { Avatar } from '@/components/retroui/Avatar';
 import { Text } from '@/components/retroui/Text';
 import { getContributors } from '@/helpers';
-import { GithubIcon, MessageCircle } from 'lucide-react';
+import { CirclePlus, GithubIcon } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
 
 export const ShowContributors = async () => {
   const contributors = await getContributors();
@@ -30,16 +29,16 @@ export const ShowContributors = async () => {
         ))}
       </div>
       <div className="mt-12 flex flex-col items-center justify-center gap-4 lg:flex-row">
-        <Link href="https://github.com/logging-stuff/retroui" target="_blank" passHref>
+        <Link href="https://github.com/yeasin2002/kormo-setu" target="_blank" passHref>
           <Button className="border-black bg-white text-black shadow-black" variant="outline">
             <GithubIcon size="16" className="mr-2" />
             Star on Github
           </Button>
         </Link>
-        <Link href="https://discord.gg/Jum3NJxK6Q" target="_blank" passHref>
+        <Link href="/login" passHref>
           <Button className="border-black bg-white text-black shadow-black" variant="outline">
-            <MessageCircle size="16" className="mr-2" />
-            Join Community
+            <CirclePlus size="16" className="mr-2" />
+            Join
           </Button>
         </Link>
       </div>

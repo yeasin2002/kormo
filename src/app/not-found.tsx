@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, buttonVariants } from '@/components/retroui';
-import { NavBar } from '@/components/shared';
 import { cn } from '@/lib/utils';
 
 import { AlertTriangle, ArrowLeft, Home, Sparkles } from 'lucide-react';
@@ -12,8 +11,6 @@ export default function NotFoundPage() {
   const router = useRouter();
   return (
     <div className="relative overflow-hidden">
-      <NavBar />
-      {/* Decorative Stars */}
       <div>
         <div className="text-foreground absolute top-20 left-20 opacity-40">
           <Sparkles className="h-8 w-8" />

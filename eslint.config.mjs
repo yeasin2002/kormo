@@ -16,6 +16,7 @@ const eslintConfig = [
     rules: {
       '@typescript-eslint/no-unused-vars': 'warn',
       'prettier/prettier': 'warn',
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
   },
 ];

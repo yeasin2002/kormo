@@ -16,7 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ChevronDownIcon, LogOut, User } from 'lucide-react';
+import { ChevronDownIcon, Github, LogOut, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export const NavLarge = () => {
@@ -36,7 +36,7 @@ export const NavLarge = () => {
         <NavItems name="Tools" items={menuListForTools} />
       </div>
 
-      <div className="hidden items-center lg:flex">
+      <div className="hidden items-center gap-x-2 lg:flex">
         {isPending ? null : session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -74,16 +74,31 @@ export const NavLarge = () => {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <Link
-            href={'/login'}
-            className={buttonVariants({
-              variant: 'default',
-              size: 'sm',
-              className: 'flex items-center py-2',
-            })}
-          >
-            <span>Login</span>
-          </Link>
+          <>
+            <Link
+              href={'https://github.com/yeasin2002/kormo-setu'}
+              target="_blank"
+              className={buttonVariants({
+                variant: 'outline',
+                size: 'sm',
+                className: 'flex items-center gap-x-2 py-2',
+              })}
+            >
+              <Github className="size-4" />
+              <span>Star on Github</span>
+            </Link>
+
+            <Link
+              href={'/login'}
+              className={buttonVariants({
+                variant: 'default',
+                size: 'sm',
+                className: 'flex items-center py-2',
+              })}
+            >
+              <span>Login</span>
+            </Link>
+          </>
         )}
       </div>
     </>
