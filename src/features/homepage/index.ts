@@ -5,3 +5,4 @@ export * from './hero-2';
 export * from './show-companies';
 export * from './show-contributors';
 export * from './site-statistics';
+export * from './tools-list';
