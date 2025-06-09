@@ -3,6 +3,7 @@ import { boolean, integer, json, pgEnum, pgTable, text, varchar } from 'drizzle-
 export const companyTypeEnum = pgEnum('company_type', ['onsite', 'hybrid', 'remote']);
 
 export const companies = pgTable('companies', {
+  // id: text('id').primaryKey(),
   company_name: varchar('company_name', { length: 256 }).notNull(),
   office_location: text('office_location').notNull(),
   technologies: json('technologies').$type<string[]>().notNull(),

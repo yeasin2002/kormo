@@ -1,8 +1,7 @@
 'use server';
 
-import { Company } from '@/data';
 import { db, schema } from '@/db';
-import { PaginationMetaType } from '@/type';
+import { CompanySchema, PaginationMetaType } from '@/type';
 import { and, ilike, or, sql } from 'drizzle-orm';
 
 type CompaniesSearchActions = {
@@ -13,7 +12,7 @@ type CompaniesSearchActions = {
 };
 
 type Response = {
-  data: Company[];
+  data: CompanySchema[];
   metadata: PaginationMetaType;
 };
 

@@ -1,9 +1,9 @@
 import { CompanyCardMini } from '@/components/shared';
 import { CardSkeleton } from '@/components/skeletons';
-import { companies } from '@/db/schema/companies';
+import { CompanySchema } from '@/type';
 
 interface ShowCompaniesWithFilteredProps {
-  companies: (typeof companies.$inferSelect)[];
+  companies: CompanySchema[];
   isLoading: boolean;
 }
 

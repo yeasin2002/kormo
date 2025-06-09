@@ -1,6 +1,5 @@
 'use client';
 
-import { type Company } from '@/data/companies-data';
 import {
   OnsiteJobHero,
   SearchFilterCompanies,
@@ -10,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 import { filterCompaniesWithPagination } from '@/actions/companies-search.actions';
 import { PaginatingWithFunctionality } from '@/components/shared';
-import { PaginationMetaType } from '@/type';
+import type { CompanySchema, PaginationMetaType } from '@/type';
 
 const PAGE_SIZE = 10;
 
@@ -19,7 +18,7 @@ const OnsiteJobs = () => {
   const [techValues, setTechValue] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [companies, setCompanies] = useState<Company[]>([]);
+  const [companies, setCompanies] = useState<CompanySchema[]>([]);
   const [paginationMeta, setPaginationMeta] = useState<PaginationMetaType>({
     currentPage: 1,
     totalPages: 1,

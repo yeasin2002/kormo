@@ -1,6 +1,6 @@
 'server-only';
 
-export interface Company {
+interface Company {
   company_name: string;
   office_location: string;
   technologies: string[];
