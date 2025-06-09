@@ -12,7 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(`antialiased`, fontVariables)}>
+      <body className={cn(`px-2 antialiased md:px-0`, fontVariables)}>
         <RootWrapper>{children}</RootWrapper>
       </body>
     </html>

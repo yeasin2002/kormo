@@ -11,7 +11,6 @@ const tools = [
   {
     title: 'Image to Text extractor',
     description: `This tool helps you extract text from images, making it easier to work with text data.`,
-    link: '/tools/ai-cover-letter',
   },
 ];
 

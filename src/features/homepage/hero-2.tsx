@@ -1,18 +1,22 @@
 import { Badge, Button, buttonVariants } from '@/components/retroui';
 import { SparklesStars } from '@/components/shared';
+import { auth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import { BriefcaseBusiness, FileText, PackageOpen } from 'lucide-react';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import { HeroFeatureCard } from './hero-feature-card';
 
-export const Hero2 = () => {
+export const Hero2 = async () => {
+  const session = await auth.api.getSession({ headers: await headers() });
+
   return (
     <div className="bg-background text-foreground relative container mx-auto mb-20 overflow-hidden">
       {/* Decorative Stars */}
       <SparklesStars />
       {/* Main Content */}
       <div className="container mx-auto px-6 pt-16 lg:pt-24">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-6xl text-center">
           {/* Promotional Badge */}
           <div className="mb-12">
             <Badge className="rounded-full border-2 border-black bg-yellow-400 px-6 py-2 text-sm font-medium text-black shadow-sm hover:bg-yellow-500">
@@ -21,9 +25,9 @@ export const Hero2 = () => {
           </div>
 
           <h1 className="- font-head mb-8 text-4xl font-bold uppercase md:text-5xl lg:text-6xl xl:text-7xl">
-            Finding Jobs
+            Making job searching
             <br />
-            <span className="text-yellow-500">is easy now!</span>
+            <span className="text-yellow-500">less frustrating.!</span>
           </h1>
 
           <p className="text-muted-foreground mx-auto mb-12 max-w-3xl text-lg leading-relaxed md:text-xl">
@@ -34,9 +38,12 @@ export const Hero2 = () => {
           </p>
 
           <div className="mb-20 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button size="lg" className={cn('rounded-lg py-4 font-semibold')}>
-              Get Access Now
-            </Button>
+            {!session ? (
+              <Button size="lg" className={cn('rounded-lg py-4 font-semibold')}>
+                Get Access Now
+              </Button>
+            ) : null}
+
             <Link
               href="/bd-tech-companies"
               className={cn(

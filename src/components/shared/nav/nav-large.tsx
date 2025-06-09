@@ -22,7 +22,6 @@ import { useRouter } from 'next/navigation';
 export const NavLarge = () => {
   const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
-  console.log(session);
 
   return (
     <>

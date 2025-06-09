@@ -1,4 +1,4 @@
-import { buttonVariants } from '@/components/retroui';
+import { Button, buttonVariants } from '@/components/retroui';
 import { cn } from '@/lib/utils';
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
@@ -6,7 +6,7 @@ import Link from 'next/link';
 interface Props extends React.ComponentProps<'div'> {
   title: string;
   description: string;
-  link: string;
+  link?: string;
 }
 
 export const ToolsCardItem = ({ title, description, link, className, ...props }: Props) => {
@@ -24,19 +24,28 @@ export const ToolsCardItem = ({ title, description, link, className, ...props }:
       </div>
 
       <div>
-        <Link
-          href={link}
-          target="_blank"
-          className={cn(
-            buttonVariants({
-              size: 'sm',
-              className: 'inline-flex h-7 items-center space-x-1 px-2 font-sans text-xs',
-            }),
-          )}
-        >
-          <span>try this</span>
-          <ExternalLink className="h-3 w-3" />
-        </Link>
+        {link ? (
+          <Link
+            href={link}
+            target="_blank"
+            className={cn(
+              buttonVariants({
+                size: 'sm',
+                className: 'inline-flex h-7 items-center space-x-1 px-2 font-sans text-xs',
+              }),
+            )}
+          >
+            <span>try this</span>
+            <ExternalLink className="h-3 w-3" />
+          </Link>
+        ) : (
+          <Button
+            size={`sm`}
+            className="inline-flex h-7 items-center space-x-1 px-2 font-sans text-xs"
+          >
+            work in progress
+          </Button>
+        )}
       </div>
     </div>
   );
