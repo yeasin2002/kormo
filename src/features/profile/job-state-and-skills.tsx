@@ -1,4 +1,5 @@
-import { Badge, Button } from '@/components/retroui';
+import { Badge } from '@/components/retroui';
+import { Button } from '@/components/ui/button';
 
 import { Award, Briefcase, Calendar, Eye, FileText, Heart, Plus } from 'lucide-react';
 

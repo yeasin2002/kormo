@@ -1,4 +1,4 @@
-import { Button } from '@/components/retroui';
+import { Button } from '@/components/ui/button';
 
 import { Clock, DollarSign, Heart, MapPin } from 'lucide-react';
 import Link from 'next/link';
