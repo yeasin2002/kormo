@@ -1,4 +1,4 @@
-import { Badge, Button, buttonVariants } from '@/components/retroui';
+import { Badge, buttonVariants } from '@/components/retroui';
 import { SparklesStars } from '@/components/shared';
 import { auth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
@@ -9,6 +9,7 @@ import { HeroFeatureCard } from './hero-feature-card';
 
 export const Hero2 = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
+  console.log(session);
 
   return (
     <div className="bg-background text-foreground relative container mx-auto mb-20 overflow-hidden">
@@ -38,11 +39,19 @@ export const Hero2 = async () => {
           </p>
 
           <div className="mb-20 flex flex-col justify-center gap-4 sm:flex-row">
-            {!session ? (
-              <Button size="lg" className={cn('rounded-lg py-4 font-semibold')}>
-                Get Access Now
-              </Button>
-            ) : null}
+            {!session?.session && (
+              <Link
+                href={'/register'}
+                className={cn(
+                  buttonVariants({
+                    size: 'lg',
+                    className: 'rounded-lg py-4 font-semibold',
+                  }),
+                )}
+              >
+                Sign Up
+              </Link>
+            )}
 
             <Link
               href="/bd-tech-companies"

@@ -22,7 +22,7 @@ import { useRouter } from 'next/navigation';
 export const NavLarge = () => {
   const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
-
+  console.log(session);
   return (
     <>
       <div className="hidden space-x-5 lg:block">
@@ -36,7 +36,7 @@ export const NavLarge = () => {
       </div>
 
       <div className="hidden items-center gap-x-2 lg:flex">
-        {isPending ? null : session?.user ? (
+        {!isPending && session?.session ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button

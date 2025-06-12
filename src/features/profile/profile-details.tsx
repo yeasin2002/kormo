@@ -1,12 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
-
+import imgNotFound from '@/assets/avatar-not-found.png';
 import { Badge } from '@/components/retroui';
 
+import { User } from 'better-auth';
 import { Calendar, DollarSign, Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 
 const userData = {
-  name: 'Sarah Johnson',
-  email: 'sarah.johnson@email.com',
   phone: '+1 (555) 123-4567',
   location: 'San Francisco, CA',
   title: 'Senior Frontend Developer',
@@ -20,19 +19,21 @@ const userData = {
   profileCompletion: 85,
 };
 
-export const ProfileDetails = () => {
+export const ProfileDetails = async ({ user }: { user: User }) => {
   return (
     <div className="bg-card border-border rounded-2xl border-2 p-6 shadow-lg">
       <div className="mb-6 text-center">
         <div className="relative inline-block">
-          <img
-            src={userData.avatar || '/placeholder.svg'}
-            alt={userData.name}
+          <Image
+            src={user.image || imgNotFound}
+            alt={user.name || 'Profile'}
             className="border-border mx-auto mb-4 h-24 w-24 rounded-full border-4 shadow-lg"
+            width={200}
+            height={200}
           />
           <div className="absolute -right-1 -bottom-1 h-6 w-6 rounded-full border-2 border-white bg-green-400"></div>
         </div>
-        <h2 className="mb-1 text-2xl font-bold">{userData.name}</h2>
+        <h2 className="mb-1 text-2xl font-bold">{user.name}</h2>
         <p className="mb-2 font-semibold text-purple-600">{userData.title}</p>
         <Badge className="border border-green-200 bg-green-100 text-green-800">
           {userData.availability}
@@ -42,7 +43,7 @@ export const ProfileDetails = () => {
       <div className="space-y-3">
         <div className="flex items-center space-x-3 text-sm">
           <Mail className="text-muted-foreground h-4 w-4" />
-          <span>{userData.email}</span>
+          <span>{user.email}</span>
         </div>
         <div className="flex items-center space-x-3 text-sm">
           <Phone className="text-muted-foreground h-4 w-4" />

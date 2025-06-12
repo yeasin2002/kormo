@@ -29,7 +29,7 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -38,16 +38,11 @@ export default function RegisterPage() {
     },
   });
 
-  console.log(watch('image'));
-
   const onSubmit = async (data: RegisterFormValues) => {
-    console.log(data);
-    // return null;
+    const userAvatar = data.image[0];
     try {
       //  upload image
-      const uploadedImage = await edgestore.publicFiles.upload({
-        file: data.image,
-      });
+      const uploadedImage = await edgestore.publicFiles.upload({ file: userAvatar });
 
       const authResponse = await auth.signUp.email({
         email: data.email,

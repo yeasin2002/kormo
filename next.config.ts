@@ -4,9 +4,8 @@ const nextConfig: NextConfig = {
   // experimental: { typedRoutes: true },
   images: {
     remotePatterns: [
-      {
-        hostname: `https://lh3.googleusercontent.com`,
-      },
+      { hostname: `https://lh3.googleusercontent.com` },
+      { hostname: `avatars.githubusercontent.com` },
     ],
   },
 };
