@@ -22,7 +22,7 @@ import { useRouter } from 'next/navigation';
 export const NavLarge = () => {
   const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
-  console.log(session);
+
   return (
     <>
       <div className="hidden space-x-5 lg:block">
@@ -62,8 +62,8 @@ export const NavLarge = () => {
 
               <DropdownMenuItem
                 className="cursor-pointer"
-                onClick={() => {
-                  authClient.signOut();
+                onClick={async () => {
+                  await authClient.signOut();
                   router.push('/');
                 }}
               >

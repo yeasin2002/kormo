@@ -1,6 +1,6 @@
 'use client';
 
-import { ImageUpload } from '@/components/custom-ui';
+import { ImageUpload, LoaderDots } from '@/components/custom-ui';
 import { InputCombo } from '@/components/custom-ui/input-combo';
 import { PasswordInput } from '@/components/custom-ui/password-input';
 import { Button } from '@/components/ui/button';
@@ -179,10 +179,16 @@ export default function RegisterPage() {
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="group flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-black bg-yellow-400 py-3 text-lg font-bold text-black shadow-lg hover:bg-yellow-500"
+                className="group flex w-full cursor-pointer items-center justify-center space-x-2 rounded-lg border-2 border-black bg-yellow-400 py-3 text-lg font-bold text-black shadow-lg hover:bg-yellow-500"
               >
-                <span>{isSubmitting ? 'Creating Account...' : 'Create Account'}</span>
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                {isSubmitting ? (
+                  <LoaderDots className="-translate-x-8" />
+                ) : (
+                  <>
+                    <span>Create Account</span>
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </>
+                )}
               </Button>
             </form>
 
