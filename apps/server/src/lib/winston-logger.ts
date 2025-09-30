@@ -1,46 +1,37 @@
 import { createLogger, format, transports } from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
 
-const { combine, timestamp, printf, errors } = format;
+const { combine, timestamp, printf, errors, colorize, align } = format;
 
-const logFormat = printf(({ timestamp, level, message, stack, ...meta }) => {
-  // stack exists for error logs
-  const base = `${timestamp} ${level}: ${stack || message}`;
-  const metaString = Object.keys(meta).length ? ` ${JSON.stringify(meta)}` : "";
-  return base + metaString;
-});
+const devFormat = combine(
+  colorize({ all: true }),
+  timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+  align(),
+  printf(({ timestamp, level, message, stack, ...meta }) => {
+    const metaString = Object.keys(meta).length
+      ? JSON.stringify(meta, null, 2)
+      : "";
+    return `[${timestamp}] ${level}: ${stack || message} ${metaString}`;
+  })
+);
 
-const transportConsole = new transports.Console({
-  level: process.env.LOG_LEVEL ?? "info",
-  handleExceptions: true,
-});
-
-const transportFile = new transports.File({
-  filename: "logs/app.log",
-  level: "info",
-  handleExceptions: true,
-  maxsize: 5 * 1024 * 1024, // 5MB
-  maxFiles: 5,
-});
-
-const transportRotate = new DailyRotateFile({
-  filename: "logs/%DATE%-app.log",
-  datePattern: "YYYY-MM-DD",
-  zippedArchive: false,
-  maxSize: "20m",
-  maxFiles: "14d",
-  level: "info",
-});
+const prodFormat = combine(timestamp(), errors({ stack: true }), format.json());
 
 const logger = createLogger({
   level: process.env.LOG_LEVEL ?? "info",
-  format: combine(
-    timestamp(),
-    errors({ stack: true }), // capture stack trace in error objects
-    // you can switch to json() in production if you want structured logs
-    logFormat
-  ),
-  transports: [transportConsole, transportRotate, transportFile],
+  format: process.env.NODE_ENV === "production" ? prodFormat : devFormat,
+  transports: [
+    new transports.Console({
+      handleExceptions: true,
+    }),
+    new DailyRotateFile({
+      filename: "logs/%DATE%-app.log",
+      datePattern: "YYYY-MM-DD",
+      maxFiles: "14d",
+      zippedArchive: false,
+      level: "info",
+    }),
+  ],
   exitOnError: false,
 });
 
