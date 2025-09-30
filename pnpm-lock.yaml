@@ -154,17 +154,20 @@ importers:
         specifier: ^1.9.0
         version: 1.9.2(@orpc/contract@1.9.2)(@orpc/server@1.9.2(ws@8.18.3))(ws@8.18.3)(zod@4.1.11)
       '@polar-sh/better-auth':
-        specifier: ^1.1.3
+        specifier: ^1.1.4
         version: 1.1.4(@polar-sh/sdk@0.34.17)(better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@polar-sh/sdk':
-        specifier: ^0.34.16
+        specifier: ^0.34.17
         version: 0.34.17
       '@types/express-winston':
         specifier: ^4.0.2
         version: 4.0.2(winston@3.18.1)
+      '@types/morgan':
+        specifier: ^1.9.10
+        version: 1.9.10
       better-auth:
         specifier: ^1.3.13
-        version: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.3.23(next@15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       chalk:
         specifier: ^5.6.2
         version: 5.6.2
@@ -319,15 +322,6 @@ importers:
       pdf-parse:
         specifier: ^1.1.1
         version: 1.1.1
-      prettier:
-        specifier: ^3.5.3
-        version: 3.6.2
-      prettier-plugin-organize-imports:
-        specifier: ^4.1.0
-        version: 4.3.0(prettier@3.6.2)(typescript@5.8.3)
-      prettier-plugin-tailwindcss:
-        specifier: ^0.6.12
-        version: 0.6.14(prettier-plugin-organize-imports@4.3.0(prettier@3.6.2)(typescript@5.8.3))(prettier@3.6.2)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -3286,6 +3280,9 @@ packages:
 
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
+
+  '@types/morgan@1.9.10':
+    resolution: {integrity: sha512-sS4A1zheMvsADRVfT0lYbJ4S9lmsey8Zo2F7cnbYjWHP67Q0AwMYuuzLlkIM2N8gAbb9cubhIVFwcIN2XyYCkA==}
 
   '@types/node@20.19.17':
     resolution: {integrity: sha512-gfehUI8N1z92kygssiuWvLiwcbOB3IRktR6hTDgJlXMYh5OvkPSRmgfoBUmfZt+vhwJtX7v1Yw4KvvAf7c5QKQ==}
@@ -6386,77 +6383,6 @@ packages:
     resolution: {integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==}
     engines: {node: '>=6.0.0'}
 
-  prettier-plugin-organize-imports@4.3.0:
-    resolution: {integrity: sha512-FxFz0qFhyBsGdIsb697f/EkvHzi5SZOhWAjxcx2dLt+Q532bAlhswcXGYB1yzjZ69kW8UoadFBw7TyNwlq96Iw==}
-    peerDependencies:
-      prettier: '>=2.0'
-      typescript: '>=2.9'
-      vue-tsc: ^2.1.0 || 3
-    peerDependenciesMeta:
-      vue-tsc:
-        optional: true
-
-  prettier-plugin-tailwindcss@0.6.14:
-    resolution: {integrity: sha512-pi2e/+ZygeIqntN+vC573BcW5Cve8zUB0SSAGxqpB4f96boZF4M3phPVoOFCeypwkpRYdi7+jQ5YJJUwrkGUAg==}
-    engines: {node: '>=14.21.3'}
-    peerDependencies:
-      '@ianvs/prettier-plugin-sort-imports': '*'
-      '@prettier/plugin-hermes': '*'
-      '@prettier/plugin-oxc': '*'
-      '@prettier/plugin-pug': '*'
-      '@shopify/prettier-plugin-liquid': '*'
-      '@trivago/prettier-plugin-sort-imports': '*'
-      '@zackad/prettier-plugin-twig': '*'
-      prettier: ^3.0
-      prettier-plugin-astro: '*'
-      prettier-plugin-css-order: '*'
-      prettier-plugin-import-sort: '*'
-      prettier-plugin-jsdoc: '*'
-      prettier-plugin-marko: '*'
-      prettier-plugin-multiline-arrays: '*'
-      prettier-plugin-organize-attributes: '*'
-      prettier-plugin-organize-imports: '*'
-      prettier-plugin-sort-imports: '*'
-      prettier-plugin-style-order: '*'
-      prettier-plugin-svelte: '*'
-    peerDependenciesMeta:
-      '@ianvs/prettier-plugin-sort-imports':
-        optional: true
-      '@prettier/plugin-hermes':
-        optional: true
-      '@prettier/plugin-oxc':
-        optional: true
-      '@prettier/plugin-pug':
-        optional: true
-      '@shopify/prettier-plugin-liquid':
-        optional: true
-      '@trivago/prettier-plugin-sort-imports':
-        optional: true
-      '@zackad/prettier-plugin-twig':
-        optional: true
-      prettier-plugin-astro:
-        optional: true
-      prettier-plugin-css-order:
-        optional: true
-      prettier-plugin-import-sort:
-        optional: true
-      prettier-plugin-jsdoc:
-        optional: true
-      prettier-plugin-marko:
-        optional: true
-      prettier-plugin-multiline-arrays:
-        optional: true
-      prettier-plugin-organize-attributes:
-        optional: true
-      prettier-plugin-organize-imports:
-        optional: true
-      prettier-plugin-sort-imports:
-        optional: true
-      prettier-plugin-style-order:
-        optional: true
-      prettier-plugin-svelte:
-        optional: true
-
   prettier@3.6.2:
     resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
@@ -8892,7 +8818,7 @@ snapshots:
   '@better-auth/expo@1.3.23(better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(expo-constants@18.0.9)(expo-crypto@15.0.7(expo@54.0.10))(expo-linking@8.0.8)(expo-secure-store@15.0.7(expo@54.0.10))(expo-web-browser@15.0.7(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0)))':
     dependencies:
       '@better-fetch/fetch': 1.1.18
-      better-auth: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      better-auth: 1.3.23(next@15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       expo-constants: 18.0.9(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))
       expo-crypto: 15.0.7(expo@54.0.10)
       expo-linking: 8.0.8(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))(react@19.1.0)
@@ -10100,7 +10026,7 @@ snapshots:
   '@polar-sh/better-auth@1.1.4(@polar-sh/sdk@0.34.17)(better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
       '@polar-sh/sdk': 0.34.17
-      better-auth: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      better-auth: 1.3.23(next@15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       zod: 3.25.76
 
   '@polar-sh/sdk@0.34.17':
@@ -11343,6 +11269,10 @@ snapshots:
 
   '@types/mime@1.3.5': {}
 
+  '@types/morgan@1.9.10':
+    dependencies:
+      '@types/node': 22.18.6
+
   '@types/node@20.19.17':
     dependencies:
       undici-types: 6.21.0
@@ -11900,25 +11830,6 @@ snapshots:
       zod: 4.1.11
     optionalDependencies:
       next: 15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-
-  better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
-    dependencies:
-      '@better-auth/core': 1.3.23
-      '@better-auth/utils': 0.3.0
-      '@better-fetch/fetch': 1.1.18
-      '@noble/ciphers': 2.0.1
-      '@noble/hashes': 2.0.1
-      '@simplewebauthn/browser': 13.2.0
-      '@simplewebauthn/server': 13.2.1
-      better-call: 1.0.19
-      defu: 6.1.4
-      jose: 6.1.0
-      kysely: 0.28.7
-      nanostores: 1.0.1
-      zod: 4.1.11
-    optionalDependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -14847,17 +14758,6 @@ snapshots:
   prettier-linter-helpers@1.0.0:
     dependencies:
       fast-diff: 1.3.0
-
-  prettier-plugin-organize-imports@4.3.0(prettier@3.6.2)(typescript@5.8.3):
-    dependencies:
-      prettier: 3.6.2
-      typescript: 5.8.3
-
-  prettier-plugin-tailwindcss@0.6.14(prettier-plugin-organize-imports@4.3.0(prettier@3.6.2)(typescript@5.8.3))(prettier@3.6.2):
-    dependencies:
-      prettier: 3.6.2
-    optionalDependencies:
-      prettier-plugin-organize-imports: 4.3.0(prettier@3.6.2)(typescript@5.8.3)
 
   prettier@3.6.2: {}
 

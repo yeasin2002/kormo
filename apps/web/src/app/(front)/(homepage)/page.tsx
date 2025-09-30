@@ -1,5 +1,5 @@
 import { Footer } from "@/components/shared";
-import { Hero2, ShowCompanies, ToolsList } from "@/features/homepage";
+import { Hero2, ToolsList } from "@/features/homepage";
 
 const RootPage = async () => {
 	return (
