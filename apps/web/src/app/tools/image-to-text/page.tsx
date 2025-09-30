@@ -71,7 +71,9 @@ export default function CoverLetterGenerator() {
         {texts.length > 0 && (
           <div>
             <h2>Generated Text</h2>
-            {texts?.map((text, index) => <p key={index}>{text}</p>)}
+            {texts?.map((text, index) => (
+              <p key={index}>{text}</p>
+            ))}
           </div>
         )}
       </div>
