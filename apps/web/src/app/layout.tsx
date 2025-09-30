@@ -1,25 +1,25 @@
-import { fontVariables } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
+import { fontVariables } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
-import './globals.css';
-import { RootWrapper } from './root-wrapper';
+import "./globals.css";
+import { RootWrapper } from "./root-wrapper";
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={cn(`px-2 antialiased md:px-0`, fontVariables)}>
-        <RootWrapper>{children}</RootWrapper>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={cn("px-2 antialiased md:px-0", fontVariables)}>
+				<RootWrapper>{children}</RootWrapper>
+			</body>
+		</html>
+	);
 }
 
 export const metadata: Metadata = {
-  title: 'Kormo Setu',
-  description: 'Find all tech companies in Bangladesh',
+	title: "Kormo Setu",
+	description: "Find all tech companies in Bangladesh",
 };

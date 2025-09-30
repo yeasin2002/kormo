@@ -1,1 +1,1 @@
-export * from './writing-tone.data';
+export * from "./writing-tone.data";

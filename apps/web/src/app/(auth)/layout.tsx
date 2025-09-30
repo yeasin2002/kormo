@@ -1,57 +1,57 @@
-'use client';
+"use client";
 
-import { buttonVariants } from '@/components/retroui';
+import { Home } from "iconoir-react";
+import Link from "next/link";
+import { buttonVariants } from "@/components/retroui";
 import {
-  CompanyLogos,
-  EarningCards,
-  FloatingElements,
-  JobStateCard,
-  JobTaskCard,
-  NotificationCard,
-  ProfileCard,
-  SecureLogin,
-} from '@/features/auth/auth-floating-cards';
-import { cn } from '@/lib/utils';
-import { Home } from 'iconoir-react';
-import Link from 'next/link';
+	CompanyLogos,
+	EarningCards,
+	FloatingElements,
+	JobStateCard,
+	JobTaskCard,
+	NotificationCard,
+	ProfileCard,
+	SecureLogin,
+} from "@/features/auth/auth-floating-cards";
+import { cn } from "@/lib/utils";
 
 export default function LoginPage({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <div className="text-foreground bg-background relative flex min-h-screen flex-col justify-center overflow-x-hidden">
-      <div>{children}</div>
+	return (
+		<div className="relative flex min-h-screen flex-col justify-center overflow-x-hidden bg-background text-foreground">
+			<div>{children}</div>
 
-      <Link
-        href={'/'}
-        className={cn(
-          buttonVariants(),
-          'bg-background text-foreground border-foreground hover:bg-muted flex items-center gap-x-2 border-2 text-lg font-semibold shadow-md',
-          `absolute top-2 left-4 rounded-full`,
-        )}
-      >
-        <Home className="h-4 w-4" />
-        <span>Go to Home</span>
-      </Link>
+			<Link
+				href={"/"}
+				className={cn(
+					buttonVariants(),
+					"flex items-center gap-x-2 border-2 border-foreground bg-background font-semibold text-foreground text-lg shadow-md hover:bg-muted",
+					"absolute top-2 left-4 rounded-full",
+				)}
+			>
+				<Home className="h-4 w-4" />
+				<span>Go to Home</span>
+			</Link>
 
-      <div className="hidden overflow-y-hidden lg:block">
-        <EarningCards />
-        <JobStateCard />
-        <ProfileCard />
-        <JobTaskCard />
-        <NotificationCard />
-        <CompanyLogos />
-        <FloatingElements />
-        <SecureLogin />
-      </div>
-    </div>
-  );
+			<div className="hidden overflow-y-hidden lg:block">
+				<EarningCards />
+				<JobStateCard />
+				<ProfileCard />
+				<JobTaskCard />
+				<NotificationCard />
+				<CompanyLogos />
+				<FloatingElements />
+				<SecureLogin />
+			</div>
+		</div>
+	);
 }
 
 {
-  /* Decorative Elements */
+	/* Decorative Elements */
 }
 // <div className="absolute top-10 left-10 text-black/20">
 //   <Sparkles className="w-16 h-16" />

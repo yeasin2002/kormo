@@ -1,25 +1,31 @@
-'use server';
+"use server";
 
-import { googleGenAI } from '@/lib/google-gen-Ai-instanace';
-import { aiCoverLetterSchemaValues } from '../cover-letter-form-schema';
+import { googleGenAI } from "@/lib/google-gen-Ai-instanace";
+import type { aiCoverLetterSchemaValues } from "../cover-letter-form-schema";
 
 export const AiCoverLetterResponse = async ({
-  data,
-  cvText,
+	data,
+	cvText,
 }: {
-  data: aiCoverLetterSchemaValues;
-  cvText: string;
+	data: aiCoverLetterSchemaValues;
+	cvText: string;
 }) => {
-  try {
-    const { jobTitle, jobDescription, yourName, additionalInstructions, coverLetterTone } = data;
+	try {
+		const {
+			jobTitle,
+			jobDescription,
+			yourName,
+			additionalInstructions,
+			coverLetterTone,
+		} = data;
 
-    const prompt = `Write a professional cover letter with the following details:
+		const prompt = `Write a professional cover letter with the following details:
     Job Title: ${jobTitle}
     Job Description: ${jobDescription}
     Candidate Name: ${yourName}
     CV Content: ${cvText}
     Tone: ${coverLetterTone}z
-    Additional Instructions: ${additionalInstructions || 'None'}
+    Additional Instructions: ${additionalInstructions || "None"}
     
     The cover letter should be professional, engaging, and highlight relevant experience from the CV.
     Give me a response in plain text only with proper formatting for a cover letter.
@@ -27,22 +33,22 @@ export const AiCoverLetterResponse = async ({
     
     .`;
 
-    const result = await googleGenAI.models.generateContent({
-      model: 'gemini-2.0-flash',
-      contents: prompt,
-      config: { maxOutputTokens: 300 },
-    });
-    const text = result.text;
+		const result = await googleGenAI.models.generateContent({
+			model: "gemini-2.0-flash",
+			contents: prompt,
+			config: { maxOutputTokens: 300 },
+		});
+		const text = result.text;
 
-    return {
-      success: true,
-      message: text,
-    };
-  } catch (error) {
-    console.error('Error generating cover letter:', error);
-    return {
-      success: false,
-      message: 'Failed to generate cover letter. Please try again.',
-    };
-  }
+		return {
+			success: true,
+			message: text,
+		};
+	} catch (error) {
+		console.error("Error generating cover letter:", error);
+		return {
+			success: false,
+			message: "Failed to generate cover letter. Please try again.",
+		};
+	}
 };

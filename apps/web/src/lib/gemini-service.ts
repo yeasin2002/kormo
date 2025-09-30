@@ -1,95 +1,95 @@
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenAI } from "@google/genai";
 
 export interface ResumeData {
-  document_type: string;
-  is_resume?: boolean;
-  message?: string;
-  header?: {
-    name: string;
-    email: string;
-    phone: string;
-    location: string;
-    linkedin?: string;
-    website?: string;
-  };
-  sections?: {
-    summary?: string;
-    experience: Array<{
-      title: string;
-      company: string;
-      duration: string;
-      description: string;
-      achievements: string[];
-    }>;
-    education: Array<{
-      degree: string;
-      institution: string;
-      year: string;
-      gpa?: string;
-    }>;
-    skills: {
-      technical: string[];
-      soft: string[];
-      languages?: string[];
-    };
-    certifications?: Array<{
-      name: string;
-      issuer: string;
-      year: string;
-    }>;
-  };
-  ats_analysis?: {
-    score: number;
-    issues: string[];
-    recommendations: string[];
-    keyword_matches: string[];
-    missing_keywords: string[];
-  };
-  pro_suggestions?: {
-    categories: Array<{
-      category: string;
-      priority: 'Critical' | 'High' | 'Medium' | 'Low';
-      suggestions: string[];
-      impact: string;
-    }>;
-    summary: {
-      total_categories: number;
-      total_suggestions: number;
-      potential_score_increase: number;
-    };
-  };
+	document_type: string;
+	is_resume?: boolean;
+	message?: string;
+	header?: {
+		name: string;
+		email: string;
+		phone: string;
+		location: string;
+		linkedin?: string;
+		website?: string;
+	};
+	sections?: {
+		summary?: string;
+		experience: Array<{
+			title: string;
+			company: string;
+			duration: string;
+			description: string;
+			achievements: string[];
+		}>;
+		education: Array<{
+			degree: string;
+			institution: string;
+			year: string;
+			gpa?: string;
+		}>;
+		skills: {
+			technical: string[];
+			soft: string[];
+			languages?: string[];
+		};
+		certifications?: Array<{
+			name: string;
+			issuer: string;
+			year: string;
+		}>;
+	};
+	ats_analysis?: {
+		score: number;
+		issues: string[];
+		recommendations: string[];
+		keyword_matches: string[];
+		missing_keywords: string[];
+	};
+	pro_suggestions?: {
+		categories: Array<{
+			category: string;
+			priority: "Critical" | "High" | "Medium" | "Low";
+			suggestions: string[];
+			impact: string;
+		}>;
+		summary: {
+			total_categories: number;
+			total_suggestions: number;
+			potential_score_increase: number;
+		};
+	};
 }
 
 export interface ATSAnalysisResult {
-  success: boolean;
-  data?: ResumeData;
-  error?: string;
-  raw_text?: string;
+	success: boolean;
+	data?: ResumeData;
+	error?: string;
+	raw_text?: string;
 }
 
 export class GeminiService {
-  private ai: GoogleGenAI;
+	private ai: GoogleGenAI;
 
-  constructor() {
-    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-    if (!apiKey) {
-      throw new Error('NEXT_PUBLIC_GEMINI_API_KEY is not set');
-    }
-    this.ai = new GoogleGenAI({ apiKey });
-  }
+	constructor() {
+		const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+		if (!apiKey) {
+			throw new Error("NEXT_PUBLIC_GEMINI_API_KEY is not set");
+		}
+		this.ai = new GoogleGenAI({ apiKey });
+	}
 
-  async processResumeWithGemini(
-    base64Data: string,
-    fileType: string,
-    fileName: string,
-  ): Promise<ATSAnalysisResult> {
-    try {
-      console.log('fileName', fileName);
-      const today = new Date();
-      const currentYear = today.getFullYear();
-      const currentMonth = today.getMonth() + 1; // getMonth() returns 0-11
+	async processResumeWithGemini(
+		base64Data: string,
+		fileType: string,
+		fileName: string,
+	): Promise<ATSAnalysisResult> {
+		try {
+			console.log("fileName", fileName);
+			const today = new Date();
+			const currentYear = today.getFullYear();
+			const currentMonth = today.getMonth() + 1; // getMonth() returns 0-11
 
-      const prompt = `
+			const prompt = `
         FIRST: Determine if this document is actually a resume or CV. Look for:
         - Personal contact information (name, email, phone)
         - Work experience or employment history
@@ -238,7 +238,7 @@ export class GeminiService {
         }
 
         IMPORTANT DATE VALIDATION RULES:
-        - Current date is ${currentYear}-${currentMonth.toString().padStart(2, '0')}
+        - Current date is ${currentYear}-${currentMonth.toString().padStart(2, "0")}
         - "Present" or "Current" in dates is valid and should not be flagged as future
         - "Dec 2024 to present" is valid if we're in 2024
         - Only flag dates as future if they are clearly beyond the current date
@@ -259,111 +259,113 @@ export class GeminiService {
         - Consider industry best practices and current ATS requirements
       `;
 
-      const contents = [
-        { text: prompt },
-        {
-          inlineData: {
-            mimeType: fileType === 'application/pdf' ? 'application/pdf' : 'image/jpeg',
-            data: base64Data,
-          },
-        },
-      ];
+			const contents = [
+				{ text: prompt },
+				{
+					inlineData: {
+						mimeType:
+							fileType === "application/pdf" ? "application/pdf" : "image/jpeg",
+						data: base64Data,
+					},
+				},
+			];
 
-      const response = await this.ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: contents,
-      });
+			const response = await this.ai.models.generateContent({
+				model: "gemini-2.5-flash",
+				contents: contents,
+			});
 
-      const responseText = response.text || '';
-      let structuredData: ResumeData;
-      try {
-        // Try to parse JSON response
-        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-          structuredData = JSON.parse(jsonMatch[0]);
-        } else {
-          throw new Error('No valid JSON found');
-        }
-      } catch (err) {
-        console.log(err);
-        // Fallback parsing with default pro suggestions
-        structuredData = {
-          document_type: 'resume',
-          is_resume: true,
-          header: {
-            name: 'Extracted from document',
-            email: '',
-            phone: '',
-            location: '',
-          },
-          sections: {
-            experience: [],
-            education: [],
-            skills: {
-              technical: [],
-              soft: [],
-            },
-          },
-          ats_analysis: {
-            score: 50,
-            issues: ['Unable to parse structured data'],
-            recommendations: ['Please check the document format'],
-            keyword_matches: [],
-            missing_keywords: [],
-          },
-          pro_suggestions: {
-            categories: [
-              {
-                category: 'Header Optimization',
-                priority: 'High',
-                suggestions: [
-                  'Move contact information to the very top of the resume',
-                  'Use a professional email format',
-                  'Include a professional LinkedIn URL',
-                ],
-                impact: 'Improves ATS parsing by 25%',
-              },
-              {
-                category: 'Experience Section',
-                priority: 'High',
-                suggestions: [
-                  'Use action verbs at the beginning of each bullet point',
-                  'Include quantifiable achievements',
-                  'Add industry-specific keywords naturally',
-                ],
-                impact: 'Increases keyword matching by 40%',
-              },
-            ],
-            summary: {
-              total_categories: 2,
-              total_suggestions: 6,
-              potential_score_increase: 15,
-            },
-          },
-        };
-      }
+			const responseText = response.text || "";
+			let structuredData: ResumeData;
+			try {
+				// Try to parse JSON response
+				const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+				if (jsonMatch) {
+					structuredData = JSON.parse(jsonMatch[0]);
+				} else {
+					throw new Error("No valid JSON found");
+				}
+			} catch (err) {
+				console.log(err);
+				// Fallback parsing with default pro suggestions
+				structuredData = {
+					document_type: "resume",
+					is_resume: true,
+					header: {
+						name: "Extracted from document",
+						email: "",
+						phone: "",
+						location: "",
+					},
+					sections: {
+						experience: [],
+						education: [],
+						skills: {
+							technical: [],
+							soft: [],
+						},
+					},
+					ats_analysis: {
+						score: 50,
+						issues: ["Unable to parse structured data"],
+						recommendations: ["Please check the document format"],
+						keyword_matches: [],
+						missing_keywords: [],
+					},
+					pro_suggestions: {
+						categories: [
+							{
+								category: "Header Optimization",
+								priority: "High",
+								suggestions: [
+									"Move contact information to the very top of the resume",
+									"Use a professional email format",
+									"Include a professional LinkedIn URL",
+								],
+								impact: "Improves ATS parsing by 25%",
+							},
+							{
+								category: "Experience Section",
+								priority: "High",
+								suggestions: [
+									"Use action verbs at the beginning of each bullet point",
+									"Include quantifiable achievements",
+									"Add industry-specific keywords naturally",
+								],
+								impact: "Increases keyword matching by 40%",
+							},
+						],
+						summary: {
+							total_categories: 2,
+							total_suggestions: 6,
+							potential_score_increase: 15,
+						},
+					},
+				};
+			}
 
-      return {
-        success: true,
-        data: structuredData,
-        raw_text: responseText,
-      };
-    } catch (error) {
-      console.error('Error processing resume:', error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown error occurred',
-        raw_text: '',
-      };
-    }
-  }
+			return {
+				success: true,
+				data: structuredData,
+				raw_text: responseText,
+			};
+		} catch (error) {
+			console.error("Error processing resume:", error);
+			return {
+				success: false,
+				error:
+					error instanceof Error ? error.message : "Unknown error occurred",
+				raw_text: "",
+			};
+		}
+	}
 
-  async analyzeATSCompatibility(
-    resumeData: ResumeData,
-    jobKeywords: string[] = [],
-  ): Promise<ATSAnalysisResult> {
-    try {
-      const prompt = `
+	async analyzeATSCompatibility(
+		resumeData: ResumeData,
+		jobKeywords: string[] = [],
+	): Promise<ATSAnalysisResult> {
+		try {
+			const prompt = `
         You are an expert in Applicant Tracking Systems (ATS) and resume parsing.
         
         Your task is to analyze the given resume or CV data for ATS compatibility and provide a detailed evaluation.
@@ -373,7 +375,7 @@ export class GeminiService {
         ${JSON.stringify(resumeData, null, 2)}
         ====================
         
-        Job Description Keywords (if provided): ${jobKeywords.join(', ')}
+        Job Description Keywords (if provided): ${jobKeywords.join(", ")}
         
         Please perform a comprehensive analysis and return the following in JSON format under a key called "ats_analysis":
         
@@ -414,50 +416,51 @@ export class GeminiService {
         Make sure your analysis is accurate, concise, and informative. Return only the JSON with the "ats_analysis" section updated accordingly.
         `;
 
-      const response = await this.ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: [{ text: prompt }],
-      });
+			const response = await this.ai.models.generateContent({
+				model: "gemini-2.5-flash",
+				contents: [{ text: prompt }],
+			});
 
-      console.log('Response: ', response);
+			console.log("Response: ", response);
 
-      let enhancedData: ResumeData;
-      try {
-        const responseText = response.text || '';
-        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-          enhancedData = JSON.parse(jsonMatch[0]);
-        } else {
-          // Fallback: enhance existing data
-          enhancedData = {
-            ...resumeData,
-            ats_analysis: {
-              ...resumeData.ats_analysis,
-              score: Math.min(100, (resumeData.ats_analysis?.score || 50) + 5),
-              recommendations: [
-                ...(resumeData.ats_analysis?.recommendations || []),
-                'Consider tailoring keywords to specific job postings',
-              ],
-              issues: resumeData.ats_analysis?.issues || [],
-              keyword_matches: resumeData.ats_analysis?.keyword_matches || [],
-              missing_keywords: resumeData.ats_analysis?.missing_keywords || [],
-            },
-          };
-        }
-      } catch (err) {
-        console.log(err);
-        enhancedData = resumeData;
-      }
+			let enhancedData: ResumeData;
+			try {
+				const responseText = response.text || "";
+				const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+				if (jsonMatch) {
+					enhancedData = JSON.parse(jsonMatch[0]);
+				} else {
+					// Fallback: enhance existing data
+					enhancedData = {
+						...resumeData,
+						ats_analysis: {
+							...resumeData.ats_analysis,
+							score: Math.min(100, (resumeData.ats_analysis?.score || 50) + 5),
+							recommendations: [
+								...(resumeData.ats_analysis?.recommendations || []),
+								"Consider tailoring keywords to specific job postings",
+							],
+							issues: resumeData.ats_analysis?.issues || [],
+							keyword_matches: resumeData.ats_analysis?.keyword_matches || [],
+							missing_keywords: resumeData.ats_analysis?.missing_keywords || [],
+						},
+					};
+				}
+			} catch (err) {
+				console.log(err);
+				enhancedData = resumeData;
+			}
 
-      return {
-        success: true,
-        data: enhancedData,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown error occurred',
-      };
-    }
-  }
+			return {
+				success: true,
+				data: enhancedData,
+			};
+		} catch (error) {
+			return {
+				success: false,
+				error:
+					error instanceof Error ? error.message : "Unknown error occurred",
+			};
+		}
+	}
 }

@@ -1,2 +1,2 @@
-export * from './auth-floating-cards';
-export * from './social-login-link';
+export * from "./auth-floating-cards";
+export * from "./social-login-link";
