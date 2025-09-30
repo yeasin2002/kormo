@@ -1,5 +1,6 @@
 import "dotenv/config";
 
+import { errorHandler, requestLogger } from "@/middleware";
 import { OpenAPIHandler } from "@orpc/openapi/node";
 import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
 import { onError } from "@orpc/server";
@@ -11,8 +12,6 @@ import express from "express";
 import morgan from "morgan";
 import { auth } from "./lib/auth";
 import { createContext } from "./lib/context";
-import { errorHandler } from "./middleware/errorHandler";
-import { requestLogger } from "./middleware/requestLogger";
 import { appRouter } from "./routers";
 import { PORT } from "./utils";
 
