@@ -1,5 +1,5 @@
-import { Footer } from '@/components/shared';
-import { Hero2, ShowCompanies, ShowContributors, ToolsList } from '@/features/homepage';
+import { Footer } from "@/components/shared";
+import { Hero2, ShowCompanies, ToolsList } from "@/features/homepage";
 
 const RootPage = async () => {
   return (
@@ -7,7 +7,7 @@ const RootPage = async () => {
       <Hero2 />
       <ShowCompanies />
       <ToolsList />
-      <ShowContributors />
+      {/* <ShowContributors /> */}
       <Footer />
     </div>
   );

@@ -4,10 +4,10 @@
   "private": true,
   "homepage": "https://kormo-setu.vercel.app",
   "scripts": {
-    "dev": "next dev --port 3000",
+    "dev": "next dev --port 3001",
     "dev:t": "next dev --turbopack",
     "build": "next build",
-    "start": "next start --port 3000",
+    "start": "next start --port 3001",
     "lint": "next lint",
     "db:push": "drizzle-kit push:pg",
     "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
