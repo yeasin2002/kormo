@@ -5,7 +5,7 @@ const RootPage = async () => {
 	return (
 		<div className="container mx-auto h-screen">
 			<Hero2 />
-			<ShowCompanies />
+			{/* <ShowCompanies /> */}
 			<ToolsList />
 			{/* <ShowContributors /> */}
 			<Footer />
