@@ -1,41 +1,25 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "../index.css";
-import Providers from "@/components/providers";
-import Header from "@/components/header";
+import { fontVariables } from '@/lib/fonts';
+import { cn } from '@/lib/utils';
+import type { Metadata } from 'next';
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-	title: "my-better-t-app",
-	description: "my-better-t-app",
-};
+import './globals.css';
+import { RootWrapper } from './root-wrapper';
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en" suppressHydrationWarning>
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				<Providers>
-					<div className="grid grid-rows-[auto_1fr] h-svh">
-						<Header />
-						{children}
-					</div>
-				</Providers>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body className={cn(`px-2 antialiased md:px-0`, fontVariables)}>
+        <RootWrapper>{children}</RootWrapper>
+      </body>
+    </html>
+  );
 }
+
+export const metadata: Metadata = {
+  title: 'Kormo Setu',
+  description: 'Find all tech companies in Bangladesh',
+};

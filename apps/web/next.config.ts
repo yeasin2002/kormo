@@ -1,7 +1,14 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-	typedRoutes: true,
+  // experimental: { typedRoutes: true },
+  images: {
+    remotePatterns: [
+      { hostname: `https://lh3.googleusercontent.com` },
+      { hostname: `avatars.githubusercontent.com` },
+      { hostname: `files.edgestore.dev` },
+    ],
+  },
 };
 
 export default nextConfig;
