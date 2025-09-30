@@ -162,12 +162,12 @@ importers:
       '@types/express-winston':
         specifier: ^4.0.2
         version: 4.0.2(winston@3.18.1)
-      '@types/morgan':
-        specifier: ^1.9.10
-        version: 1.9.10
       better-auth:
         specifier: ^1.3.13
-        version: 1.3.23(next@15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      chalk:
+        specifier: ^5.6.2
+        version: 5.6.2
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -3287,9 +3287,6 @@ packages:
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
 
-  '@types/morgan@1.9.10':
-    resolution: {integrity: sha512-sS4A1zheMvsADRVfT0lYbJ4S9lmsey8Zo2F7cnbYjWHP67Q0AwMYuuzLlkIM2N8gAbb9cubhIVFwcIN2XyYCkA==}
-
   '@types/node@20.19.17':
     resolution: {integrity: sha512-gfehUI8N1z92kygssiuWvLiwcbOB3IRktR6hTDgJlXMYh5OvkPSRmgfoBUmfZt+vhwJtX7v1Yw4KvvAf7c5QKQ==}
 
@@ -3914,6 +3911,10 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
+
+  chalk@5.6.2:
+    resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -8891,7 +8892,7 @@ snapshots:
   '@better-auth/expo@1.3.23(better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(expo-constants@18.0.9)(expo-crypto@15.0.7(expo@54.0.10))(expo-linking@8.0.8)(expo-secure-store@15.0.7(expo@54.0.10))(expo-web-browser@15.0.7(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0)))':
     dependencies:
       '@better-fetch/fetch': 1.1.18
-      better-auth: 1.3.23(next@15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      better-auth: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       expo-constants: 18.0.9(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))
       expo-crypto: 15.0.7(expo@54.0.10)
       expo-linking: 8.0.8(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))(react@19.1.0)
@@ -10099,7 +10100,7 @@ snapshots:
   '@polar-sh/better-auth@1.1.4(@polar-sh/sdk@0.34.17)(better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
       '@polar-sh/sdk': 0.34.17
-      better-auth: 1.3.23(next@15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      better-auth: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       zod: 3.25.76
 
   '@polar-sh/sdk@0.34.17':
@@ -11342,10 +11343,6 @@ snapshots:
 
   '@types/mime@1.3.5': {}
 
-  '@types/morgan@1.9.10':
-    dependencies:
-      '@types/node': 22.18.6
-
   '@types/node@20.19.17':
     dependencies:
       undici-types: 6.21.0
@@ -11906,6 +11903,25 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
+  better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      '@better-auth/core': 1.3.23
+      '@better-auth/utils': 0.3.0
+      '@better-fetch/fetch': 1.1.18
+      '@noble/ciphers': 2.0.1
+      '@noble/hashes': 2.0.1
+      '@simplewebauthn/browser': 13.2.0
+      '@simplewebauthn/server': 13.2.1
+      better-call: 1.0.19
+      defu: 6.1.4
+      jose: 6.1.0
+      kysely: 0.28.7
+      nanostores: 1.0.1
+      zod: 4.1.11
+    optionalDependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
   better-call@1.0.19:
     dependencies:
       '@better-auth/utils': 0.3.0
@@ -12045,6 +12061,8 @@ snapshots:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+
+  chalk@5.6.2: {}
 
   chokidar@3.6.0:
     dependencies:
