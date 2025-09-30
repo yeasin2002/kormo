@@ -12,6 +12,8 @@
     "ruler:apply": "pnpm dlx @intellectronica/ruler@latest apply --local-only",
     "dev": "turbo dev",
     "build": "turbo build",
+    "build:web": "turbo build -F web",
+    "build:server": "turbo build -F server",
     "check-types": "turbo check-types",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
