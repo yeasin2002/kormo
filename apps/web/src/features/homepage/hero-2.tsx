@@ -1,17 +1,15 @@
 "use client";
 
+import { BriefcaseBusiness, FileText, PackageOpen } from "lucide-react";
+import Link from "next/link";
 import { Badge, buttonVariants } from "@/components/retroui";
 import { SparklesStars } from "@/components/shared";
 // import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
-import { BriefcaseBusiness, FileText, PackageOpen } from "lucide-react";
-import Link from "next/link";
 import { HeroFeatureCard } from "./hero-feature-card";
 
-
-
 export const Hero2 = async () => {
-	const session = true
+	const session = true;
 	console.log(session);
 
 	return (
