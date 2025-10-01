@@ -16,8 +16,7 @@
 		"dz": "drizzle-kit generate && drizzle-kit push",
 		"dz:g": "drizzle-kit generate",
 		"dz:p": "drizzle-kit push",
-		"dz:s": "drizzle-kit studio",
-		"prepare": "husky install"
+		"dz:s": "drizzle-kit studio"
 	},
 	"dependencies": {
 		"@auth/core": "^0.28.0",
@@ -73,7 +72,6 @@
 		"drizzle-kit": "^0.31.1",
 		"eslint": "^9",
 		"eslint-config-next": "15.3.3",
-		"husky": "^8.0.0",
 		"lint-staged": "^16.1.0",
 		"tailwindcss": "^4",
 		"tsx": "^4.19.4",
