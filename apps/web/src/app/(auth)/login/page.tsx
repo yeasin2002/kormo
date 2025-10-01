@@ -1,11 +1,6 @@
+/** biome-ignore-all lint/correctness/useUniqueElementIds: <> */
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Mail } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { InputCombo } from "@/components/custom-ui/input-combo";
 import { LoaderDots } from "@/components/custom-ui/loader-dots";
 import { PasswordInput } from "@/components/custom-ui/password-input";
@@ -14,6 +9,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { type LoginFormValues, loginSchema } from "@/features/auth/auth.schema";
 import { SocialLoginLink } from "@/features/auth/social-login-link";
 import { authClient } from "@/lib/auth-client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowRight, Mail } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
 	const router = useRouter();
@@ -55,7 +56,7 @@ export default function LoginPage() {
 	};
 
 	return (
-		<>
+
 			<div className="flex items-center justify-center px-6 py-4 md:py-12">
 				<div className="w-full max-w-md">
 					<div className="relative rounded-3xl border-4 border-border bg-card p-8 shadow-2xl">
@@ -95,8 +96,8 @@ export default function LoginPage() {
 							/>
 
 							<div className="flex items-center justify-between text-sm">
-								<label className="flex cursor-pointer items-center space-x-2">
-									<Checkbox {...register("rememberMe")} defaultChecked={true} />
+								<label className="flex cursor-pointer items-center space-x-2" htmlFor="rememberMe">
+									<Checkbox {...register("rememberMe")} defaultChecked={true} id="rememberMe" />
 									<span className="font-medium text-foreground">
 										Remember me
 									</span>
@@ -141,6 +142,6 @@ export default function LoginPage() {
 					</div>
 				</div>
 			</div>
-		</>
+	
 	);
 }

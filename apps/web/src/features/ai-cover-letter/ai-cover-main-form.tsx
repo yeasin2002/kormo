@@ -1,10 +1,5 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Suitcase } from "iconoir-react";
-import { AlertCircleIcon, Mail, Sparkles, User } from "lucide-react";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
 import {
 	ComboSelect,
 	InputCombo,
@@ -12,13 +7,19 @@ import {
 	TextareaCombo,
 } from "@/components/custom-ui";
 import DocUpload from "@/components/custom-ui/doc-upload";
-import { Button, Label } from "@/components/retroui";
+import { Button, } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import { writingTones } from "@/data/writing-tone.data";
 import {
 	aiCoverLetterSchema,
 	type aiCoverLetterSchemaValues,
 } from "@/features/ai-cover-letter";
 import { useFileUpload } from "@/hooks/use-file-upload";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Suitcase } from "iconoir-react";
+import { AlertCircleIcon, Mail, Sparkles, User } from "lucide-react";
+import { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { extractTextFromPdf } from "./helper/pdf-to-text";
 
 const maxSizeMB = 5;
