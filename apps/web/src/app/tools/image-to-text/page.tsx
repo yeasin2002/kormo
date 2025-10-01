@@ -1,9 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { MultiMediaUploaderWithPreview } from "@/components/custom-ui/multi-file-with-preview-uploader";
 import { Button } from "@/components/ui/button";
 import { useFileUpload } from "@/hooks/use-file-upload";
-import { useState } from "react";
 
 const maxSizeMB = 5;
 const maxSize = maxSizeMB * 1024 * 1024; // 5MB default
@@ -68,7 +68,7 @@ export default function CoverLetterGenerator() {
 						<div className="mt-2 text-destructive text-sm">{imgError}</div>
 					)}
 					<Button
-					    size={"xl"}
+						size={"xl"}
 						className="px-20"
 						type="submit"
 						disabled={loading}

@@ -20,7 +20,6 @@ export default function LoginPage({
 		<div className="relative flex min-h-screen flex-col justify-center overflow-x-hidden bg-background text-foreground">
 			<div>{children}</div>
 
-
 			<div className="hidden overflow-y-hidden lg:block">
 				<EarningCards />
 				<JobStateCard />
