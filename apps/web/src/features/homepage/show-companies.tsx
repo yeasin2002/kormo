@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { buttonVariants } from "@/components/retroui";
 import { CompanyCardMini } from "@/components/shared";
 import { db } from "@/db";
 import { companies } from "@/db/schema/companies";
-import Link from "next/link";
 
 export const ShowCompanies = async () => {
 	const companiesData = await db.select().from(companies).limit(6);

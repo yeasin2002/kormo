@@ -1,8 +1,8 @@
-import imgNotFound from "@/assets/avatar-not-found.png";
-import { Badge } from "@/components/retroui";
 import type { User } from "better-auth";
 import { Calendar, DollarSign, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
+import imgNotFound from "@/assets/avatar-not-found.png";
+import { Badge } from "@/components/retroui";
 
 const userData = {
 	phone: "+1 (555) 123-4567",

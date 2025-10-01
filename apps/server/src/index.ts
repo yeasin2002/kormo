@@ -1,6 +1,5 @@
 import "dotenv/config";
 
-import { errorHandler, requestLogger } from "@/middleware";
 import { OpenAPIHandler } from "@orpc/openapi/node";
 import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
 import { onError } from "@orpc/server";
@@ -10,6 +9,7 @@ import { toNodeHandler } from "better-auth/node";
 import chalk from "chalk";
 import cors from "cors";
 import express from "express";
+import { errorHandler, requestLogger } from "@/middleware";
 import { auth } from "./lib/auth";
 import { createContext } from "./lib/context";
 import { appRouter } from "./routers";
@@ -17,9 +17,13 @@ import { PORT } from "./utils";
 
 const app = express();
 app.use((_req, _res, next) => {
-	console.log(chalk.bgRed("========================================================================================"))
-	next()
-})
+	console.log(
+		chalk.bgRed(
+			"========================================================================================",
+		),
+	);
+	next();
+});
 app.use(requestLogger);
 
 app.use(

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import premiumIcon from "@/assets/premium-icon.png";
 import {
 	DropdownMenu,
@@ -7,8 +9,6 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Image from "next/image";
-import Link from "next/link";
 
 interface Props {
 	name: string;
