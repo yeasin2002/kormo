@@ -19,7 +19,7 @@ export const Newsletter = () => {
 				<Input
 					type="email"
 					placeholder="Enter your email"
-					className="flex-1 rounded-lg border-2 border-black bg-white px-4 py-3 text-black placeholder:text-gray-500 focus:ring-2 focus:ring-black"
+					className="flex-1 rounded-lg border-2 border-black bg-white px-4 py-3 text-black focus:ring-2 focus:ring-black"
 				/>
 				<Button className="flex items-center space-x-2 rounded-lg border-2 border-black bg-black px-6 py-3 font-semibold text-white hover:bg-gray-800">
 					<span>Subscribe</span>
