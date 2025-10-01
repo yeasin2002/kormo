@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import premiumIcon from "@/assets/premium-icon.png";
 import {
 	DropdownMenu,
@@ -9,6 +7,8 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
 	name: string;
@@ -23,14 +23,20 @@ export function NavItems({ items, name }: Props) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button className="group cursor-pointer font-bold font-sans outline-none focus:outline-none">
+				<button
+					className="group cursor-pointer font-bold font-sans outline-none focus:outline-none"
+					type="button"
+				>
 					{name}
 					<span className="block h-[0.20rem] w-0 bg-primary transition-all group-hover:w-full" />
 				</button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
-				{items.map((item, index) => (
-					<DropdownMenuItem key={index} className="cursor-pointer">
+				{items.map((item) => (
+					<DropdownMenuItem
+						key={item.href + item.name}
+						className="cursor-pointer"
+					>
 						<Link href={{ pathname: item.href }}>{item.name}</Link>
 
 						{item.isPro && (

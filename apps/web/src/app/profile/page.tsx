@@ -1,4 +1,5 @@
-import { headers } from "next/headers";
+"use client";
+
 import {
 	JobStateAndSkills,
 	ProfileCompletion,
@@ -9,10 +10,21 @@ import {
 	RecentActivity,
 	SavedJobs,
 } from "@/features/profile";
-import { auth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
+
+const User = {
+    id: "Yeasin", 
+    createdAt: new Date(), 
+    updatedAt: new Date(), 
+    email: "mdzZ7@example.com", 
+    emailVerified: true, 
+    name: "Yeasin", 
+    image: ""
+}
+
 
 export default async function ProfilePage() {
-	const session = await auth.api.getSession({ headers: await headers() });
+	const session = await authClient.getSession();
 	if (!session) return null;
 	return (
 		<div>
@@ -26,7 +38,8 @@ export default async function ProfilePage() {
 
 						<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 							<div className="space-y-6 lg:col-span-1">
-								<ProfileDetails user={session.user} />
+
+					<ProfileDetails user={User } />
 								<ProfileCompletion />
 								<QuickActions />
 							</div>

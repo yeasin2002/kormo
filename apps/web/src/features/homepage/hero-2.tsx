@@ -1,14 +1,17 @@
-import { BriefcaseBusiness, FileText, PackageOpen } from "lucide-react";
-import { headers } from "next/headers";
-import Link from "next/link";
+"use client";
+
 import { Badge, buttonVariants } from "@/components/retroui";
 import { SparklesStars } from "@/components/shared";
-import { auth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
+import { BriefcaseBusiness, FileText, PackageOpen } from "lucide-react";
+import Link from "next/link";
 import { HeroFeatureCard } from "./hero-feature-card";
 
+
+
 export const Hero2 = async () => {
-	const session = await auth.api.getSession({ headers: await headers() });
+	const session = await authClient.getSession();
 	console.log(session);
 
 	return (
@@ -40,7 +43,7 @@ export const Hero2 = async () => {
 					</p>
 
 					<div className="mb-20 flex flex-col justify-center gap-4 sm:flex-row">
-						{!session?.session && (
+						{!session?.data?.session && (
 							<Link
 								href={"/register"}
 								className={cn(
