@@ -148,7 +148,7 @@ importers:
         specifier: ^1.9.0
         version: 1.9.2(@opentelemetry/api@1.9.0)
       '@orpc/openapi':
-        specifier: ^1.9.0
+        specifier: ^1.9.2
         version: 1.9.2(@opentelemetry/api@1.9.0)(ws@8.18.3)
       '@orpc/server':
         specifier: ^1.9.0
@@ -162,6 +162,9 @@ importers:
       '@polar-sh/sdk':
         specifier: ^0.34.17
         version: 0.34.17
+      '@scalar/express-api-reference':
+        specifier: ^0.8.19
+        version: 0.8.19
       '@types/morgan':
         specifier: ^1.9.10
         version: 1.9.10
@@ -2876,6 +2879,22 @@ packages:
 
   '@rushstack/eslint-patch@1.12.0':
     resolution: {integrity: sha512-5EwMtOqvJMMa3HbmxLlF74e+3/HhwBTMcvt3nqVJgGCozO6hzIPOBlwm8mGVNR9SN2IJpxSnlxczyDjcn7qIyw==}
+
+  '@scalar/core@0.3.17':
+    resolution: {integrity: sha512-G6tP+2oorFA90szI8DGiEQ23SmobiuhN93GfTJNpFMhz/kdEtC4lcYawAxL1tWkZhlK/QYRcaCZcVzmpTUgBCA==}
+    engines: {node: '>=20'}
+
+  '@scalar/express-api-reference@0.8.19':
+    resolution: {integrity: sha512-mzzQATXeJw+OvymyrTVTrMtu4RRQcf7s/TnhYOvji7H3UDgTwH69Md52RB3hZA+xOycMznU3tfwYgo0Mh+xXFw==}
+    engines: {node: '>=20'}
+
+  '@scalar/openapi-types@0.3.7':
+    resolution: {integrity: sha512-QHSvHBVDze3+dUwAhIGq6l1iOev4jdoqdBK7QpfeN1Q4h+6qpVEw3EEqBiH0AXUSh/iWwObBv4uMgfIx0aNZ5g==}
+    engines: {node: '>=20'}
+
+  '@scalar/types@0.2.16':
+    resolution: {integrity: sha512-XWff9jWfYaj6q3ww94x66S6Q58u/3kA1sDOUhLAwb9va7r58bzk3NRwLOkEEdJmyEns1MEJAM53mY8KRWX6elA==}
+    engines: {node: '>=20'}
 
   '@simplewebauthn/browser@13.2.0':
     resolution: {integrity: sha512-N3fuA1AAnTo5gCStYoIoiasPccC+xPLx2YU88Dv0GeAmPQTWHETlZQq5xZ0DgUq1H9loXMWQH5qqUjcI7BHJ1A==}
@@ -6119,6 +6138,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@5.1.5:
+    resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+
   nanostores@1.0.1:
     resolution: {integrity: sha512-kNZ9xnoJYKg/AfxjrVL4SS0fKX++4awQReGqWnwTRHxeHGZ1FJFVgTqr/eMrNQdp0Tz7M7tG/TDaX8QfHDwVCw==}
     engines: {node: ^20.0.0 || >=22.0.0}
@@ -7851,6 +7875,9 @@ packages:
     resolution: {integrity: sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==}
     peerDependencies:
       zod: ^3.24.1
+
+  zod@3.24.1:
+    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
@@ -11327,6 +11354,24 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.12.0': {}
+
+  '@scalar/core@0.3.17':
+    dependencies:
+      '@scalar/types': 0.2.16
+
+  '@scalar/express-api-reference@0.8.19':
+    dependencies:
+      '@scalar/core': 0.3.17
+
+  '@scalar/openapi-types@0.3.7':
+    dependencies:
+      zod: 3.24.1
+
+  '@scalar/types@0.2.16':
+    dependencies:
+      '@scalar/openapi-types': 0.3.7
+      nanoid: 5.1.5
+      zod: 3.24.1
 
   '@simplewebauthn/browser@13.2.0': {}
 
@@ -15189,6 +15234,8 @@ snapshots:
 
   nanoid@3.3.11: {}
 
+  nanoid@5.1.5: {}
+
   nanostores@1.0.1: {}
 
   napi-postinstall@0.3.3: {}
@@ -17254,6 +17301,8 @@ snapshots:
   zod-to-json-schema@3.24.6(zod@3.25.76):
     dependencies:
       zod: 3.25.76
+
+  zod@3.24.1: {}
 
   zod@3.25.76: {}
 

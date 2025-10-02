@@ -1,15 +1,16 @@
 import "dotenv/config";
 
+import { errorHandler, requestLogger } from "@/middleware";
 import { OpenAPIHandler } from "@orpc/openapi/node";
 import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
 import { onError } from "@orpc/server";
 import { RPCHandler } from "@orpc/server/node";
 import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
+import { apiReference } from "@scalar/express-api-reference";
 import { toNodeHandler } from "better-auth/node";
 import chalk from "chalk";
 import cors from "cors";
 import express from "express";
-import { errorHandler, requestLogger } from "@/middleware";
 import { auth } from "./lib/auth";
 import { createContext } from "./lib/context";
 import { appRouter } from "./routers";
@@ -34,8 +35,21 @@ app.use(
 		credentials: true,
 	}),
 );
+app.get(
+	"/docs",
+	apiReference({
+		pageTitle: "API Documentation",
+		theme: "deepSpace",
+		sources: [
+			{ title: "oRPC", url: "../public/openapi.json" },
+			{ url: "/api/auth/open-api/generate-schema", title: "Auth" },
+		],
+	}),
+);
 
 app.all("/api/auth{/*path}", toNodeHandler(auth));
+
+
 
 const rpcHandler = new RPCHandler(appRouter, {
 	interceptors: [

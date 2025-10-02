@@ -1,0 +1,59 @@
+{
+  "info": {
+    "title": "promptsu API",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "description": "oRPC",
+      "url": "http://localhost:3000/rpc"
+    }
+  ],
+  "openapi": "3.1.1",
+  "paths": {
+    "/healthCheck": {
+      "post": {
+        "operationId": "healthCheck",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {},
+                    {
+                      "not": {}
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/privateData": {
+      "post": {
+        "operationId": "privateData",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {},
+                    {
+                      "not": {}
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
