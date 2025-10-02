@@ -12,12 +12,11 @@ import chalk from "chalk";
 import type { NextFunction } from "express";
 import { appRouter } from ".";
 
-/* oRTC Start */
 const rpcHandler = new RPCHandler(appRouter, {
   interceptors: [
     onError((error) => {
       console.log(
-        chalk.bgYellow.white(
+        chalk.bgRed.white(
           "------------------------------RPC Error------------------------------"
         )
       );
@@ -39,7 +38,7 @@ const apiHandler = new OpenAPIHandler(appRouter, {
   ],
 });
 
-/* oRTC Start */
+
 
 export const orpcInit = async (
   req: NodeHttpRequest,
