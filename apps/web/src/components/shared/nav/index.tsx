@@ -8,6 +8,7 @@ import {
 	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { productListMenu } from "./menu.data";
 
 export const Nav = () => {
 	return (
@@ -32,61 +33,44 @@ export const Nav = () => {
 										Products
 									</NavigationMenuTrigger>
 									<NavigationMenuContent>
-										<ul className="grid w-[300px] gap-2 p-4">
-											<li>
-												<NavigationMenuLink asChild>
-													<Link
-														href="/products/analytics"
-														className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-													>
-														<div className="font-medium text-sm leading-none">
-															Analytics
-														</div>
-														<p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-															Advanced analytics and reporting tools.
-														</p>
-													</Link>
-												</NavigationMenuLink>
-											</li>
-											<li>
-												<NavigationMenuLink asChild>
-													<Link
-														href="/products/dashboard"
-														className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-													>
-														<div className="font-medium text-sm leading-none">
-															Dashboard
-														</div>
-														<p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-															Comprehensive dashboard for all your needs.
-														</p>
-													</Link>
-												</NavigationMenuLink>
-											</li>
+										<ul className="grid w-[300px] gap-2">
+											{productListMenu.map((item) => {
+												return (
+													<NavigationMenuLink asChild key={item.name}>
+														<Link
+															href={item.href}
+															className="block select-none space-y-1 rounded-md leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+														>
+															<div className="font-medium text-sm leading-none">
+																{item.name}
+															</div>
+															<p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
+																{item?.description}
+															</p>
+														</Link>
+													</NavigationMenuLink>
+												);
+											})}
 										</ul>
 									</NavigationMenuContent>
 								</NavigationMenuItem>
-								<NavigationMenuItem>
-									<NavigationMenuLink
-										asChild
-										className={
-											navigationMenuTriggerStyle() +
-											"h-auto bg-transparent p-0 font-medium font-sans text-[rgba(49,45,43,0.80)] text-xs leading-[14px] hover:bg-transparent focus:bg-transparent md:text-[13px]"
-										}
+
+								<NavigationMenuItem asChild>
+									<Link
+										href={"/tools/ats-checker"}
+										className="h-auto bg-transparent p-0 font-medium font-sans text-[rgba(49,45,43,0.80)] text-xs leading-[14px] hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent md:text-[13px]"
 									>
-										<Link href="/pricing">Pricing</Link>
-									</NavigationMenuLink>
+										BD Tech Companies
+									</Link>
 								</NavigationMenuItem>
+
 								<NavigationMenuItem>
-									<NavigationMenuLink
-										asChild
-										className={
-											navigationMenuTriggerStyle() +
-											"h-auto bg-transparent p-0 font-medium font-sans text-[rgba(49,45,43,0.80)] text-xs leading-[14px] hover:bg-transparent focus:bg-transparent md:text-[13px]"
-										}
+									<Link
+										href="/pricing"
+										className="h-auto bg-transparent p-0 font-medium font-sans text-[rgba(49,45,43,0.80)] text-xs leading-[14px] hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent md:text-[13px]"
 									>
-										<Link href="/docs">Docs</Link>
-									</NavigationMenuLink>
+										Pricing
+									</Link>
 								</NavigationMenuItem>
 							</NavigationMenuList>
 						</NavigationMenu>

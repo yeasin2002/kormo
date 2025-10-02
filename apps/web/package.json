@@ -4,8 +4,8 @@
 	"private": true,
 	"homepage": "https://kormo-setu.vercel.app",
 	"scripts": {
-		"dev": "next dev --port 3001",
-		"dev:t": "next dev --turbopack",
+		"dev": "next dev --turbopack --port 3001",
+		"dev:o": "next dev --port 3001",
 		"build": "next build",
 		"start": "next start --port 3001",
 		"lint": "next lint",

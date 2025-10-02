@@ -13,10 +13,17 @@ export const menuListForResource = [
 	},
 ];
 
-export const menuListForTools = [
+export const productListMenu = [
 	{
 		name: "AI cover letter generator",
 		href: "/tools/ai-cover-letter",
 		isPro: true,
+		description: "Generate a cover letter for your job application.",
+	},
+	{
+		name: "Resume ATS Checker",
+		href: "/tools/ats-checker",
+		isPro: true,
+		description: "Check your resume for ATS compatibility.",
 	},
 ];
