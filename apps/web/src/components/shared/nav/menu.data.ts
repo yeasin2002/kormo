@@ -12,11 +12,11 @@ export const menuListForResource = [
 		href: "#",
 	},
 ];
+
 export const menuListForTools = [
 	{
 		name: "AI cover letter generator",
 		href: "/tools/ai-cover-letter",
 		isPro: true,
 	},
-	// { name: 'Image To Text', href: '/tools/image-to-text', isPro: true },
 ];

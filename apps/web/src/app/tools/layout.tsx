@@ -1,12 +1,12 @@
 import type React from "react";
-import { NavBar } from "@/components/shared";
+import { Nav } from "@/components/shared/nav";
 
 const ToolsLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div>
-			<NavBar />
+		<main className="mt-20">
+			<Nav />
 			{children}
-		</div>
+		</main>
 	);
 };
 
