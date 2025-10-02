@@ -11,6 +11,70 @@
   ],
   "openapi": "3.1.1",
   "paths": {
+    "/generateCoverLetter": {
+      "post": {
+        "operationId": "generateCoverLetter",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cvText": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "jobTitle": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "jobDescription": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "yourName": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "additionalInstructions": {
+                    "type": "string"
+                  },
+                  "coverLetterTone": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "cvText",
+                  "jobTitle",
+                  "jobDescription",
+                  "yourName",
+                  "coverLetterTone"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {},
+                    {
+                      "not": {}
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/healthCheck": {
       "post": {
         "operationId": "healthCheck",
