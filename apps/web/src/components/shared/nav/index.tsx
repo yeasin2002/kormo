@@ -5,7 +5,6 @@ import {
 	NavigationMenuLink,
 	NavigationMenuList,
 	NavigationMenuTrigger,
-	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { productListMenu } from "./menu.data";
@@ -57,7 +56,7 @@ export const Nav = () => {
 
 								<NavigationMenuItem asChild>
 									<Link
-										href={"/tools/ats-checker"}
+										href={"/bd-tech-companies"}
 										className="h-auto bg-transparent p-0 font-medium font-sans text-[rgba(49,45,43,0.80)] text-xs leading-[14px] hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent md:text-[13px]"
 									>
 										BD Tech Companies

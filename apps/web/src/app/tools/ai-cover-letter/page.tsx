@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import toast from "react-hot-toast";
 import {
 	AiCoverLetterMainResponse,
 	type aiCoverLetterSchemaValues,
@@ -11,6 +9,8 @@ import {
 } from "@/features/ai-cover-letter";
 import { AiCoverMainForm } from "@/features/ai-cover-letter/ai-cover-main-form";
 import { AiCoverLetterResponse } from "@/features/ai-cover-letter/helper/ai-cover-letter-response";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function CoverLetterGenerator() {
 	const [isNext, setIsNext] = useState(false);
@@ -40,28 +40,26 @@ export default function CoverLetterGenerator() {
 	};
 
 	return (
-		<>
-			<div className="relative min-h-screen overflow-hidden bg-background text-foreground">
-				<DecorativeElements />
+		<div className="relative min-h-screen overflow-hidden bg-background text-foreground">
+			<DecorativeElements />
 
-				<main className="container mx-auto px-6 py-12">
-					<div className="mx-auto max-w-7xl">
-						<CoverLetterHeading />
+			<main className="container mx-auto px-6 py-12">
+				<div className="mx-auto max-w-7xl">
+					<CoverLetterHeading />
 
-						<div className="rounded-3xl border-4 border-border bg-card p-8 shadow-xl">
-							{isNext ? (
-								<AiCoverLetterMainResponse
-									isCoverLetterGenerating={isCoverLetterGenerating}
-									finalCoverLetterContent={finalCoverLetterContent}
-								/>
-							) : (
-								<AiCoverMainForm onSubmitComplete={onSubmitComplete} />
-							)}
-							{isNext || <CoverLetterFeatures />}
-						</div>
+					<div className="rounded-3xl border-4 border-border bg-card p-8 shadow-xl">
+						{isNext ? (
+							<AiCoverLetterMainResponse
+								isCoverLetterGenerating={isCoverLetterGenerating}
+								finalCoverLetterContent={finalCoverLetterContent}
+							/>
+						) : (
+							<AiCoverMainForm onSubmitComplete={onSubmitComplete} />
+						)}
+						{isNext || <CoverLetterFeatures />}
 					</div>
-				</main>
-			</div>
-		</>
+				</div>
+			</main>
+		</div>
 	);
 }
