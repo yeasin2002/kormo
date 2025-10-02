@@ -1,5 +1,6 @@
 "use client";
 
+import { Nav } from "@/components/shared";
 import {
 	CompanyLogos,
 	EarningCards,
@@ -18,6 +19,7 @@ export default function LoginPage({
 }>) {
 	return (
 		<div className="relative flex min-h-screen flex-col justify-center overflow-x-hidden bg-background text-foreground">
+			<Nav />
 			<div>{children}</div>
 
 			<div className="hidden overflow-y-hidden lg:block">
