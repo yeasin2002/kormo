@@ -23,12 +23,11 @@ const app = express();
 
 app.use(requestLogger);
 app.use(express.static(path.join(process.cwd(), "public")));
-
-
+app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || "",
+    origin: ["http://localhost:3001"],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -50,8 +49,6 @@ app.get(
 app.all("/api/auth{/*path}", toNodeHandler(auth));
 
 app.use(orpcInit);
-
-app.use(express.json());
 
 app.get("/", (_req, res) => {
   res.status(200).send({

@@ -40,7 +40,7 @@ export const generateCoverLetterWithOrpc = publicProcedure
     Do not include any HTML or markdown formatting. The response should be concise and to the point.`;
 
       const result = await generateText({
-        model: google("gemini-2.0-flash"),
+        model: google("gemini-2.5-flash"),
         prompt: prompt,
       });
 
