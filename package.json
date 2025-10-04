@@ -7,22 +7,22 @@
 		"packages/*"
 	],
 	"scripts": {
-		"check": "oxlint",
-		"prepare": "husky",
-		"ruler:apply": "pnpm dlx @intellectronica/ruler@latest apply --local-only",
-		"dev": "turbo dev",
+		"dev": "turbo dev -F web -F server",
 		"build": "turbo build",
 		"build:web": "turbo build -F web",
 		"build:server": "turbo build -F server",
-		"check-types": "turbo check-types",
 		"dev:native": "turbo -F native dev",
 		"dev:web": "turbo -F web dev",
 		"dev:server": "turbo -F server dev",
-		"format": "pnpm exec biome check --write",
 		"db:push": "turbo -F server db:push",
 		"db:studio": "turbo -F server db:studio",
 		"db:generate": "turbo -F server db:generate",
-		"db:migrate": "turbo -F server db:migrate"
+		"db:migrate": "turbo -F server db:migrate",
+		"check": "oxlint",
+		"prepare": "husky",
+		"ruler:apply": "pnpm dlx @intellectronica/ruler@latest apply --local-only",
+		"check-types": "turbo check-types",
+		"format": "pnpm exec biome check --write"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.0",

@@ -1,25 +1,17 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Suitcase } from "iconoir-react";
-import { AlertCircleIcon, Mail, Sparkles, User } from "lucide-react";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import {
-	ComboSelect,
-	InputCombo,
-	LoaderDots,
-	TextareaCombo,
-} from "@/components/custom-ui";
+import { LoaderDots, TextareaCombo } from "@/components/custom-ui";
 import DocUpload from "@/components/custom-ui/doc-upload";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { writingTones } from "@/data/writing-tone.data";
 import {
 	aiCoverLetterSchema,
 	type aiCoverLetterSchemaValues,
 } from "@/features/ai-cover-letter";
 import { useFileUpload } from "@/hooks/use-file-upload";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Sparkles } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { extractTextFromPdf } from "./helper/pdf-to-text";
 
 const maxSizeMB = 5;
@@ -39,9 +31,7 @@ export const AiCoverMainForm = ({ onSubmitComplete }: Props) => {
 	const {
 		register,
 		handleSubmit,
-		control,
 		setValue,
-
 		formState: { errors, isSubmitting },
 	} = useForm<aiCoverLetterSchemaValues>({
 		resolver: zodResolver(aiCoverLetterSchema),
@@ -84,7 +74,7 @@ export const AiCoverMainForm = ({ onSubmitComplete }: Props) => {
 			/>
 
 			<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-				<InputCombo
+				{/* <InputCombo
 					id="email"
 					type="email"
 					label="Email Address"
@@ -92,20 +82,20 @@ export const AiCoverMainForm = ({ onSubmitComplete }: Props) => {
 					icon={Mail}
 					error={errors.jobTitle}
 					registration={register("jobTitle")}
-				/>
+				/> */}
 
-				<InputCombo
+				{/* <InputCombo
 					id="yourName"
 					label="Your Name"
 					placeholder="John Doe"
 					icon={User}
 					error={errors.yourName}
 					registration={register("yourName")}
-				/>
+				/> */}
 			</div>
 
 			<div className="flex items-center gap-4">
-				<InputCombo
+				{/* <InputCombo
 					id="jobTitle"
 					label="Job Title"
 					placeholder="Enter the job title here..."
@@ -113,9 +103,9 @@ export const AiCoverMainForm = ({ onSubmitComplete }: Props) => {
 					error={errors.jobTitle}
 					registration={register("jobTitle")}
 					wrapperClassName="w-full"
-				/>
+				/> */}
 
-				<div>
+				{/* <div>
 					<Label htmlFor="tone" className="font-bold text-foreground text-sm">
 						Cover Letter Tone
 					</Label>
@@ -141,7 +131,7 @@ export const AiCoverMainForm = ({ onSubmitComplete }: Props) => {
 							<span>{errors.coverLetterTone.message}</span>
 						</div>
 					)}
-				</div>
+				</div> */}
 			</div>
 
 			<TextareaCombo
