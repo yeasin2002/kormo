@@ -1,8 +1,5 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
-import Link from "next/link";
-import { useEffect } from "react";
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -11,26 +8,10 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { client, orpc } from "@/utils/orpc";
+import Link from "next/link";
 import { productListMenu } from "./menu.data";
 
 export const Nav = () => {
-	const { mutateAsync } = useMutation({
-		mutationFn: () =>
-			orpc.healthCheck.infiniteOptions({
-				queryKey: ["health-check"],
-				input: {},
-			}),
-	});
-	useEffect(() => {
-		const handle = async () => {
-			console.log("Calling Check ");
-			const data = await mutateAsync();
-			console.log("helth check : ", data);
-		};
-		handle();
-	}, [mutateAsync]);
-
 	return (
 		<div className="absolute top-0 left-0 z-20 flex h-12 w-full items-center justify-center px-6 sm:h-14 sm:px-8 md:h-16 md:px-12 lg:h-[84px] lg:px-0">
 			<div className="absolute top-6 left-0 h-0 w-full border-[rgba(55,50,47,0.12)] border-t shadow-[0px_1px_0px_white] sm:top-7 md:top-8 lg:top-[42px]" />

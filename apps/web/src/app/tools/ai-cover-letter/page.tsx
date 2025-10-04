@@ -9,16 +9,33 @@ import {
 	DecorativeElements,
 } from "@/features/ai-cover-letter";
 import { AiCoverMainForm } from "@/features/ai-cover-letter/ai-cover-main-form";
-import { client } from "@/utils/orpc";
 import { useState } from "react";
 import toast from "react-hot-toast";
 // import {useQerry} from '@orpc/tanstack-query'
-// import { useMutation } from "@tanstack/react-query";
+// import { axiosInstance } from "@/lib/axios-instance";
+import { useMutation } from "@tanstack/react-query";
 
 export default function CoverLetterGenerator() {
 	const [isNext, _setIsNext] = useState(false);
 	const [isCoverLetterGenerating, setIsCoverLetterGenerating] = useState(false);
-	const [finalCoverLetterContent, setFinalCoverLetterContent] = useState("");
+	// const [finalCoverLetterContent, setFinalCoverLetterContent] = useState("");
+
+	const { mutateAsync } = useMutation({
+		mutationFn: (body: {
+			cvText: string;
+			jobDescription: string;
+			additionalInstructions?: string;
+		}) => {
+			return fetch(
+				`${process.env.NEXT_PUBLIC_SERVER_URL}/api/tools/ai-cover-letter-generate`,
+				{
+					method: "POST",
+					body: JSON.stringify(body),
+					headers: { "Content-Type": "application/json" },
+				},
+			);
+		},
+	});
 
 	// const { mutateAsync: generateCoverLetterMutation } = useMutation({
 	// 		mutationFn: () => client.generateCoverLetter(),
@@ -46,23 +63,30 @@ export default function CoverLetterGenerator() {
 			//   },
 			// });
 
-			const finalResponse = await client.generateCoverLetter({
-				input: {
-					cvText,
-					jobDescription: data.jobDescription,
-					additionalInstructions: data.additionalInstructions,
-				},
+			// const finalResponse = await client.generateCoverLetter({
+			// 	input: {
+			// 		cvText,
+			// 		jobDescription: data.jobDescription,
+			// 		additionalInstructions: data.additionalInstructions,
+			// 	},
+			// });
+
+			const finalResponse = await mutateAsync({
+				cvText,
+				jobDescription: data.jobDescription,
+				additionalInstructions: data.additionalInstructions,
 			});
+			console.log("🚀 ~ onSubmitComplete ~ finalResponse:", finalResponse);
 
-			if (finalResponse.error) {
-				toast.error(`Server: ${finalResponse.error}`);
-				return;
-			}
-			toast.success("Cover letter generated");
-			console.log("cover letter text:", finalResponse.data);
+			// if (finalResponse.error) {
+			// 	toast.error(`Server: ${finalResponse.error}`);
+			// 	return;
+			// }
+			// toast.success("Cover letter generated");
+			// console.log("cover letter text:", finalResponse.data);
 
-			// update UI with generated content
-			setFinalCoverLetterContent(finalResponse.data ?? "");
+			// // update UI with generated content
+			// setFinalCoverLetterContent(finalResponse.data ?? "");
 		} catch (error) {
 			console.error(error);
 			toast.error("Failed to generate cover letter. Please try again later.");
@@ -83,7 +107,7 @@ export default function CoverLetterGenerator() {
 						{isNext ? (
 							<AiCoverLetterMainResponse
 								isCoverLetterGenerating={isCoverLetterGenerating}
-								finalCoverLetterContent={finalCoverLetterContent}
+								finalCoverLetterContent={""}
 							/>
 						) : (
 							<AiCoverMainForm onSubmitComplete={onSubmitComplete} />

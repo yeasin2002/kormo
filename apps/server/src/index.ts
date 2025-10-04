@@ -1,14 +1,14 @@
 import "dotenv/config";
 
-import path from "node:path";
+import { errorHandler, requestLogger } from "@/middleware";
 import { apiReference } from "@scalar/express-api-reference";
 import { toNodeHandler } from "better-auth/node";
 import cors from "cors";
 import express from "express";
-import { errorHandler, requestLogger } from "@/middleware";
+import path from "node:path";
 import { auth } from "./lib/auth";
 import { toolsRouter } from "./routers/tools.routers";
-import { orpcInit } from "./routers-orpc/orpc-init";
+// import { orpcInit } from "./routers-orpc/orpc-init";
 import { PORT } from "./utils";
 
 const app = express();
@@ -16,6 +16,8 @@ const app = express();
 app.use(requestLogger);
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use(
 	cors({
@@ -39,12 +41,10 @@ app.get(
 );
 
 app.all("/api/auth{/*path}", toNodeHandler(auth));
-
-app.use(orpcInit);
 app.use("/api/tools", toolsRouter);
 
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
+	console.log(`🔥 Server is running on port ${PORT}`);
 });

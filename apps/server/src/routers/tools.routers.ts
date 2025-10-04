@@ -1,22 +1,26 @@
 import { google } from "@ai-sdk/google";
 import { generateObject } from "ai";
+import chalk from "chalk";
 import express from "express";
 import { z } from "zod";
 
 const tools = express();
 
+
+
 tools.use("/ai-cover-letter-generate", async (req, res) => {
 	try {
-		const { jobDescription, additionalInstructions, cvText } = req.body;
+		console.log(chalk.bgRed("body:"), req.body);
+		// const { jobDescription, additionalInstructions, cvText } = req.body;
 
 		const prompt = `Write a professional cover letter with the following details:
-Job Description: ${jobDescription}
-CV Content: ${cvText}
-Additional Instructions: ${additionalInstructions || "None"}
+							Job Description: ${req.body.jobDescription}
+							CV Content: ${req.body.cvText}
+							Additional Instructions: ${req.body.additionalInstructions || "None"}
 
-The cover letter should be professional, engaging, and highlight relevant experience from the CV.
-Give me a response in plain text only with proper formatting for a cover letter.
-Do not include any HTML or markdown formatting. The response should be concise and to the point.`;
+							The cover letter should be professional, engaging, and highlight relevant experience from the CV.
+							Give me a response in plain text only with proper formatting for a cover letter.
+							Do not include any HTML or markdown formatting. The response should be concise and to the point.`;
 
 		const result = await generateObject({
 			model: google("gemini-2.5-flash"),
