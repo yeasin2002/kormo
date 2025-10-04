@@ -1,5 +1,9 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Sparkles } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { LoaderDots, TextareaCombo } from "@/components/custom-ui";
 import DocUpload from "@/components/custom-ui/doc-upload";
 import { Button } from "@/components/ui/button";
@@ -8,10 +12,6 @@ import {
 	type aiCoverLetterSchemaValues,
 } from "@/features/ai-cover-letter";
 import { useFileUpload } from "@/hooks/use-file-upload";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Sparkles } from "lucide-react";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { extractTextFromPdf } from "./helper/pdf-to-text";
 
 const maxSizeMB = 5;

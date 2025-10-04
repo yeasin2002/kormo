@@ -1,7 +1,8 @@
 // scripts/gen-openapi.ts
+
+import fs from "node:fs";
 import { OpenAPIGenerator } from "@orpc/openapi";
 import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
-import fs from "node:fs";
 import { appRouter } from "../src/routers";
 
 async function main() {
