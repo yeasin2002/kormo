@@ -9,10 +9,10 @@ import {
 	DecorativeElements,
 } from "@/features/ai-cover-letter";
 import { AiCoverMainForm } from "@/features/ai-cover-letter/ai-cover-main-form";
-import { client } from "@/utils/orpc";
+import { orpc } from "@/utils/orpc";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
-// import {useQerry} from '@orpc/tanstack-query'
 // import { useMutation } from "@tanstack/react-query";
 
 export default function CoverLetterGenerator() {
@@ -20,10 +20,22 @@ export default function CoverLetterGenerator() {
 	const [isCoverLetterGenerating, setIsCoverLetterGenerating] = useState(false);
 	const [finalCoverLetterContent, setFinalCoverLetterContent] = useState("");
 
-	// const { mutateAsync: generateCoverLetterMutation } = useMutation({
-	// 		mutationFn: () => client.generateCoverLetter(),
-	// 	});
-	// const { mutateAsync: generateCoverLetterMutation } =client.generateCoverLetter();
+	type Overwrite<T, U> = Omit<T, keyof U> & U;
+	type aiCoverLetterStringValues = Overwrite<
+		aiCoverLetterSchemaValues,
+		{ cv: string }
+	>;
+
+	const { mutateAsync: generateCoverLetterMutation } = useMutation({
+		mutationFn: (input: aiCoverLetterStringValues) =>
+			orpc.generateCoverLetter.mutationOptions({
+				input: {
+					cvText: input.cv,
+					jobDescription: input.jobDescription,
+					additionalInstructions: input.additionalInstructions,
+				},
+			}),
+	});
 
 	const onSubmitComplete = async ({
 		data,
@@ -35,39 +47,26 @@ export default function CoverLetterGenerator() {
 		try {
 			setIsCoverLetterGenerating(true);
 			//   setIsNext(true);
-			// const finalResponse = await generateCoverLetterMutation({
-			//   input: {
-			//     cvText,
-			//     jobTitle: data.jobTitle,
-			//     jobDescription: data.jobDescription,
-			//     yourName: data.yourName,
-			//     coverLetterTone: data.coverLetterTone,
-			//     additionalInstructions: data.additionalInstructions,
-			//   },
-			// });
 
-			const finalResponse = await client.generateCoverLetter({
-				input: {
-					cvText,
-					jobDescription: data.jobDescription,
-					additionalInstructions: data.additionalInstructions,
-				},
+			const finalResponse = await generateCoverLetterMutation({
+				cv: cvText,
+				jobDescription: data.jobDescription,
+				additionalInstructions: data.additionalInstructions,
 			});
+			console.log("🚀 ~ finalResponse:", finalResponse);
 
-			if (finalResponse.error) {
-				toast.error(`Server: ${finalResponse.error}`);
-				return;
-			}
-			toast.success("Cover letter generated");
-			console.log("cover letter text:", finalResponse.data);
+			// if (finalResponse.error) {
+			// 	toast.error(`Server: ${finalResponse.error}`);
+			// 	return;
+			// }
+			// toast.success("Cover letter generated");
+			// console.log("cover letter text:", finalResponse.data);
 
 			// update UI with generated content
-			setFinalCoverLetterContent(finalResponse.data ?? "");
+			// setFinalCoverLetterContent(finalResponse.data ?? "");
 		} catch (error) {
 			console.error(error);
 			toast.error("Failed to generate cover letter. Please try again later.");
-		} finally {
-			setIsCoverLetterGenerating(false);
 		}
 	};
 
