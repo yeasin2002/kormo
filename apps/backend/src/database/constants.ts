@@ -1,3 +1,3 @@
 export const DBS = {
-	PRIMARY: 'primary',
+  PRIMARY: 'primary',
 } as const;
