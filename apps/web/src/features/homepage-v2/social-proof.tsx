@@ -1,10 +1,12 @@
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: <> */
 import { Badge } from "@/components/shared/badge";
+import Image from "next/image";
 
 export const SocialProof = () => {
 	return (
 		<div className="flex w-full flex-col items-center justify-center border-[rgba(55,50,47,0.12)] border-b">
 			<div className="flex items-center justify-center gap-6 self-stretch border-[rgba(55,50,47,0.12)] border-b px-4 py-8 sm:px-6 sm:py-12 md:px-24 md:py-16">
-				<div className="flex w-full max-w-[586px] flex-col items-center justify-start gap-3 overflow-hidden rounded-lg px-4 py-4 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] sm:gap-4 sm:px-6 sm:py-5">
+				<div className="flex w-full max-w-[586px] flex-col items-center justify-start gap-3 overflow-hidden rounded-lg px-4 py-4  sm:gap-4 sm:px-6 sm:py-5">
 					<Badge
 						icon={
 							<svg
@@ -66,7 +68,7 @@ export const SocialProof = () => {
 						{Array.from({ length: 50 }).map((_, i) => (
 							<div
 								key={i}
-								className="h-3 origin-top-left rotate-[-45deg] self-stretch outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px] sm:h-4"
+								className="h-3 origin-top-left rotate-[-45deg] self-stretch outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px] sm:h-4"
 							/>
 						))}
 					</div>
@@ -76,10 +78,8 @@ export const SocialProof = () => {
 					{/* Logo Grid - Responsive grid */}
 					{Array.from({ length: 8 }).map((_, index) => {
 						const isMobileFirstColumn = index % 2 === 0;
-						const isMobileLastColumn = index % 2 === 1;
 						const isDesktopFirstColumn = index % 4 === 0;
 						const isDesktopLastColumn = index % 4 === 3;
-						const isMobileBottomRow = index >= 6;
 						const isDesktopTopRow = index < 4;
 						const isDesktopBottomRow = index >= 4;
 
@@ -94,10 +94,12 @@ export const SocialProof = () => {
                             ${isDesktopBottomRow ? "md:border-t-[0.5px] md:border-b" : ""}border-[#E3E2E1]`}
 							>
 								<div className="relative h-6 xs:h-7 w-6 xs:w-7 overflow-hidden rounded-full shadow-[0px_-4px_8px_rgba(255,255,255,0.64)_inset] sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-10 lg:w-10">
-									<img
+									<Image
 										src="/horizon-icon.svg"
 										alt="Horizon"
 										className="h-full w-full object-contain"
+										width={24}
+										height={24}
 									/>
 								</div>
 								<div className="flex flex-col justify-center text-center font-medium font-sans text-[#37322F] text-sm xs:text-base leading-tight sm:text-lg md:text-xl md:leading-9 lg:text-2xl">
@@ -114,7 +116,7 @@ export const SocialProof = () => {
 						{Array.from({ length: 50 }).map((_, i) => (
 							<div
 								key={i}
-								className="h-3 origin-top-left rotate-[-45deg] self-stretch outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px] sm:h-4"
+								className="h-3 origin-top-left rotate-[-45deg] self-stretch outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px] sm:h-4"
 							/>
 						))}
 					</div>
