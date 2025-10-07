@@ -14,6 +14,14 @@
 		".": {
 			"import": "./dist/index.js",
 			"types": "./dist/index.d.ts"
+		},
+		"./schema": {
+			"import": "./dist/schema/index.js",
+			"types": "./dist/schema/index.d.ts"
+		},
+		"./db": {
+			"import": "./dist/db.js",
+			"types": "./dist/db.d.ts"
 		}
 	},
 	"scripts": {
@@ -26,13 +34,13 @@
 	},
 	"devDependencies": {
 		"drizzle-kit": "^0.31.5",
-		"typescript": "catalog:"
+		"typescript": "catalog:tools"
 	},
 	"dependencies": {
 		"@neondatabase/serverless": "^1.0.2",
 		"dotenv": "^16.6.1",
 		"drizzle-orm": "^0.44.6",
-		"tsdown": "catalog:",
+		"tsdown": "catalog:tools",
 		"ws": "^8.18.3"
 	}
 }
