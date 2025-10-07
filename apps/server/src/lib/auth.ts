@@ -1,8 +1,8 @@
 import { expo } from "@better-auth/expo";
+import { db } from "@workspace/database";
+import * as schema from "@workspace/database/schema";
 import { type BetterAuthOptions, betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "../db";
-import * as schema from "../db/schema/auth";
 
 // import { checkout, polar, portal } from "@polar-sh/better-auth";
 // import { polarClient } from "./payments";
@@ -10,7 +10,6 @@ import * as schema from "../db/schema/auth";
 export const auth = betterAuth<BetterAuthOptions>({
 	database: drizzleAdapter(db, {
 		provider: "pg",
-
 		schema: schema,
 	}),
 	trustedOrigins: [process.env.CORS_ORIGIN || "", "mybettertapp://", "exp://"],
