@@ -2,7 +2,9 @@
 
 import { neon } from "@neondatabase/serverless";
 import { Injectable, type OnModuleInit } from "@nestjs/common";
-import * as schema from "@workspace/database/schema";
+import { schemas } from "@workspace/database";
+
+
 
 import { drizzle } from "drizzle-orm/neon-http";
 // import * as schema from "./schemas";
@@ -13,7 +15,7 @@ export class DbService implements OnModuleInit {
 
 	constructor() {
 		const sql = neon(process.env.DATABASE_URL!);
-		this.db = drizzle(sql, { schema });
+		this.db = drizzle(sql, { schema: schemas });
 	}
 
 	async onModuleInit() {
