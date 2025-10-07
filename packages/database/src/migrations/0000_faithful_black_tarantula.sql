@@ -1,3 +1,4 @@
+CREATE TYPE "public"."company_type" AS ENUM('onsite', 'hybrid', 'remote');--> statement-breakpoint
 CREATE TABLE "account" (
 	"id" text PRIMARY KEY NOT NULL,
 	"account_id" text NOT NULL,
@@ -44,6 +45,18 @@ CREATE TABLE "verification" (
 	"expires_at" timestamp NOT NULL,
 	"created_at" timestamp,
 	"updated_at" timestamp
+);
+--> statement-breakpoint
+CREATE TABLE "companies" (
+	"company_name" varchar(256) NOT NULL,
+	"office_location" text NOT NULL,
+	"technologies" json NOT NULL,
+	"web_presence" json NOT NULL,
+	"company_type" "company_type" DEFAULT 'onsite' NOT NULL,
+	"is_top_choice" boolean DEFAULT false NOT NULL,
+	"glassdoor_rating_score" integer,
+	"established_year" integer DEFAULT 0 NOT NULL,
+	"no_of_software_engineers" varchar(256)
 );
 --> statement-breakpoint
 ALTER TABLE "account" ADD CONSTRAINT "account_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint

@@ -1,0 +1,44 @@
+{
+	"name": "@workspace/database",
+	"version": "1.0.0",
+	"private": true,
+	"description": "drizzle and auth database",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./schema": {
+			"import": "./dist/schema/index.js",
+			"types": "./dist/schema/index.d.ts",
+			"default": "./dist/schema/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsdown",
+		"dev": "tsdown --watch",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate"
+	},
+	"devDependencies": {
+		"drizzle-kit": "^0.31.5",
+		"typescript": "catalog:"
+	},
+	"dependencies": {
+		"@neondatabase/serverless": "^1.0.2",
+		"dotenv": "^16.6.1",
+		"drizzle-orm": "^0.44.6",
+		"tsdown": "catalog:",
+		"ws": "^8.18.3"
+	}
+}
