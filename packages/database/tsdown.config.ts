@@ -7,9 +7,4 @@ export default defineConfig({
 		"@": "./src",
 	},
 	dts: true,
-	clean: true,
-	target: "node",
-	platform: "node",
-	external: ["@neondatabase/serverless", "drizzle-orm", "dotenv", "ws"],
-	tsconfig: "./tsconfig.json",
 });

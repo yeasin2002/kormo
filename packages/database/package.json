@@ -17,22 +17,22 @@
 		}
 	},
 	"scripts": {
-		"build": "tsup",
-		"dev": "tsup --watch",
+		"build": "tsdown",
+		"dev": "tsdown --watch",
 		"db:push": "drizzle-kit push",
 		"db:studio": "drizzle-kit studio",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate"
 	},
 	"devDependencies": {
-		"drizzle-kit": "^0.24.5",
-		"tsup": "^8.0.2",
-		"typescript": "^5.0.0"
+		"drizzle-kit": "^0.31.5",
+		"typescript": "catalog:"
 	},
 	"dependencies": {
 		"@neondatabase/serverless": "^1.0.2",
-		"drizzle-orm": "^0.44.6",
 		"dotenv": "^16.6.1",
+		"drizzle-orm": "^0.44.6",
+		"tsdown": "catalog:",
 		"ws": "^8.18.3"
 	}
 }

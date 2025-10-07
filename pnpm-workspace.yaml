@@ -2,6 +2,10 @@ packages:
   - apps/*
   - packages/*
 
+catalog:
+  tsdown: ^0.15.6
+  typescript: ^5.0.0
+
 ignoredBuiltDependencies:
   - '@tailwindcss/oxide'
 
