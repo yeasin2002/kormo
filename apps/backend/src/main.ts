@@ -4,12 +4,12 @@
 
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
 import { apiReference } from '@scalar/nestjs-api-reference';
-import * as dotenv from 'dotenv';
 import { AppModule } from './app.module';
 
-dotenv.config();
+import { config } from 'dotenv';
+import { join } from 'path';
+config({ path: join(process.cwd(), '../.env') });
 
 async function bootstrap() {
   console.log('DATABASE_URL', process.env.DATABASE_URL);
