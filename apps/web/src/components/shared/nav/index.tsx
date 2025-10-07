@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -8,7 +9,6 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 import { productListMenu } from "./menu.data";
 
 export const Nav = () => {

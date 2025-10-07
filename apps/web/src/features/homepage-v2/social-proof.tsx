@@ -1,6 +1,7 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: <> */
-import { Badge } from "@/components/shared/badge";
+
 import Image from "next/image";
+import { Badge } from "@/components/shared/badge";
 
 export const SocialProof = () => {
 	return (

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import * as schema from "@workspace/database/schema";
+import * as schema from '@workspace/database/schema';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { openAPI } from 'better-auth/plugins';
-import type { DbService } from "../db/db.service";
+import type { DbService } from '../db/db.service';
 
 @Injectable()
 export class AuthService {

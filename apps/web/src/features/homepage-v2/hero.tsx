@@ -2,9 +2,9 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: <> */
 "use client";
 
-import { FeatureCard } from "@/features/homepage-v2/feature-card";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { FeatureCard } from "@/features/homepage-v2/feature-card";
 
 export const Hero = () => {
 	const [activeCard, setActiveCard] = useState(0);

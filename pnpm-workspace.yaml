@@ -10,5 +10,8 @@ ignoredBuiltDependencies:
   - '@tailwindcss/oxide'
 
 onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@scarf/scarf'
+  - better-sqlite3
   - tesseract.js
   - unrs-resolver

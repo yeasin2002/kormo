@@ -1,4 +1,3 @@
-
 export const BentoGridIcon = () => {
 	return (
 		<svg

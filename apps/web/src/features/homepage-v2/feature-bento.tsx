@@ -1,8 +1,8 @@
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { BentoGridIcon } from "@/components/icons";
 import { Badge } from "@/components/shared/badge";
 import { Button } from "@/components/ui";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 const featureList = [
 	{

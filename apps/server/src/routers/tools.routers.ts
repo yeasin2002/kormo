@@ -6,8 +6,6 @@ import { z } from "zod";
 
 const tools = express();
 
-
-
 tools.use("/ai-cover-letter-generate", async (req, res) => {
 	try {
 		console.log(chalk.bgRed("body:"), req.body);

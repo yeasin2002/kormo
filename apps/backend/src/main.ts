@@ -6,13 +6,13 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { apiReference } from '@scalar/nestjs-api-reference';
+import * as dotenv from 'dotenv';
 import { AppModule } from './app.module';
 
-import * as dotenv from "dotenv";
 dotenv.config();
 
 async function bootstrap() {
-  console.log("DATABASE_URL", process.env.DATABASE_URL);
+  console.log('DATABASE_URL', process.env.DATABASE_URL);
   const app = await NestFactory.create(AppModule, { bodyParser: false });
 
   app.enableCors({

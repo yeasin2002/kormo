@@ -1,5 +1,3 @@
-import { ApiTags } from '@nestjs/swagger';
-
 import {
   Body,
   Controller,
@@ -9,8 +7,9 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { ApiTags } from '@nestjs/swagger';
+import type { CreateUserDto } from './dto/create-user.dto';
+import type { UpdateUserDto } from './dto/update-user.dto';
 import {
   ApiCreateUserDocs,
   ApiDeleteUserDocs,
@@ -18,7 +17,7 @@ import {
   ApiGetUsersDocs,
   ApiUpdateUserDocs,
 } from './users.docs';
-import { UsersService } from './users.service';
+import type { UsersService } from './users.service';
 
 @ApiTags('Users')
 @Controller('users')
