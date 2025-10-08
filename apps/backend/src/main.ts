@@ -2,14 +2,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
+import { config } from 'dotenv';
+config();
+
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
 import { AppModule } from './app.module';
-
-import { config } from 'dotenv';
-import { join } from 'path';
-config({ path: join(process.cwd(), '../.env') });
 
 async function bootstrap() {
   console.log('DATABASE_URL', process.env.DATABASE_URL);
