@@ -26,4 +26,10 @@ export const productListMenu = [
 		isPro: true,
 		description: "Check your resume for ATS compatibility.",
 	},
+	{
+		name: "JOB  Analyzer",
+		href: "/tools/job-analyzer",
+		isPro: true,
+		description: "Analyze job description and find the best job.",
+	},
 ];
